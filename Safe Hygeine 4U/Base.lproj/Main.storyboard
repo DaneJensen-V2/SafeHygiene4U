@@ -1,24 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tCu-vE-sCi">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Events-->
+        <scene sceneID="gnm-Lp-myl">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController id="sjp-66-pDw" customClass="EventsViewController" customModule="Safe_Hygeine_4U" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GhN-DS-qBa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="VrA-bw-kep"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Events" image="person.3" catalog="system" id="UPT-gm-JML"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lcP-fg-l4x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-468" y="356"/>
+        </scene>
+        <!--Feed-->
+        <scene sceneID="dze-EF-NEl">
+            <objects>
+                <viewController id="s1w-4n-mQE" customClass="FeedViewController" customModule="Safe_Hygeine_4U" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B4s-aL-mpD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="gu0-UK-xTC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Feed" image="note.text" catalog="system" id="d74-kK-Qyg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sgb-1O-sC4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-468" y="1067"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="jvz-A6-IMy">
+            <objects>
+                <viewController id="LFR-h8-xkC" customClass="MapViewController" customModule="Safe_Hygeine_4U" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XZ0-NK-Gaa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="fcl-Lw-shI">
+                                <rect key="frame" x="0.0" y="-1" width="414" height="814"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agS-jm-ois">
+                                <rect key="frame" x="344" y="80" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="fCY-7i-L6E"/>
+                                    <constraint firstAttribute="height" constant="50" id="gMe-Q9-6Xf"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="location" catalog="system" symbolScale="large"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="locationButtonClicked:" destination="LFR-h8-xkC" eventType="touchUpInside" id="2Fx-cL-XjL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="bSn-u3-Yuo"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="agS-jm-ois" firstAttribute="top" secondItem="bSn-u3-Yuo" secondAttribute="top" constant="36" id="0K2-Em-5VL"/>
+                            <constraint firstItem="bSn-u3-Yuo" firstAttribute="bottom" secondItem="fcl-Lw-shI" secondAttribute="bottom" id="99h-bq-c29"/>
+                            <constraint firstItem="fcl-Lw-shI" firstAttribute="leading" secondItem="bSn-u3-Yuo" secondAttribute="leading" id="9dO-rF-h94"/>
+                            <constraint firstItem="bSn-u3-Yuo" firstAttribute="trailing" secondItem="agS-jm-ois" secondAttribute="trailing" constant="20" id="Kxw-GY-uf1"/>
+                            <constraint firstItem="bSn-u3-Yuo" firstAttribute="trailing" secondItem="fcl-Lw-shI" secondAttribute="trailing" id="fHR-WC-ytq"/>
+                            <constraint firstItem="fcl-Lw-shI" firstAttribute="top" secondItem="bSn-u3-Yuo" secondAttribute="top" constant="-45" id="tI6-tp-Gua"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="kSv-Oe-max"/>
+                    <connections>
+                        <outlet property="locationButton" destination="agS-jm-ois" id="nwl-sQ-7fx"/>
+                        <outlet property="mapView" destination="fcl-Lw-shI" id="EOZ-1P-JoL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ui6-TA-HTU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-499" y="-340"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Hbe-Fw-Ovx">
+            <objects>
+                <tabBarController id="tCu-vE-sCi" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bIs-8P-mum">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="LFR-h8-xkC" kind="relationship" relationship="viewControllers" id="0Bf-qr-5RG"/>
+                        <segue destination="sjp-66-pDw" kind="relationship" relationship="viewControllers" id="Mjb-e8-SzA"/>
+                        <segue destination="s1w-4n-mQE" kind="relationship" relationship="viewControllers" id="1U3-uA-8eE"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mP6-B8-0M0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1596" y="-1"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="location" catalog="system" width="128" height="118"/>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="note.text" catalog="system" width="128" height="106"/>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
