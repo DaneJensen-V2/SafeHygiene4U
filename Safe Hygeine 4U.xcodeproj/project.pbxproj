@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		82433D96C92697B0DB458B90 /* Pods_Safe_Hygeine_4U.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */; };
+		A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */; };
+		A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD95285EA060006E9056 /* Hygiene Service.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
 		A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */; };
 		A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D3C703285A9222001A1EE7 /* Main.storyboard */; };
@@ -15,9 +18,16 @@
 		A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */; };
 		A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */; };
 		A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C718285AA123001A1EE7 /* FeedViewController.swift */; };
+		A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F099732861393300AADEE1 /* GoogleService-Info.plist */; };
+		A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997528614A8300AADEE1 /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1A76CE5EFFA73CE839203025 /* Pods-Safe Hygeine 4U.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe Hygeine 4U.release.xcconfig"; path = "Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U.release.xcconfig"; sourceTree = "<group>"; };
+		2079C577727E38B805D71231 /* Pods-Safe Hygeine 4U.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe Hygeine 4U.debug.xcconfig"; path = "Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U.debug.xcconfig"; sourceTree = "<group>"; };
+		78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe_Hygeine_4U.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HygieneAnnotation.swift; sourceTree = "<group>"; };
+		A56EDD95285EA060006E9056 /* Hygiene Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hygiene Service.swift"; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +38,8 @@
 		A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		A5D3C718285AA123001A1EE7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		A5F099732861393300AADEE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A5F0997528614A8300AADEE1 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +47,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82433D96C92697B0DB458B90 /* Pods_Safe_Hygeine_4U.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		66620481E7E8E323EF610BB3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A5D3C6F1285A9222001A1EE7 = {
 			isa = PBXGroup;
 			children = (
 				A5D3C6FC285A9222001A1EE7 /* Safe Hygeine 4U */,
 				A5D3C6FB285A9222001A1EE7 /* Products */,
+				F6F40687E287F4F001750D05 /* Pods */,
+				66620481E7E8E323EF610BB3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +83,7 @@
 		A5D3C6FC285A9222001A1EE7 /* Safe Hygeine 4U */ = {
 			isa = PBXGroup;
 			children = (
+				A5F099732861393300AADEE1 /* GoogleService-Info.plist */,
 				A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */,
 				A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */,
 				A5D3C703285A9222001A1EE7 /* Main.storyboard */,
@@ -76,6 +100,7 @@
 		A5D3C711285A9DB0001A1EE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A56EDD95285EA060006E9056 /* Hygiene Service.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -83,6 +108,7 @@
 		A5D3C712285A9DBE001A1EE7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -93,8 +119,18 @@
 				A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */,
 				A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */,
 				A5D3C718285AA123001A1EE7 /* FeedViewController.swift */,
+				A5F0997528614A8300AADEE1 /* DBManager.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		F6F40687E287F4F001750D05 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2079C577727E38B805D71231 /* Pods-Safe Hygeine 4U.debug.xcconfig */,
+				1A76CE5EFFA73CE839203025 /* Pods-Safe Hygeine 4U.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5D3C70E285A9225001A1EE7 /* Build configuration list for PBXNativeTarget "Safe Hygeine 4U" */;
 			buildPhases = (
+				CC4D04E6DA7ECD803C4BB276 /* [CP] Check Pods Manifest.lock */,
 				A5D3C6F6285A9222001A1EE7 /* Sources */,
 				A5D3C6F7285A9222001A1EE7 /* Frameworks */,
 				A5D3C6F8285A9222001A1EE7 /* Resources */,
+				50DA3D7B5EC20AFC21D7C2C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,10 +196,53 @@
 				A5D3C70A285A9225001A1EE7 /* LaunchScreen.storyboard in Resources */,
 				A5D3C707285A9225001A1EE7 /* Assets.xcassets in Resources */,
 				A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */,
+				A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		50DA3D7B5EC20AFC21D7C2C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CC4D04E6DA7ECD803C4BB276 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Safe Hygeine 4U-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A5D3C6F6285A9222001A1EE7 /* Sources */ = {
@@ -169,9 +250,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */,
+				A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */,
 				A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */,
+				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
 				A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */,
 				A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */,
+				A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */,
 				A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -316,6 +400,7 @@
 		};
 		A5D3C70F285A9225001A1EE7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2079C577727E38B805D71231 /* Pods-Safe Hygeine 4U.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -324,11 +409,13 @@
 				DEVELOPMENT_TEAM = KN446JPPP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Safe Hygeine 4U/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allows map to work";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +431,7 @@
 		};
 		A5D3C710285A9225001A1EE7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A76CE5EFFA73CE839203025 /* Pods-Safe Hygeine 4U.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -352,11 +440,13 @@
 				DEVELOPMENT_TEAM = KN446JPPP4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Safe Hygeine 4U/Info.plist";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allows map to work";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

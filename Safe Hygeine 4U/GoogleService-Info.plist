@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>324045373059-7me3pj6bct0sll2pip8g215hnht9bpv9.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.324045373059-7me3pj6bct0sll2pip8g215hnht9bpv9</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAFdBQQdKgerBnhX90xzUc0SykDq5xuyg0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>324045373059</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>DaneJApps.Safe-Hygeine-4U</string>
+	<key>PROJECT_ID</key>
+	<string>safehygiene4u-4f485</string>
+	<key>STORAGE_BUCKET</key>
+	<string>safehygiene4u-4f485.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:324045373059:ios:d1d289160cf70db6b2a5b6</string>
+</dict>
+</plist>

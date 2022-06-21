@@ -1,35 +1,23 @@
-<div id="top"></div>
-<!--
+# Safe Hygiene 4U
+## _Updates and Photos_
+
+![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)
+
+## 6/20/22 Update
+
+- Added Custom Pins that change based on service type and rating
+- Added View that pops up after a pin is selected
+- Created objects to store services
+- Set up Google Firebase Database and stored pins on that database
+- Connected app to database so that pins are loaded from the DB and displayed on the map
+
+![SC1][SC1]
+![SC2][SC2]
+![SC3][SC3]
 
 
 
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+[SC1]: Screenshots/SC1.png
+[SC2]: Screenshots/SC2.png
+[SC3]: Screenshots/SC3.png
 
-
-
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-<h3 align="center">Safe Hygiene 4U</h3>
-
-</div>
-
-
-
-
-
-<!-- ABOUT THE PROJECT -->
-## Screenshots
-
-[![Product Name Screen Shot][product-screenshot]
-
-
-
-[product-screenshot]: Screenshots/sc1.png
