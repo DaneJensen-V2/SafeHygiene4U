@@ -11,13 +11,13 @@
 - Set up Google Firebase Database and stored pins on that database
 - Connected app to database so that pins are loaded from the DB and displayed on the map
 
-![SC1][SC1]
+![SC4][SC4]
 ![SC2][SC2]
 ![SC3][SC3]
 
 
 
-[SC1]: Screenshots/SC1.png
+[SC4]: Screenshots/SC4.png
 [SC2]: Screenshots/SC2.png
 [SC3]: Screenshots/SC3.png
 

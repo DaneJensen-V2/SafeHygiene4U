@@ -100,6 +100,7 @@
 		A5D3C711285A9DB0001A1EE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */,
 				A56EDD95285EA060006E9056 /* Hygiene Service.swift */,
 			);
 			path = Model;
@@ -108,7 +109,6 @@
 		A5D3C712285A9DBE001A1EE7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

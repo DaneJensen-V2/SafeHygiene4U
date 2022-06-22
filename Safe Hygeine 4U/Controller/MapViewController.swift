@@ -22,44 +22,45 @@ class MapViewController: UIViewController {
     
     //Allows us to get the users location for the map
     let locationManager = CLLocationManager()
+    //sets initial region that map displays in meters around user
     let regionInMeters : Double = 2000
+    //sets up connection to Database
     let db = Firestore.firestore()
     let dbManager = DBManager()
     
-    var pointList : [hygieneService] = []
-    let hygieneAnnotations = HygieneAnnotations()
     //ViewDidLoad
     override func viewDidLoad() {
-        pinClickedView.isHidden = true
         super.viewDidLoad()
+
+        //Hides the view that shows up when a pin is clicked
+        pinClickedView.isHidden = true
         mapView.delegate = self
+        
+        //Checks if user has location services enabled
         checkLocationServices()
 
         
-        //Map follows user by default
-        mapView.userTrackingMode = .none
-
         locationButton.layer.cornerRadius = 10
-        //used to add test pin to map
-        
-        
         pinClickedView.layer.cornerRadius = 10
-        
-       // mapView.addAnnotations(hygieneAnnotations.services)
-       
-        
+               
+        //Work in progress, to allow the user to tap outside of the view to dismiss it.
         let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
         self.view.addGestureRecognizer(mytapGestureRecognizer)
-        //self.isUserInteractionEnabled = true
-       // addDocument()
+        
+        //Uncomment to add a document to the database
+        //addDocument()
+        
+        //Calls the load data method from dbManager class to get all the points for the map
         dbManager.loadData(){ success in
             print("Data Loaded")
             self.mapView.addAnnotations(servicesList)
         }
     }
+    
+    //Adds a document to the database, edit values and uncomment function in viewDidLoad and run to add to the database.
     func addDocument(){
       
-        let newService = hygieneService(latitude: 33.58667, longitude: -111.84747, serviceType: "Bathroom", rating: 5, title: "Market Bathroom", info: "Free Bathroom")
+        let newService = hygieneService(latitude: 33.58667, longitude: -111.84747, serviceType: "Bathroom", rating: 5, title: "Market Bathroom 2", info: "Free Bathroom")
         do {
             try db.collection("Services").document(newService.title).setData(from: newService)
         } catch let error {
@@ -67,6 +68,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    //Sets properties for location manager
     func setupLocationManager(){
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -85,7 +87,6 @@ class MapViewController: UIViewController {
     
     //centers the map on the user
     func centerViewOnUser(){
-        
         if let location = locationManager.location?.coordinate{
             let region = MKCoordinateRegion.init(center: location, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
             mapView.setRegion((region), animated: true)
@@ -97,10 +98,9 @@ class MapViewController: UIViewController {
     @IBAction func locationButtonClicked(_ sender: UIButton) {
         print("Centering on user")
         centerViewOnUser()
-        mapView.userTrackingMode = .none
     }
     
-
+//Gets color of pin based on the rating, we will want to change this to Double from Int
     func getColor(rating : Int) -> String{
         switch rating{
         case 0...2:
@@ -116,7 +116,7 @@ class MapViewController: UIViewController {
     
 
     
-    //prompts user with different location authorization options depending on what they selected
+    //Prompts user with different location authorization options depending on what they selected
     func checkLocationAuthorization(){
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse:
@@ -137,10 +137,12 @@ class MapViewController: UIViewController {
         }
     }
     
+    //Work in progress, used to dismiss pinclickedView if user taps outside of the view
     @objc func handleTap(_ sender:UITapGestureRecognizer){
         print("Tap Handled")
         if pinClickedView.isHidden == false{
             if !pinClickedView.isHidden {
+                //animates view out of screen
                 UIView.animate(withDuration: 0.2) {
                     self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: 150)
                 }
@@ -148,7 +150,6 @@ class MapViewController: UIViewController {
             else {
                 pinClickedView.isHidden = false
                 
-                // Show the Calendar Here
             }
         }
     }
@@ -161,28 +162,30 @@ extension MapViewController: MKMapViewDelegate{
         
         var annotationView = MKMarkerAnnotationView()
         guard let annotation = annotation as? HygieneAnnotation else {return nil}
+        
+        //Temporary values that change based on pin type
         var identifier = ""
-        print("map view ran")
         var color = ""
         var image = UIImage(named: "SC")
-      
         
+        //Sets pin image based on service type
         switch annotation.type{
-                case .shower:
-                    identifier = "Shower"
-                    image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                case .bathroom:
-                    identifier = "Bathroom"
-                    image = UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                case .laundromat:
-                    identifier = "Laundromat"
-                    image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                case .partner:
-                    identifier = "Partner"
-                    image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))           }
+        case .shower:
+            identifier = "Shower"
+            image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+        case .bathroom:
+            identifier = "Bathroom"
+            image = UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+        case .laundromat:
+            identifier = "Laundromat"
+            image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+        case .partner:
+            identifier = "Partner"
+            image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))           }
         
-       color = getColor(rating: annotation.rating)
-
+        //Sets color based on rating
+        color = getColor(rating: annotation.rating)
+        
         if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             annotationView = dequedView
         } else {
@@ -193,57 +196,54 @@ extension MapViewController: MKMapViewDelegate{
         annotationView.glyphImage = image
         annotationView.glyphTintColor = .white
         annotationView.clusteringIdentifier = "Service"
-
+        
         
         return annotationView
     }
     
+    //Displays a view when a user clicks a point
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(" did select ran")
-        var pointInArray = hygieneService(latitude: 0, longitude: 0, serviceType: "", rating: 0, title: "", info: "")
-        
-        
-        
-        if let annotationTitle = view.annotation?.title{
-            pinClickedLabel.text = annotationTitle
-
-
-            
-            for point in pointList {
-                   if point.title == annotationTitle {
-                        pointInArray = point
-                        break
-                    }
-                }
-            }
-        print("User tapped on annotation with title: \(pointInArray.title)")
-        
-        switch pointInArray.serviceType{
-        case "":
-            pinClickedImage.image =  UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-            break
-        case "1" :
-            pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-            break
-        default:
-            print("Default")
-            break
-        }
-                
+        //Temporary point
+        var pointInArray = HygieneAnnotation(0, 0, title: "", subtitle: "", type: .shower, rating: 0)
+               
+            //gets title of point clicked
+               if let annotationTitle = view.annotation?.title{
+                   pinClickedLabel.text = annotationTitle
+                   
+                   //Matches the clicked point to the point in the services list based on title
+                   for point in servicesList {
+                          if point.title == annotationTitle {
+                               pointInArray = point
+                               break
+                           }
+                       }
+                   }
+               //Sets image for view based on type
+               switch pointInArray.type{
+               case .bathroom:
+                   pinClickedImage.image =  UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                   break
+               case .shower :
+                   pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                   break
+               default:
+                   print("Default")
+                   break
+               }
+            //Animates view on screen
             pinClickedView.isHidden = false
-                    let generator = UIImpactFeedbackGenerator(style: .medium)
-                    generator.impactOccurred()
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.impactOccurred()
             UIView.animate(withDuration: 0.2) {
                 self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: -150)
-
+                
             }
-
-            }
+            
+        }
     }
 
 
 extension MapViewController: CLLocationManagerDelegate {
-
     
     //If authorization changes, prompt user again
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -252,14 +252,4 @@ extension MapViewController: CLLocationManagerDelegate {
         checkLocationAuthorization()
     }
 }
-extension UIView {
 
-    // Using a function since `var image` might conflict with an existing variable
-    // (like on `UIImageView`)
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-        }
-    }
-}

@@ -6,9 +6,10 @@ import FirebaseFirestoreSwift
 var servicesList:[HygieneAnnotation] = []
 
 class DBManager{
+    //Connects to the database
     let db = Firestore.firestore()
     
-    
+    //Loads data from database and stores it into a list of services
     func loadData(completion: @escaping (Bool) -> Void){
         
         db.collection("Services").getDocuments() { (querySnapshot, err) in
