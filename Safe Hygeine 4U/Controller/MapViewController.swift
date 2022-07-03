@@ -7,18 +7,40 @@
 import CoreLocation
 import UIKit
 import MapKit
+import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+var dataLoaded = false
+var viewdidLoad = false
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
+    @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinClickedView: UIView!
     @IBOutlet weak var pinClickedImage: UIImageView!
     @IBOutlet weak var pinClickedLabel: UILabel!
     var bathroomView: UIView!
+    
+    //Declarations for Side Menu
+     var sideMenuViewController: SideMenuViewController!
+     var sideMenuRevealWidth: CGFloat = 260
+     let paddingForRotation: CGFloat = 150
+     var isExpanded: Bool = false
+    
+    // Expand/Collapse the side menu by changing trailing's constant
+     var sideMenuTrailingConstraint: NSLayoutConstraint!
+     var revealSideMenuOnTop: Bool = true
+     var sideMenuShadowView: UIView!
+     var draggingIsEnabled: Bool = false
+     var panBaseLocation: CGFloat = 0.0
+    
+    @IBAction open func revealSideMenu() {
+        self.sideMenuState(expanded: self.isExpanded ? false : true)
+
+    }
     
     //Allows us to get the users location for the map
     let locationManager = CLLocationManager()
@@ -27,36 +49,65 @@ class MapViewController: UIViewController {
     //sets up connection to Database
     let db = Firestore.firestore()
     let dbManager = DBManager()
+    let authManager = AuthManager()
     
     //ViewDidLoad
     override func viewDidLoad() {
+        print("VIEW DID LOAD RAN")
         super.viewDidLoad()
-
+        
         //Hides the view that shows up when a pin is clicked
         pinClickedView.isHidden = true
         mapView.delegate = self
         
+        makeViewCircular(view: locationButton)
+        makeViewCircular(view: menuButton)
+        
+        pinClickedView.layer.cornerRadius = 10
+
         //Checks if user has location services enabled
         checkLocationServices()
+        
+        //Sets up the side menu with functions from SideMenuFunctions File
+        if viewdidLoad == false{
+            setupSideMenu()
+            viewdidLoad = true
 
-        
-        locationButton.layer.cornerRadius = 10
-        pinClickedView.layer.cornerRadius = 10
-               
-        //Work in progress, to allow the user to tap outside of the view to dismiss it.
-        let mytapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        self.view.addGestureRecognizer(mytapGestureRecognizer)
-        
+        }
         //Uncomment to add a document to the database
         //addDocument()
         
+        
         //Calls the load data method from dbManager class to get all the points for the map
-        dbManager.loadData(){ success in
-            print("Data Loaded")
+        if dataLoaded == false {
+            dbManager.loadData(){ success in
+                print("Data Loaded")
+                self.mapView.addAnnotations(servicesList)
+                dataLoaded = true
+            }
+           
+        } else if dataLoaded == true{
             self.mapView.addAnnotations(servicesList)
         }
+        
+        if (authManager.checkIfLoggedIn() == false){
+            print("Displaying Login Message")
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "loginChanged"), object: nil)
+
+        }
+
+        else {
+            print("Loading User")
+            let user = Auth.auth().currentUser
+            AuthManager().loadCurrentUser(user: user!, completion: { success in
+            })
+        }
     }
-    
+    //Turns button into a circle
+    func makeViewCircular(view: UIButton) {
+        view.layer.cornerRadius = view.bounds.size.width / 2.0
+        view.clipsToBounds = true
+    }
     //Adds a document to the database, edit values and uncomment function in viewDidLoad and run to add to the database.
     func addDocument(){
       
@@ -67,7 +118,10 @@ class MapViewController: UIViewController {
             print("Error writing city to Firestore: \(error)")
         }
     }
-    
+   
+    @IBAction func pinLabelClicked(_ sender: UIButton) {
+        print("Pin Clicked")
+    }
     //Sets properties for location manager
     func setupLocationManager(){
         locationManager.delegate = self
@@ -85,6 +139,9 @@ class MapViewController: UIViewController {
         }
     }
     
+    @IBAction func menuClicked(_ sender: UIButton) {
+        revealSideMenu()
+    }
     //centers the map on the user
     func centerViewOnUser(){
         if let location = locationManager.location?.coordinate{
@@ -138,6 +195,7 @@ class MapViewController: UIViewController {
     }
     
     //Work in progress, used to dismiss pinclickedView if user taps outside of the view
+    
     @objc func handleTap(_ sender:UITapGestureRecognizer){
         print("Tap Handled")
         if pinClickedView.isHidden == false{
@@ -154,6 +212,7 @@ class MapViewController: UIViewController {
         }
     }
 
+    
 }
 
 
@@ -226,6 +285,9 @@ extension MapViewController: MKMapViewDelegate{
                case .shower :
                    pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
+               case .laundromat :
+                   pinClickedImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                   break
                default:
                    print("Default")
                    break
@@ -235,7 +297,7 @@ extension MapViewController: MKMapViewDelegate{
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
             UIView.animate(withDuration: 0.2) {
-                self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: -150)
+                self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: -160)
                 
             }
             
@@ -251,5 +313,27 @@ extension MapViewController: CLLocationManagerDelegate {
 
         checkLocationAuthorization()
     }
+}
+
+extension UIViewController {
+    
+    // With this extension you can access the MainViewController from the child view controllers.
+    func revealViewController() -> MapViewController? {
+        var viewController: UIViewController? = self
+        
+        if viewController != nil && viewController is MapViewController {
+            return viewController! as? MapViewController
+        }
+        while (!(viewController is MapViewController) && viewController?.parent != nil) {
+            viewController = viewController?.parent
+        }
+        if viewController is MapViewController {
+            return viewController as? MapViewController
+        }
+        return nil
+    }
+    // Call this Button Action from the View Controller you want to Expand/Collapse when you tap a button
+    
+    
 }
 

@@ -16,6 +16,7 @@ struct hygieneService : Codable{
     var title : String
     var info : String
     
+    
     enum CodingKeys: String, CodingKey {
         
         case latitude

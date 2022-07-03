@@ -9,4 +9,6 @@ target 'Safe Hygeine 4U' do
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
 	pod 'FirebaseFirestoreSwift'
+	pod 'GoogleSignIn'
+
 end

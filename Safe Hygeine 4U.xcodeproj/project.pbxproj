@@ -10,6 +10,9 @@
 		82433D96C92697B0DB458B90 /* Pods_Safe_Hygeine_4U.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */; };
 		A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */; };
 		A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD95285EA060006E9056 /* Hygiene Service.swift */; };
+		A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */; };
+		A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92CF286E412500D1C64C /* SignInViewController.swift */; };
+		A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
 		A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */; };
 		A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D3C703285A9222001A1EE7 /* Main.storyboard */; };
@@ -20,6 +23,30 @@
 		A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C718285AA123001A1EE7 /* FeedViewController.swift */; };
 		A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F099732861393300AADEE1 /* GoogleService-Info.plist */; };
 		A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997528614A8300AADEE1 /* DBManager.swift */; };
+		A5F099782865044500AADEE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099772865044500AADEE1 /* UserModel.swift */; };
+		A5F0997A28650C2000AADEE1 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997928650C2000AADEE1 /* AuthManager.swift */; };
+		A5F0997C286678A900AADEE1 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997B286678A900AADEE1 /* SideMenuViewController.swift */; };
+		A5F0997E286678DF00AADEE1 /* SideMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997D286678DF00AADEE1 /* SideMenuModel.swift */; };
+		A5F099802866790C00AADEE1 /* SideMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F0997F2866790C00AADEE1 /* SideMenuCell.xib */; };
+		A5F099822866791200AADEE1 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099812866791200AADEE1 /* SideMenuCell.swift */; };
+		A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */; };
+		A5F0998E2869271200AADEE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0998D2869271200AADEE1 /* LoginViewController.swift */; };
+		A5F09990286CFA1300AADEE1 /* OpenSans in Resources */ = {isa = PBXBuildFile; fileRef = A5F0998F286CFA1300AADEE1 /* OpenSans */; };
+		A5F099B5286CFECB00AADEE1 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AD286CFEC500AADEE1 /* OpenSans-Italic.ttf */; };
+		A5F099B6286CFECB00AADEE1 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B3286CFEC500AADEE1 /* OpenSans-Medium.ttf */; };
+		A5F099B7286CFECB00AADEE1 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AE286CFEC500AADEE1 /* OpenSans-BoldItalic.ttf */; };
+		A5F099B8286CFECB00AADEE1 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B4286CFEC500AADEE1 /* OpenSans-Bold.ttf */; };
+		A5F099B9286CFECB00AADEE1 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AA286CFEC500AADEE1 /* OpenSans-LightItalic.ttf */; };
+		A5F099BA286CFECB00AADEE1 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099A9286CFEC400AADEE1 /* OpenSans-Regular.ttf */; };
+		A5F099BB286CFECB00AADEE1 /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B2286CFEC500AADEE1 /* OpenSans-ExtraBoldItalic.ttf */; };
+		A5F099BC286CFECB00AADEE1 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B1286CFEC500AADEE1 /* OpenSans-SemiBold.ttf */; };
+		A5F099BD286CFECB00AADEE1 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AC286CFEC500AADEE1 /* OpenSans-SemiBoldItalic.ttf */; };
+		A5F099BE286CFECB00AADEE1 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B0286CFEC500AADEE1 /* OpenSans-Light.ttf */; };
+		A5F099BF286CFECB00AADEE1 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AF286CFEC500AADEE1 /* OpenSans-ExtraBold.ttf */; };
+		A5F099C0286CFECB00AADEE1 /* OpenSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AB286CFEC500AADEE1 /* OpenSans-MediumItalic.ttf */; };
+		A5F099C3286D01EC00AADEE1 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */; };
+		A5F099C5286D08CB00AADEE1 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */; };
+		A5F099C7286D0B9500AADEE1 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C6286D0B9500AADEE1 /* NameViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +55,9 @@
 		78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe_Hygeine_4U.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HygieneAnnotation.swift; sourceTree = "<group>"; };
 		A56EDD95285EA060006E9056 /* Hygiene Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hygiene Service.swift"; sourceTree = "<group>"; };
+		A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsViewController.swift; sourceTree = "<group>"; };
+		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +70,30 @@
 		A5D3C718285AA123001A1EE7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A5F099732861393300AADEE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F0997528614A8300AADEE1 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		A5F099772865044500AADEE1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		A5F0997928650C2000AADEE1 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		A5F0997B286678A900AADEE1 /* SideMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		A5F0997D286678DF00AADEE1 /* SideMenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuModel.swift; sourceTree = "<group>"; };
+		A5F0997F2866790C00AADEE1 /* SideMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideMenuCell.xib; sourceTree = "<group>"; };
+		A5F099812866791200AADEE1 /* SideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
+		A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFunctions.swift; sourceTree = "<group>"; };
+		A5F0998D2869271200AADEE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A5F0998F286CFA1300AADEE1 /* OpenSans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenSans; sourceTree = "<group>"; };
+		A5F099A9286CFEC400AADEE1 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		A5F099AA286CFEC500AADEE1 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		A5F099AB286CFEC500AADEE1 /* OpenSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-MediumItalic.ttf"; sourceTree = "<group>"; };
+		A5F099AC286CFEC500AADEE1 /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		A5F099AD286CFEC500AADEE1 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic.ttf"; sourceTree = "<group>"; };
+		A5F099AE286CFEC500AADEE1 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
+		A5F099AF286CFEC500AADEE1 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		A5F099B0286CFEC500AADEE1 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		A5F099B1286CFEC500AADEE1 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		A5F099B2286CFEC500AADEE1 /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		A5F099B3286CFEC500AADEE1 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		A5F099B4286CFEC500AADEE1 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
+		A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		A5F099C6286D0B9500AADEE1 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +137,8 @@
 		A5D3C6FC285A9222001A1EE7 /* Safe Hygeine 4U */ = {
 			isa = PBXGroup;
 			children = (
+				A5F099C1286D01BF00AADEE1 /* Fonts */,
+				A5F0998F286CFA1300AADEE1 /* OpenSans */,
 				A5F099732861393300AADEE1 /* GoogleService-Info.plist */,
 				A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */,
 				A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */,
@@ -102,6 +158,8 @@
 			children = (
 				A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */,
 				A56EDD95285EA060006E9056 /* Hygiene Service.swift */,
+				A5F099772865044500AADEE1 /* UserModel.swift */,
+				A5F0997D286678DF00AADEE1 /* SideMenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -109,6 +167,8 @@
 		A5D3C712285A9DBE001A1EE7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A5F0997F2866790C00AADEE1 /* SideMenuCell.xib */,
+				A5F099812866791200AADEE1 /* SideMenuCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -116,12 +176,41 @@
 		A5D3C713285A9DC0001A1EE7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A5F0997B286678A900AADEE1 /* SideMenuViewController.swift */,
+				A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */,
 				A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */,
 				A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */,
 				A5D3C718285AA123001A1EE7 /* FeedViewController.swift */,
 				A5F0997528614A8300AADEE1 /* DBManager.swift */,
+				A5F0997928650C2000AADEE1 /* AuthManager.swift */,
+				A5F0998D2869271200AADEE1 /* LoginViewController.swift */,
+				A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */,
+				A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */,
+				A5F099C6286D0B9500AADEE1 /* NameViewController.swift */,
+				A5AB92CF286E412500D1C64C /* SignInViewController.swift */,
+				A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */,
+				A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A5F099C1286D01BF00AADEE1 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				A5F099B4286CFEC500AADEE1 /* OpenSans-Bold.ttf */,
+				A5F099AE286CFEC500AADEE1 /* OpenSans-BoldItalic.ttf */,
+				A5F099AF286CFEC500AADEE1 /* OpenSans-ExtraBold.ttf */,
+				A5F099B2286CFEC500AADEE1 /* OpenSans-ExtraBoldItalic.ttf */,
+				A5F099AD286CFEC500AADEE1 /* OpenSans-Italic.ttf */,
+				A5F099B0286CFEC500AADEE1 /* OpenSans-Light.ttf */,
+				A5F099AA286CFEC500AADEE1 /* OpenSans-LightItalic.ttf */,
+				A5F099B3286CFEC500AADEE1 /* OpenSans-Medium.ttf */,
+				A5F099AB286CFEC500AADEE1 /* OpenSans-MediumItalic.ttf */,
+				A5F099A9286CFEC400AADEE1 /* OpenSans-Regular.ttf */,
+				A5F099B1286CFEC500AADEE1 /* OpenSans-SemiBold.ttf */,
+				A5F099AC286CFEC500AADEE1 /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		F6F40687E287F4F001750D05 /* Pods */ = {
@@ -194,9 +283,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D3C70A285A9225001A1EE7 /* LaunchScreen.storyboard in Resources */,
+				A5F09990286CFA1300AADEE1 /* OpenSans in Resources */,
+				A5F099BC286CFECB00AADEE1 /* OpenSans-SemiBold.ttf in Resources */,
 				A5D3C707285A9225001A1EE7 /* Assets.xcassets in Resources */,
 				A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */,
+				A5F099B6286CFECB00AADEE1 /* OpenSans-Medium.ttf in Resources */,
+				A5F099B9286CFECB00AADEE1 /* OpenSans-LightItalic.ttf in Resources */,
+				A5F099802866790C00AADEE1 /* SideMenuCell.xib in Resources */,
+				A5F099B7286CFECB00AADEE1 /* OpenSans-BoldItalic.ttf in Resources */,
+				A5F099BD286CFECB00AADEE1 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				A5F099C0286CFECB00AADEE1 /* OpenSans-MediumItalic.ttf in Resources */,
+				A5F099BE286CFECB00AADEE1 /* OpenSans-Light.ttf in Resources */,
 				A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */,
+				A5F099BB286CFECB00AADEE1 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				A5F099B8286CFECB00AADEE1 /* OpenSans-Bold.ttf in Resources */,
+				A5F099BA286CFECB00AADEE1 /* OpenSans-Regular.ttf in Resources */,
+				A5F099BF286CFECB00AADEE1 /* OpenSans-ExtraBold.ttf in Resources */,
+				A5F099B5286CFECB00AADEE1 /* OpenSans-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,13 +353,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */,
+				A5F0997E286678DF00AADEE1 /* SideMenuModel.swift in Sources */,
 				A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */,
+				A5F0998E2869271200AADEE1 /* LoginViewController.swift in Sources */,
 				A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */,
+				A5F099C7286D0B9500AADEE1 /* NameViewController.swift in Sources */,
+				A5F099C5286D08CB00AADEE1 /* PasswordViewController.swift in Sources */,
 				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
+				A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */,
+				A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */,
+				A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */,
+				A5F0997C286678A900AADEE1 /* SideMenuViewController.swift in Sources */,
 				A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */,
 				A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */,
+				A5F099822866791200AADEE1 /* SideMenuCell.swift in Sources */,
+				A5F099C3286D01EC00AADEE1 /* EmailViewController.swift in Sources */,
 				A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */,
+				A5F099782865044500AADEE1 /* UserModel.swift in Sources */,
 				A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */,
+				A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */,
+				A5F0997A28650C2000AADEE1 /* AuthManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,9 +539,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "DaneJApps.Safe-Hygeine-4U";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -454,9 +573,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "DaneJApps.Safe-Hygeine-4U";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
