@@ -20,6 +20,7 @@
 		A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C718285AA123001A1EE7 /* FeedViewController.swift */; };
 		A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F099732861393300AADEE1 /* GoogleService-Info.plist */; };
 		A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997528614A8300AADEE1 /* DBManager.swift */; };
+		A8CEFAFC2874DB1B004AAC5D /* RatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CEFAFB2874DB1B004AAC5D /* RatingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A5D3C718285AA123001A1EE7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		A5F099732861393300AADEE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F0997528614A8300AADEE1 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		A8CEFAFB2874DB1B004AAC5D /* RatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */,
 				A5D3C718285AA123001A1EE7 /* FeedViewController.swift */,
 				A5F0997528614A8300AADEE1 /* DBManager.swift */,
+				A8CEFAFB2874DB1B004AAC5D /* RatingController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */,
 				A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */,
+				A8CEFAFC2874DB1B004AAC5D /* RatingController.swift in Sources */,
 				A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */,
 				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
 				A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */,

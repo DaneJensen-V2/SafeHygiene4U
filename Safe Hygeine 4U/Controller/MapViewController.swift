@@ -230,6 +230,7 @@ extension MapViewController: MKMapViewDelegate{
                    print("Default")
                    break
                }
+        
             //Animates view on screen
             pinClickedView.isHidden = false
             let generator = UIImpactFeedbackGenerator(style: .medium)
