@@ -10,9 +10,13 @@ import MapKit
 import FirebaseAuth
 import FirebaseCore
 import FirebaseFirestore
+import CoreData
 import FirebaseFirestoreSwift
 var dataLoaded = false
 var viewdidLoad = false
+var selectedService : ServiceInfo?
+var services : [ServiceInfo]?
+
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
@@ -21,7 +25,14 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var pinClickedView: UIView!
     @IBOutlet weak var pinClickedImage: UIImageView!
+    @IBOutlet weak var mapButton: UIButton!
     @IBOutlet weak var pinClickedLabel: UILabel!
+    @IBOutlet weak var listButon: UIButton!
+    @IBOutlet weak var serviceTable: UITableView!
+    @IBOutlet weak var listView: UIView!
+    @IBOutlet weak var filterView: UIView!
+    @IBOutlet weak var filterButton: UIButton!
+    @IBOutlet weak var selectButton: UIButton!
     var bathroomView: UIView!
     
     //Declarations for Side Menu
@@ -50,7 +61,9 @@ class MapViewController: UIViewController {
     let db = Firestore.firestore()
     let dbManager = DBManager()
     let authManager = AuthManager()
-    
+    var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     //ViewDidLoad
     override func viewDidLoad() {
         print("VIEW DID LOAD RAN")
@@ -59,12 +72,18 @@ class MapViewController: UIViewController {
         //Hides the view that shows up when a pin is clicked
         pinClickedView.isHidden = true
         mapView.delegate = self
-        
+        mapButton.roundCorners([.topLeft, .bottomLeft], radius: 10)
+        listButon.roundCorners([.topRight, .bottomRight], radius: 10)
+
         makeViewCircular(view: locationButton)
         makeViewCircular(view: menuButton)
+        makeViewCircular(view: filterButton)
+        filterView.layer.cornerRadius = 20
+        selectButton.layer.cornerRadius = 15
+        
         
         pinClickedView.layer.cornerRadius = 10
-
+        
         //Checks if user has location services enabled
         checkLocationServices()
         
@@ -75,18 +94,35 @@ class MapViewController: UIViewController {
 
         }
         //Uncomment to add a document to the database
-        //addDocument()
+       // addDocument()
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
+        tapGestureRecognizer.numberOfTapsRequired = 1
+        tapGestureRecognizer.delegate = self
+        view.addGestureRecognizer(tapGestureRecognizer)
         
+        
+        serviceTable.delegate = self
+        serviceTable.dataSource = self
+        serviceTable.register(UINib(nibName: "ServiceTableViewCell", bundle: nil), forCellReuseIdentifier: "serviceCell")
+
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { (_) in
+            self.getDistance { success in
+                DispatchQueue.main.async {
+                    self.serviceTable.reloadData()
+                }
+            }
+        }
+
+        // Do any additional setup after loading the view.
+        serviceTable.rowHeight = 95
         
         //Calls the load data method from dbManager class to get all the points for the map
         if dataLoaded == false {
-            dbManager.loadData(){ success in
-                print("Data Loaded")
-                self.mapView.addAnnotations(servicesList)
-                dataLoaded = true
-            }
+            compareDB()
+                }
+            
            
-        } else if dataLoaded == true{
+         else if dataLoaded == true{
             self.mapView.addAnnotations(servicesList)
         }
         
@@ -103,6 +139,106 @@ class MapViewController: UIViewController {
             })
         }
     }
+    func compareDB(){
+       getFirestoreSize(){ [self] firestoreSize in
+            
+            
+            
+            var coreDataSize = 0
+            do {
+                services = try context.fetch(ServiceInfo.fetchRequest())
+                coreDataSize = services!.count
+            }
+            catch{
+                print("Could not fetch CoreData")
+            }
+            print("Firestore size: \(firestoreSize)")
+            print("coreData size: \(coreDataSize)")
+            
+            if firestoreSize != coreDataSize{
+                print("DOWNLOADING NEW DATA")
+                dbManager.loadData(){ success in
+                    do {
+                        services = try context.fetch(ServiceInfo.fetchRequest())
+                        coreDataSize = services!.count
+                    }
+                    catch{
+                        print("Could not fetch CoreData")
+                    }
+                    self.addAnnotationsFromCD(){ success in
+                        print("Service List : \(servicesList[0].coordinate)")
+                        DispatchQueue.main.async {
+                            self.mapView.addAnnotations(servicesList)
+                        }
+                        dataLoaded = true
+                        self.getDistance { success in
+                            self.serviceTable.reloadData()
+                        }
+                        
+                    }
+                }
+            }
+            else{
+                print("LOADING SAVED DATA")
+                addAnnotationsFromCD(){ success in
+                    self.mapView.addAnnotations(servicesList)
+                    print("")
+                    dataLoaded = true
+                    self.getDistance { success in
+                        self.serviceTable.reloadData()
+                        
+                    }
+                }
+            }
+        }
+    }
+    func getFirestoreSize(completion: @escaping (Int) -> ()) {
+        print("Getting size")
+        var firestoreSize = 0
+        db.collection("Services").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents{
+                    print("Incrementing size")
+                    firestoreSize = firestoreSize + 1
+                }
+                 completion(firestoreSize)
+            }
+        }
+        print("returning")
+
+    }
+    func addAnnotationsFromCD(completion: @escaping (Bool) -> Void){
+        print("Services Count: \(services?.count)")
+        for service in services! {
+            var type : serviceTypes = .shower
+            switch service.serviceType{
+            case "Bathroom" :
+                type = .bathroom
+            case "Shower" :
+                type = .shower
+            case "Laundromat" :
+                type = .laundromat
+            case "Partner" :
+                type = .partner
+             default :
+                type = .bathroom
+            }
+            
+            let newAnnoation = HygieneAnnotation(service.latitude, service.longitude, title: service.name!, type: type, rating: service.rating, distance: 0)
+            servicesList.append(newAnnoation)
+        }
+        completion(true)
+        
+    }
+    @IBAction func selectClicked(_ sender: UIButton) {
+        filterView.fadeOut()
+
+    }
+    @IBAction func filterClicked(_ sender: UIButton) {
+        filterView.fadeIn()
+    }
     //Turns button into a circle
     func makeViewCircular(view: UIButton) {
         view.layer.cornerRadius = view.bounds.size.width / 2.0
@@ -111,14 +247,47 @@ class MapViewController: UIViewController {
     //Adds a document to the database, edit values and uncomment function in viewDidLoad and run to add to the database.
     func addDocument(){
       
-        let newService = hygieneService(latitude: 33.58667, longitude: -111.84747, serviceType: "Bathroom", rating: 5, title: "Market Bathroom 2", info: "Free Bathroom")
+        let newService = fullServiceInfo(name: "Mountainside Fitness", latitude: 33.58425, longitude: 111.82943, serviceType: "Shower", Pricing: "Paid", isOnGoogle: false, hours: "", serviceDetails: [], rating: 0, reviews: [])
+  
         do {
-            try db.collection("Services").document(newService.title).setData(from: newService)
+            try db.collection("Services").document(newService.name).setData(from: newService)
         } catch let error {
             print("Error writing city to Firestore: \(error)")
         }
     }
-   
+    func UIChange(state: Bool){
+        menuButton.isHidden = state
+        mapView.isHidden = state
+        locationButton.isHidden = state
+        filterButton.isHidden = state
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.impactOccurred()
+        
+        switch state{
+        case false:
+            listButon.backgroundColor = UIColor(named: "DarkBlue")
+            listButon.tintColor = .lightGray
+            mapButton.backgroundColor = UIColor(named: "LogoBlue")
+            mapButton.tintColor = .white
+            break
+        case true:
+            mapButton.backgroundColor = UIColor(named: "DarkBlue")
+            mapButton.tintColor = .lightGray
+            listButon.backgroundColor = UIColor(named: "LogoBlue")
+            listButon.tintColor = .white
+            break
+        }
+    }
+    @IBAction func mapClicked(_ sender: UIButton) {
+        UIChange(state: false)
+       tapGestureRecognizer.isEnabled = true
+
+    }
+    @IBAction func listClicked(_ sender: UIButton) {
+        UIChange(state: true)
+         tapGestureRecognizer.isEnabled = false
+
+    }
     @IBAction func pinLabelClicked(_ sender: UIButton) {
         print("Pin Clicked")
     }
@@ -138,6 +307,8 @@ class MapViewController: UIViewController {
             //Show alert letting user know how to turn this on
         }
     }
+    
+ 
     
     @IBAction func menuClicked(_ sender: UIButton) {
         revealSideMenu()
@@ -243,7 +414,7 @@ extension MapViewController: MKMapViewDelegate{
             image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))           }
         
         //Sets color based on rating
-        color = getColor(rating: annotation.rating)
+        color = getColor(rating: Int(annotation.rating))
         
         if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             annotationView = dequedView
@@ -263,36 +434,41 @@ extension MapViewController: MKMapViewDelegate{
     //Displays a view when a user clicks a point
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         //Temporary point
-        var pointInArray = HygieneAnnotation(0, 0, title: "", subtitle: "", type: .shower, rating: 0)
+        var pointInArray : ServiceInfo?
                
             //gets title of point clicked
                if let annotationTitle = view.annotation?.title{
                    pinClickedLabel.text = annotationTitle
                    
                    //Matches the clicked point to the point in the services list based on title
-                   for point in servicesList {
-                          if point.title == annotationTitle {
+                   for point in services! {
+                          if point.name == annotationTitle {
                                pointInArray = point
+                              selectedService = point
                                break
                            }
                        }
                    }
                //Sets image for view based on type
-               switch pointInArray.type{
-               case .bathroom:
+            switch pointInArray?.serviceType{
+               case "Bathroom":
                    pinClickedImage.image =  UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
-               case .shower :
+               case "Shower":
                    pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
-               case .laundromat :
+               case "Laundromat":
                    pinClickedImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
                default:
                    print("Default")
                    break
                }
-            //Animates view on screen
+        print(selectedService!.rating )
+         //mapView.setCenter(selectedService.coordinate, animated: true)
+        let coordinate = CLLocationCoordinate2DMake(pointInArray!.latitude, pointInArray!.longitude)
+        let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+        mapView.setRegion((region), animated: true)            //Animates view on screen
             pinClickedView.isHidden = false
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
@@ -337,3 +513,65 @@ extension UIViewController {
     
 }
 
+extension UIView {
+   func roundCorners(_ corners:UIRectCorner, radius: CGFloat) {
+      let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+      let mask = CAShapeLayer()
+      mask.path = path.cgPath
+
+      self.layer.mask = mask
+   }
+}
+extension UIView {
+  func fadeTo(_ alpha: CGFloat, duration: TimeInterval = 0.3) {
+    DispatchQueue.main.async {
+      UIView.animate(withDuration: duration) {
+        self.alpha = alpha
+      }
+    }
+  }
+
+  func fadeIn(_ duration: TimeInterval = 0.3) {
+    fadeTo(1.0, duration: duration)
+  }
+
+  func fadeOut(_ duration: TimeInterval = 0.3) {
+    fadeTo(0.0, duration: duration)
+  }
+}
+extension MapViewController: UIGestureRecognizerDelegate {
+    
+    @objc func TapGestureRecognizer(sender: UITapGestureRecognizer) {
+        print("RAN 2")
+        
+        if sender.state == .ended {
+            if self.isExpanded {
+                self.sideMenuState(expanded: false)
+            }
+            else{
+                print("Tap Handled")
+                if pinClickedView.isHidden == false{
+                    if !pinClickedView.isHidden {
+                        //animates view out of screen
+                        UIView.animate(withDuration: 0.2) {
+                            self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: 150)
+                        }
+                    }
+                    else {
+                        pinClickedView.isHidden = false
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    // Close side menu when you tap on the shadow background view
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        print("RAN")
+        if (touch.view?.isDescendant(of: self.sideMenuViewController.view))! {
+            return false
+        }
+        return true
+    }
+}

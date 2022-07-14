@@ -8,9 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		82433D96C92697B0DB458B90 /* Pods_Safe_Hygeine_4U.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */; };
+		A523FABE2878D14D007D4B1C /* VenueID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FABD2878D14D007D4B1C /* VenueID.swift */; };
+		A523FAC02878DD6E007D4B1C /* VenueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FABF2878DD6E007D4B1C /* VenueInfo.swift */; };
+		A523FAC2287CBCF0007D4B1C /* FullServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */; };
+		A523FAC4287CC0CE007D4B1C /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FAC3287CC0CE007D4B1C /* Review.swift */; };
+		A523FAC7287CE547007D4B1C /* SafeHygiene.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A523FAC5287CE547007D4B1C /* SafeHygiene.xcdatamodeld */; };
 		A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */; };
 		A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56EDD95285EA060006E9056 /* Hygiene Service.swift */; };
 		A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */; };
+		A57EF048287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */; };
+		A57EF049287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */; };
 		A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92CF286E412500D1C64C /* SignInViewController.swift */; };
 		A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
@@ -47,15 +54,25 @@
 		A5F099C3286D01EC00AADEE1 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */; };
 		A5F099C5286D08CB00AADEE1 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */; };
 		A5F099C7286D0B9500AADEE1 /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099C6286D0B9500AADEE1 /* NameViewController.swift */; };
+		A5F9CA1D2874CDAB007163B3 /* ListViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9CA1C2874CDAB007163B3 /* ListViewExt.swift */; };
+		A5F9CA202874D0B0007163B3 /* ServiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F9CA1E2874D0B0007163B3 /* ServiceTableViewCell.swift */; };
+		A5F9CA212874D0B0007163B3 /* ServiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F9CA1F2874D0B0007163B3 /* ServiceTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1A76CE5EFFA73CE839203025 /* Pods-Safe Hygeine 4U.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe Hygeine 4U.release.xcconfig"; path = "Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U.release.xcconfig"; sourceTree = "<group>"; };
 		2079C577727E38B805D71231 /* Pods-Safe Hygeine 4U.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Safe Hygeine 4U.debug.xcconfig"; path = "Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U.debug.xcconfig"; sourceTree = "<group>"; };
 		78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Safe_Hygeine_4U.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A523FABD2878D14D007D4B1C /* VenueID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueID.swift; sourceTree = "<group>"; };
+		A523FABF2878DD6E007D4B1C /* VenueInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueInfo.swift; sourceTree = "<group>"; };
+		A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullServiceInfo.swift; sourceTree = "<group>"; };
+		A523FAC3287CC0CE007D4B1C /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
+		A523FAC6287CE547007D4B1C /* SafeHygiene.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SafeHygiene.xcdatamodel; sourceTree = "<group>"; };
 		A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HygieneAnnotation.swift; sourceTree = "<group>"; };
 		A56EDD95285EA060006E9056 /* Hygiene Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hygiene Service.swift"; sourceTree = "<group>"; };
 		A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsViewController.swift; sourceTree = "<group>"; };
+		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +111,9 @@
 		A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		A5F099C6286D0B9500AADEE1 /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
+		A5F9CA1C2874CDAB007163B3 /* ListViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewExt.swift; sourceTree = "<group>"; };
+		A5F9CA1E2874D0B0007163B3 /* ServiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTableViewCell.swift; sourceTree = "<group>"; };
+		A5F9CA1F2874D0B0007163B3 /* ServiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ServiceTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,10 +176,19 @@
 		A5D3C711285A9DB0001A1EE7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */,
+				A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */,
 				A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */,
 				A56EDD95285EA060006E9056 /* Hygiene Service.swift */,
 				A5F099772865044500AADEE1 /* UserModel.swift */,
 				A5F0997D286678DF00AADEE1 /* SideMenuModel.swift */,
+				A5F9CA1E2874D0B0007163B3 /* ServiceTableViewCell.swift */,
+				A5F9CA1F2874D0B0007163B3 /* ServiceTableViewCell.xib */,
+				A523FABD2878D14D007D4B1C /* VenueID.swift */,
+				A523FABF2878DD6E007D4B1C /* VenueInfo.swift */,
+				A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */,
+				A523FAC3287CC0CE007D4B1C /* Review.swift */,
+				A523FAC5287CE547007D4B1C /* SafeHygiene.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,8 +207,8 @@
 			children = (
 				A5F0997B286678A900AADEE1 /* SideMenuViewController.swift */,
 				A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */,
-				A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */,
 				A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */,
+				A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */,
 				A5D3C718285AA123001A1EE7 /* FeedViewController.swift */,
 				A5F0997528614A8300AADEE1 /* DBManager.swift */,
 				A5F0997928650C2000AADEE1 /* AuthManager.swift */,
@@ -190,6 +219,7 @@
 				A5AB92CF286E412500D1C64C /* SignInViewController.swift */,
 				A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */,
 				A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */,
+				A5F9CA1C2874CDAB007163B3 /* ListViewExt.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -234,6 +264,7 @@
 				A5D3C6F7285A9222001A1EE7 /* Frameworks */,
 				A5D3C6F8285A9222001A1EE7 /* Resources */,
 				50DA3D7B5EC20AFC21D7C2C3 /* [CP] Embed Pods Frameworks */,
+				D3CAFC4FC4109F49CB9203AD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -292,6 +323,7 @@
 				A5F099802866790C00AADEE1 /* SideMenuCell.xib in Resources */,
 				A5F099B7286CFECB00AADEE1 /* OpenSans-BoldItalic.ttf in Resources */,
 				A5F099BD286CFECB00AADEE1 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				A5F9CA212874D0B0007163B3 /* ServiceTableViewCell.xib in Resources */,
 				A5F099C0286CFECB00AADEE1 /* OpenSans-MediumItalic.ttf in Resources */,
 				A5F099BE286CFECB00AADEE1 /* OpenSans-Light.ttf in Resources */,
 				A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */,
@@ -345,6 +377,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D3CAFC4FC4109F49CB9203AD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Safe Hygeine 4U/Pods-Safe Hygeine 4U-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -353,26 +402,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */,
+				A523FABE2878D14D007D4B1C /* VenueID.swift in Sources */,
 				A5F0997E286678DF00AADEE1 /* SideMenuModel.swift in Sources */,
 				A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */,
 				A5F0998E2869271200AADEE1 /* LoginViewController.swift in Sources */,
 				A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */,
 				A5F099C7286D0B9500AADEE1 /* NameViewController.swift in Sources */,
+				A5F9CA1D2874CDAB007163B3 /* ListViewExt.swift in Sources */,
 				A5F099C5286D08CB00AADEE1 /* PasswordViewController.swift in Sources */,
 				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
 				A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */,
 				A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */,
 				A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */,
 				A5F0997C286678A900AADEE1 /* SideMenuViewController.swift in Sources */,
+				A57EF048287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift in Sources */,
 				A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */,
 				A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */,
 				A5F099822866791200AADEE1 /* SideMenuCell.swift in Sources */,
+				A523FAC02878DD6E007D4B1C /* VenueInfo.swift in Sources */,
 				A5F099C3286D01EC00AADEE1 /* EmailViewController.swift in Sources */,
 				A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */,
+				A523FAC7287CE547007D4B1C /* SafeHygiene.xcdatamodeld in Sources */,
+				A523FAC4287CC0CE007D4B1C /* Review.swift in Sources */,
+				A523FAC2287CBCF0007D4B1C /* FullServiceInfo.swift in Sources */,
 				A5F099782865044500AADEE1 /* UserModel.swift in Sources */,
 				A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */,
 				A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */,
+				A57EF049287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift in Sources */,
 				A5F0997A28650C2000AADEE1 /* AuthManager.swift in Sources */,
+				A5F9CA202874D0B0007163B3 /* ServiceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KN446JPPP4;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Safe Hygeine 4U/Info.plist";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allows map to work";
@@ -545,6 +604,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -604,6 +664,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A523FAC5287CE547007D4B1C /* SafeHygiene.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A523FAC6287CE547007D4B1C /* SafeHygiene.xcdatamodel */,
+			);
+			currentVersion = A523FAC6287CE547007D4B1C /* SafeHygiene.xcdatamodel */;
+			path = SafeHygiene.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A5D3C6F2285A9222001A1EE7 /* Project object */;
 }

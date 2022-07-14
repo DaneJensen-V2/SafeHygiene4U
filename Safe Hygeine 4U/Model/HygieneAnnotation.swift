@@ -8,17 +8,17 @@ import MapKit
 class HygieneAnnotation:NSObject,MKAnnotation{
     var coordinate: CLLocationCoordinate2D
     var title: String?
-    var subtitle: String?
     var type: serviceTypes
-    var rating : Int
+    var rating : Double
+    var distance : Double
     
     
-    init(_ latitude:CLLocationDegrees,_ longitude:CLLocationDegrees,title:String,subtitle:String,type:serviceTypes,rating : Int){
+    init(_ latitude:CLLocationDegrees,_ longitude:CLLocationDegrees,title:String,type:serviceTypes,rating : Double, distance : Double){
         self.coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         self.title = title
-        self.subtitle = subtitle
         self.type = type
         self.rating = rating
+        self.distance = distance
         
      
     }

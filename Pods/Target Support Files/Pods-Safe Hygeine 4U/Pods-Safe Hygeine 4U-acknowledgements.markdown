@@ -2559,6 +2559,10 @@ FirestoreEncoder
    limitations under the License.
 
 
+## GooglePlaces
+
+Copyright 2022 Google
+
 ## GoogleSignIn
 
 

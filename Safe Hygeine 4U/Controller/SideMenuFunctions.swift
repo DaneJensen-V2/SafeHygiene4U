@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 extension MapViewController {
     func setupSideMenu(){
     
@@ -15,25 +16,20 @@ extension MapViewController {
         self.sideMenuShadowView.backgroundColor = .black
         self.sideMenuShadowView.alpha = 0.0
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
-        tapGestureRecognizer.numberOfTapsRequired = 1
-        tapGestureRecognizer.delegate = self
-        view.addGestureRecognizer(tapGestureRecognizer)
         
+      
         if self.revealSideMenuOnTop {
-            view.insertSubview(self.sideMenuShadowView, at: 4)
+            view.insertSubview(self.sideMenuShadowView, at: 9)
         }
         // Side Menu Gestures
-            let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
-            panGestureRecognizer.delegate = self
-            view.addGestureRecognizer(panGestureRecognizer)
+      
         
         // Side Menu
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         self.sideMenuViewController = storyboard.instantiateViewController(withIdentifier: "SideMenuID") as? SideMenuViewController
         self.sideMenuViewController.defaultHighlightedCell = 0 // Default Highlighted Cell
         self.sideMenuViewController.delegate = self
-        view.insertSubview(self.sideMenuViewController!.view, at: self.revealSideMenuOnTop ? 6 : 0)
+        view.insertSubview(self.sideMenuViewController!.view, at: self.revealSideMenuOnTop ? 11 : 0)
         addChild(self.sideMenuViewController!)
         self.sideMenuViewController!.didMove(toParent: self)
         // Side Menu AutoLayout
@@ -133,130 +129,3 @@ extension MapViewController: SideMenuViewControllerDelegate {
     
 }
 
-extension MapViewController: UIGestureRecognizerDelegate {
-    
-    @objc func TapGestureRecognizer(sender: UITapGestureRecognizer) {
-        if sender.state == .ended {
-            if self.isExpanded {
-                self.sideMenuState(expanded: false)
-            }
-            else{
-                print("Tap Handled")
-                if pinClickedView.isHidden == false{
-                    if !pinClickedView.isHidden {
-                        //animates view out of screen
-                        UIView.animate(withDuration: 0.2) {
-                            self.pinClickedView.transform = CGAffineTransform(translationX: 0, y: 150)
-                        }
-                    }
-                    else {
-                        pinClickedView.isHidden = false
-                        
-                    }
-                }
-            }
-        }
-    }
-
-    // Close side menu when you tap on the shadow background view
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        print("RAN")
-        if (touch.view?.isDescendant(of: self.sideMenuViewController.view))! {
-            return false
-        }
-        return true
-    }
-    
-    // Dragging Side Menu
-    @objc  func handlePanGesture(sender: UIPanGestureRecognizer) {
-        
-        // ...
-
-        let position: CGFloat = sender.translation(in: self.view).x
-        let velocity: CGFloat = sender.velocity(in: self.view).x
-
-        switch sender.state {
-        case .began:
-
-            // If the user tries to expand the menu more than the reveal width, then cancel the pan gesture
-            if velocity > 0, self.isExpanded {
-                sender.state = .cancelled
-            }
-
-            // If the user swipes right but the side menu hasn't expanded yet, enable dragging
-            if velocity > 0, !self.isExpanded {
-                self.draggingIsEnabled = true
-            }
-            // If user swipes left and the side menu is already expanded, enable dragging they collapsing the side menu)
-            else if velocity < 0, self.isExpanded {
-                self.draggingIsEnabled = true
-            }
-
-            if self.draggingIsEnabled {
-                // If swipe is fast, Expand/Collapse the side menu with animation instead of dragging
-                let velocityThreshold: CGFloat = 550
-                if abs(velocity) > velocityThreshold {
-                    self.sideMenuState(expanded: self.isExpanded ? false : true)
-                    self.draggingIsEnabled = false
-                    return
-                }
-
-                if self.revealSideMenuOnTop {
-                    self.panBaseLocation = 0.0
-                    if self.isExpanded {
-                        self.panBaseLocation = self.sideMenuRevealWidth
-                    }
-                }
-            }
-
-        case .changed:
-
-            // Expand/Collapse side menu while dragging
-            if self.draggingIsEnabled {
-                if self.revealSideMenuOnTop {
-                    // Show/Hide shadow background view while dragging
-                    let xLocation: CGFloat = self.panBaseLocation + position
-                    let percentage = (xLocation * 150 / self.sideMenuRevealWidth) / self.sideMenuRevealWidth
-
-                    let alpha = percentage >= 0.6 ? 0.6 : percentage
-                    self.sideMenuShadowView.alpha = alpha
-
-                    // Move side menu while dragging
-                    if xLocation <= self.sideMenuRevealWidth {
-                        self.sideMenuTrailingConstraint.constant = xLocation - self.sideMenuRevealWidth
-                    }
-                }
-                else {
-                    if let recogView = sender.view?.subviews[1] {
-                       // Show/Hide shadow background view while dragging
-                        let percentage = (recogView.frame.origin.x * 150 / self.sideMenuRevealWidth) / self.sideMenuRevealWidth
-
-                        let alpha = percentage >= 0.6 ? 0.6 : percentage
-                        self.sideMenuShadowView.alpha = alpha
-
-                        // Move side menu while dragging
-                        if recogView.frame.origin.x <= self.sideMenuRevealWidth, recogView.frame.origin.x >= 0 {
-                            recogView.frame.origin.x = recogView.frame.origin.x + position
-                            sender.setTranslation(CGPoint.zero, in: view)
-                        }
-                    }
-                }
-            }
-        case .ended:
-            self.draggingIsEnabled = false
-            // If the side menu is half Open/Close, then Expand/Collapse with animationse with animation
-            if self.revealSideMenuOnTop {
-                let movedMoreThanHalf = self.sideMenuTrailingConstraint.constant > -(self.sideMenuRevealWidth * 0.5)
-                self.sideMenuState(expanded: movedMoreThanHalf)
-            }
-            else {
-                if let recogView = sender.view?.subviews[1] {
-                    let movedMoreThanHalf = recogView.frame.origin.x > self.sideMenuRevealWidth * 0.5
-                    self.sideMenuState(expanded: movedMoreThanHalf)
-                }
-            }
-        default:
-            break
-        }
-    }
-}
