@@ -35,13 +35,13 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "serviceCell", for: indexPath) as! ServiceTableViewCell
         
         switch service.type{
-        case .bathroom:
-            cell.iconImage.image =  UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-            break
-        case .shower :
+        case .shower:
             cell.iconImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
             break
-        case .laundromat :
+        case .clothing :
+            cell.iconImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+            break
+        case .nonProfit :
             cell.iconImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
             break
         default:

@@ -15,15 +15,18 @@ struct fullServiceInfo : Codable{
     var longitude : Double
     var address : String?
     var serviceType : String
-    var Pricing : String
     var isOnGoogle : Bool
     var hours : String?
-    var serviceDetails : [String]
+    var serviceDetails : String
     var phoneNumber : String?
     var hostName : String?
-    var rating : Double
-    var reviews : [review]
+    var rating : Double?
+    var reviews : Int?
     var image : String?
+    var website : String?
+    var isEvent : Bool
+    var notes : String?
+    var isVerified : Bool
 }
 
 @objc public enum serviceDetailTypes : Int16 {

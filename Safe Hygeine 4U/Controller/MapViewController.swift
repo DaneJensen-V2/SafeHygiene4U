@@ -20,6 +20,7 @@ var services : [ServiceInfo]?
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
+    @IBOutlet weak var pinClickedReviews: UILabel!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
@@ -123,7 +124,7 @@ class MapViewController: UIViewController {
             
            
          else if dataLoaded == true{
-            self.mapView.addAnnotations(servicesList)
+           // self.mapView.addAnnotations(servicesList)
         }
         
         if (authManager.checkIfLoggedIn() == false){
@@ -140,6 +141,7 @@ class MapViewController: UIViewController {
         }
     }
     func compareDB(){
+        print("CompareDB Ran")
        getFirestoreSize(){ [self] firestoreSize in
             
             
@@ -157,7 +159,9 @@ class MapViewController: UIViewController {
             
             if firestoreSize != coreDataSize{
                 print("DOWNLOADING NEW DATA")
+                dbManager.DeleteAllData()
                 dbManager.loadData(){ success in
+                    print("Load data ran count")
                     do {
                         services = try context.fetch(ServiceInfo.fetchRequest())
                         coreDataSize = services!.count
@@ -214,19 +218,17 @@ class MapViewController: UIViewController {
         for service in services! {
             var type : serviceTypes = .shower
             switch service.serviceType{
-            case "Bathroom" :
-                type = .bathroom
             case "Shower" :
                 type = .shower
-            case "Laundromat" :
-                type = .laundromat
-            case "Partner" :
-                type = .partner
+            case "Clothing" :
+                type = .clothing
+            case "nonProfit" :
+                type = .nonProfit
              default :
-                type = .bathroom
+                type = .shower
             }
             
-            let newAnnoation = HygieneAnnotation(service.latitude, service.longitude, title: service.name!, type: type, rating: service.rating, distance: 0)
+            let newAnnoation = HygieneAnnotation(service.latitude, service.longitude, title: service.name!, type: type, rating: service.rating, distance: 0, reviews: service.reviews)
             servicesList.append(newAnnoation)
         }
         completion(true)
@@ -246,14 +248,15 @@ class MapViewController: UIViewController {
     }
     //Adds a document to the database, edit values and uncomment function in viewDidLoad and run to add to the database.
     func addDocument(){
-      
-        let newService = fullServiceInfo(name: "Mountainside Fitness", latitude: 33.58425, longitude: 111.82943, serviceType: "Shower", Pricing: "Paid", isOnGoogle: false, hours: "", serviceDetails: [], rating: 0, reviews: [])
+    /*
+        let newService = fullServiceInfo(name: "Mountainside Fitness", latitude: 33.58425, longitude: 111.82943, serviceType: "Shower", Pricing: "Paid", isOnGoogle: false, hours: "", serviceDetails: "", rating: 0, reviews: [], isEvent: false)
   
         do {
             try db.collection("Services").document(newService.name).setData(from: newService)
         } catch let error {
             print("Error writing city to Firestore: \(error)")
         }
+     */
     }
     func UIChange(state: Bool){
         menuButton.isHidden = state
@@ -403,18 +406,23 @@ extension MapViewController: MKMapViewDelegate{
         case .shower:
             identifier = "Shower"
             image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-        case .bathroom:
-            identifier = "Bathroom"
-            image = UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-        case .laundromat:
-            identifier = "Laundromat"
+        case .clothing:
+            identifier = "Clothing"
             image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-        case .partner:
-            identifier = "Partner"
-            image = UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))           }
-        
+        case .nonProfit:
+            identifier = "Non-Profit"
+            image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+   
+        }
+
         //Sets color based on rating
-        color = getColor(rating: Int(annotation.rating))
+        if annotation.reviews == 0{
+            color = "GreenPin"
+        }
+        else{
+            color = getColor(rating: Int(annotation.rating))
+
+        }
         
         if let dequedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView {
             annotationView = dequedView
@@ -439,7 +447,6 @@ extension MapViewController: MKMapViewDelegate{
             //gets title of point clicked
                if let annotationTitle = view.annotation?.title{
                    pinClickedLabel.text = annotationTitle
-                   
                    //Matches the clicked point to the point in the services list based on title
                    for point in services! {
                           if point.name == annotationTitle {
@@ -449,6 +456,9 @@ extension MapViewController: MKMapViewDelegate{
                            }
                        }
                    }
+        if pointInArray?.reviews == 0{
+            pinClickedReviews.text = "No Reviews"
+        }
                //Sets image for view based on type
             switch pointInArray?.serviceType{
                case "Bathroom":
@@ -542,14 +552,12 @@ extension UIView {
 extension MapViewController: UIGestureRecognizerDelegate {
     
     @objc func TapGestureRecognizer(sender: UITapGestureRecognizer) {
-        print("RAN 2")
         
         if sender.state == .ended {
             if self.isExpanded {
                 self.sideMenuState(expanded: false)
             }
             else{
-                print("Tap Handled")
                 if pinClickedView.isHidden == false{
                     if !pinClickedView.isHidden {
                         //animates view out of screen
@@ -568,7 +576,6 @@ extension MapViewController: UIGestureRecognizerDelegate {
     
     // Close side menu when you tap on the shadow background view
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        print("RAN")
         if (touch.view?.isDescendant(of: self.sideMenuViewController.view))! {
             return false
         }

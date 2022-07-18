@@ -30,6 +30,6 @@ struct hygieneService : Codable{
 }
 
 enum serviceTypes {
-    case bathroom, shower, partner, laundromat
+    case shower, clothing, nonProfit
 }
 

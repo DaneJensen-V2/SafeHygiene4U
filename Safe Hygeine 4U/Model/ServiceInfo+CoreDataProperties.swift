@@ -27,9 +27,12 @@ extension ServiceInfo {
     @NSManaged public var phoneNumber: String?
     @NSManaged public var pricing: String?
     @NSManaged public var rating: Double
-    @NSManaged public var serviceDetails: [serviceDetail]?
-    @NSManaged public var reviews: [review]?
+    @NSManaged public var serviceDetails: [String]?
+    @NSManaged public var reviews: Int
     @NSManaged public var serviceType: String?
     @NSManaged public var website: String?
-
+    @NSManaged public var isEvent: Bool
+    @NSManaged public var isVerified: Bool
+    @NSManaged public var notes: String?
+    
 }

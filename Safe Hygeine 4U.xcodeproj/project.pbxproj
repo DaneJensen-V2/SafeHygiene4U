@@ -18,6 +18,7 @@
 		A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */; };
 		A57EF048287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */; };
 		A57EF049287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */; };
+		A59FFFDC2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */; };
 		A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92CF286E412500D1C64C /* SignInViewController.swift */; };
 		A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
@@ -73,6 +74,7 @@
 		A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsViewController.swift; sourceTree = "<group>"; };
 		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -186,9 +188,10 @@
 				A5F9CA1F2874D0B0007163B3 /* ServiceTableViewCell.xib */,
 				A523FABD2878D14D007D4B1C /* VenueID.swift */,
 				A523FABF2878DD6E007D4B1C /* VenueInfo.swift */,
-				A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */,
 				A523FAC3287CC0CE007D4B1C /* Review.swift */,
+				A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */,
 				A523FAC5287CE547007D4B1C /* SafeHygiene.xcdatamodeld */,
+				A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
 				A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */,
 				A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */,
+				A59FFFDC2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift in Sources */,
 				A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */,
 				A5F0997C286678A900AADEE1 /* SideMenuViewController.swift in Sources */,
 				A57EF048287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift in Sources */,

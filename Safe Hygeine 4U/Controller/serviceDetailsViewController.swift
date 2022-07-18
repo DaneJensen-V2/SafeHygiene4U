@@ -19,24 +19,29 @@ class serviceDetailsViewController: UIViewController {
     @IBOutlet weak var reviewButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var venueImage: UIImageView!
+    @IBOutlet weak var verifiedImage: UIImageView!
     @IBOutlet weak var buttonStack: UIStackView!
+    @IBOutlet weak var verifiedLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mapSnapshot: UIButton!
     @IBOutlet weak var address: UILabel!
+    @IBOutlet weak var verifiedView: UIView!
     @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var directionsView: UIView!
     @IBOutlet weak var directionsButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     var venueInfo = VenueInfo()
     var newVenue = VenueID()
-
+    var height : CGFloat = 0
     override func viewDidLoad() {
       //  phoneButton.widthAnchor.constraint(equalToConstant: phoneButton.frame.size.height).isActive = true
     
         print()
         
        
-        
+        collectionView.dataSource = self
+        collectionView.delegate = self
         mapSnapshot.imageView?.layer.cornerRadius = 25
         mapSnapshot.imageView?.clipsToBounds = true
         directionsView.layer.cornerRadius = 10
@@ -50,12 +55,26 @@ class serviceDetailsViewController: UIViewController {
                 makeViewCircular(view: emailButton)
             
         }
-      
+        makeViewCircular(view: verifiedView)
+        if selectedService?.isVerified == false{
+            verifiedLabel.text = "Not Verified"
+            verifiedView.backgroundColor = UIColor(named: "RedPin")
+            verifiedImage.image = UIImage(systemName: "multiply")
+        }
         getMapPreview()
         startSpinner()
         super.viewDidLoad()
         //let snapshot = MKLookAroundScene()
         // Do any additional setup after loading the view.
+    }
+    override func viewDidAppear(_ animated: Bool) {
+         height = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
+        
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        
+
     }
     func setSpacing(completion: @escaping (Bool) -> Void){
        // let total = buttonStack.frame.size.width
@@ -116,7 +135,6 @@ class serviceDetailsViewController: UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     func getMapPreview(){
-        print("TEST1")
             
             let coords = CLLocationCoordinate2D(latitude: selectedService!.latitude, longitude: selectedService!.longitude)
             let distanceInMeters: Double = 500
@@ -131,11 +149,9 @@ class serviceDetailsViewController: UIViewController {
                 print("error")
                 return
             }
-            print("TEST2")
 
             if let snapShotImage = snapshot?.image, let coordinatePoint = snapshot?.point(for: coords){
                 snapShotImage.draw(at: CGPoint.zero)
-                print("TEST3")
 
                 /// 5.
                 // need to fix the point position to match the anchor point of pin which is in middle bottom of the frame
@@ -155,7 +171,6 @@ class serviceDetailsViewController: UIViewController {
                             let compositeImage = UIGraphicsGetImageFromCurrentImageContext()
              
                 DispatchQueue.main.async {
-                    print("TEST4")
 
                     self?.mapSnapshot.setImage(compositeImage, for: .normal)
                     //self!.mapSnapshot.contentMode = .scaleToFill
@@ -183,7 +198,7 @@ class serviceDetailsViewController: UIViewController {
     
     func updateUI(){
         if let selectedService = selectedService{
-            if selectedService.reviews?.count == 0{
+            if selectedService.reviews == 0{
                 ratingNumber.text = "No Reviews"
             }
             else{
@@ -205,93 +220,7 @@ class serviceDetailsViewController: UIViewController {
         return image!
     }
 
-    /*
-    func retrieveID(name : String, address : String, limit : Int, City : String, State : String, Country : String, completionHandler : @escaping (VenueID?, Error?) -> Void){
-        var baseURL2 = """
-https://maps.googleapis.com/maps/api/place/findplacefromtext/json
-  ?fields=formatted_address%2Cname%2Crating%2Copening_hours%2Cgeometry
-      &input=Museum%20of%20Contemporary%20Art%20Australia
-      &inputtype=textquery
-      &key=YOUR_API_KEY
-
-    https://maps.googleapis.com/maps/api/place/findplacefromtext/json
-      ?input=%2B16239329135
-      &inputtype=phonenumber
-      &key=
-        
-"""
-   
-        var baseURL = "https://api.yelp.com/v3/businesses/matches?address1=\(address)&name=\(name)&city=\(City)&state=\(State)&country=\(Country)&limit=1"
-        baseURL = baseURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string : baseURL)
-        
-        var request = URLRequest(url: url!)
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completionHandler(nil, error)
-            }
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                guard let resp = json as? NSDictionary else {return}
-                
-                guard let businesses = resp.value(forKey: "businesses") as? [NSDictionary] else {return}
-                
-                var venue = VenueID()
-                for business in businesses{
-                    venue.name = business.value(forKey: "name") as? String
-                    venue.id = business.value(forKey: "id") as? String
-                    
-                    
-                    completionHandler(venue, nil)
-                }
-            }
-            catch{
-                print("Caught Error")
-            }
-        }.resume()
-    }
-    func retrieveInfo(ID : String, completionHandler : @escaping (VenueInfo?, Error?) -> Void){
-        
-        var baseURL = "https://api.yelp.com/v3/businesses/\(ID)"
-        baseURL = baseURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = URL(string : baseURL)
-        
-        var request = URLRequest(url: url!)
-        request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completionHandler(nil, error)
-            }
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                guard let resp = json as? NSDictionary else {return}
-                print(resp)
-                
-                var venue = VenueInfo()
-                venue.name = resp.value(forKey: "name") as? String
-                venue.image = resp.value(forKey: "image_url") as? String
-                venue.is_closed = resp.value(forKey: "is_closed") as? Bool
-                venue.phone = resp.value(forKey: "phone") as? String
-                let locationDict = resp.object(forKey: "location") as? NSDictionary
-                venue.location = locationDict?.value(forKey: "display_address") as? [String]
-                
-                    
-                    completionHandler(venue, nil)
-                
-            }
-            catch{
-                print("Caught Error")
-            }
-        }.resume()
-    }
-     */
+    
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
             self.navigationController?.navigationBar.isHidden = false
@@ -305,8 +234,108 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json
 
 
     }
+    func makeViewCircular(view: UIView) {
+        view.layer.cornerRadius = view.bounds.size.width / 2.0
+        view.clipsToBounds = true
+    }
 
     @IBAction func getDirectionsClicked(_ sender: UIButton) {
       
     }
+}
+extension serviceDetailsViewController : UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(selectedService?.serviceDetails)
+       return selectedService?.serviceDetails?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath as IndexPath) as! serviceDetailsCollectionViewCell
+        cell.detailLabel.text = selectedService!.serviceDetails![indexPath.row]
+        let detailsNoSpace = selectedService!.serviceDetails![indexPath.row].trimmingCharacters(in: .whitespaces)
+        print(detailsNoSpace)
+        switch detailsNoSpace{
+        case "Shower":
+            cell.cellImage.image = UIImage(named: "shower")
+            cell.circleView.backgroundColor = UIColor(named: "LogoBlue")
+            break
+        case "Bathroom":
+            cell.cellImage.image = UIImage(named: "toilet")
+            cell.circleView.backgroundColor = UIColor(named: "LogoBlue")
+            break
+        case "Gym":
+            cell.cellImage.image = UIImage(named: "dumbbell")
+            cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
+
+            break
+        case "Clothing":
+            cell.cellImage.image = UIImage(named: "shirt")
+            cell.circleView.backgroundColor = UIColor(named: "LogoBlue")
+            break
+        case "Hygiene":
+            cell.cellImage.image = UIImage(systemName: "hands.sparkles")
+            cell.circleView.backgroundColor = UIColor(named: "LogoBlue")
+            break
+        case "Truck Stop":
+            cell.cellImage.image = UIImage(named: "box.truck")
+            cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
+
+
+            break
+        case "Rec Center":
+            cell.cellImage.image = UIImage(named: "figure.run")
+            break
+        case "Haircuts":
+            cell.cellImage.image = UIImage(systemName: "scissors")
+            cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
+
+            
+            break
+        case "Nonprofit":
+            cell.cellImage.image = UIImage(systemName: "face.smiling")
+            cell.circleView.backgroundColor = UIColor(named: "GreenPin")
+
+            break
+        default:
+            cell.cellImage.image = UIImage(systemName: "cross")
+
+        }
+        cell.cellImage.tintColor = .white
+
+        
+        
+   //     makeViewCircular(view: cell.circleView)
+        cell.circleView.layer.cornerRadius = 15
+        return cell
+    }
+    
+    
+}
+extension serviceDetailsViewController : UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            // handle tap events
+            print("You selected cell #\(indexPath.item)!")
+        }
+    
+}
+extension serviceDetailsViewController : UICollectionViewDelegateFlowLayout{
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    {
+        if height > 110{
+            let cellSize = CGSize(width: 110, height: 110)
+            return cellSize
+        }
+        else{
+            let cellSize = CGSize(width: height, height: height)
+            return cellSize
+
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        return 25
+    }
+    
 }
