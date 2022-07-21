@@ -12,15 +12,19 @@ import FirebaseCore
 import FirebaseFirestore
 import CoreData
 import FirebaseFirestoreSwift
+import Cosmos
 var dataLoaded = false
 var viewdidLoad = false
 var selectedService : ServiceInfo?
 var services : [ServiceInfo]?
+var filteredData : [HygieneAnnotation]?
 
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var pinClickedReviews: UILabel!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var menuButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
@@ -75,14 +79,17 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         mapButton.roundCorners([.topLeft, .bottomLeft], radius: 10)
         listButon.roundCorners([.topRight, .bottomRight], radius: 10)
-
+        searchBar.delegate = self
+        
+        
         makeViewCircular(view: locationButton)
         makeViewCircular(view: menuButton)
         makeViewCircular(view: filterButton)
         filterView.layer.cornerRadius = 20
         selectButton.layer.cornerRadius = 15
-        
-        
+        self.hideKeyboardWhenTappedAround()
+
+        var listenerRan = false
         pinClickedView.layer.cornerRadius = 10
         
         //Checks if user has location services enabled
@@ -94,6 +101,20 @@ class MapViewController: UIViewController {
             viewdidLoad = true
 
         }
+        let listener = db.collection("Reviews").addSnapshotListener { querySnapshot, error in
+            if listenerRan == true{
+                self.updateReviewsMap(){success in
+                    print("sucessfully updated")
+                    DispatchQueue.main.async {
+                        self.mapView.addAnnotations(servicesList)
+                    }
+                }
+            }
+            listenerRan = true
+
+        }
+        
+    
         //Uncomment to add a document to the database
        // addDocument()
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
@@ -140,6 +161,22 @@ class MapViewController: UIViewController {
             })
         }
     }
+    func updateReviewsMap(completion: @escaping (Bool) -> Void){
+        print("Reviews changed")
+        self.dbManager.updateReviews(){success in
+            print("reviews Updated")
+            do {
+                
+                services = try self.context.fetch(ServiceInfo.fetchRequest())
+                self.addAnnotationsFromCD(){ success in
+                    completion(true)
+                }
+            }
+            catch{
+                print("Could not fetch CoreData")
+            }
+        }
+    }
     func compareDB(){
         print("CompareDB Ran")
        getFirestoreSize(){ [self] firestoreSize in
@@ -169,13 +206,15 @@ class MapViewController: UIViewController {
                     catch{
                         print("Could not fetch CoreData")
                     }
-                    self.addAnnotationsFromCD(){ success in
+                    updateReviewsMap(){ success in
                         print("Service List : \(servicesList[0].coordinate)")
                         DispatchQueue.main.async {
                             self.mapView.addAnnotations(servicesList)
                         }
                         dataLoaded = true
                         self.getDistance { success in
+                            filteredData = servicesList
+
                             self.serviceTable.reloadData()
                         }
                         
@@ -184,11 +223,15 @@ class MapViewController: UIViewController {
             }
             else{
                 print("LOADING SAVED DATA")
-                addAnnotationsFromCD(){ success in
-                    self.mapView.addAnnotations(servicesList)
+                updateReviewsMap(){ success in
                     print("")
                     dataLoaded = true
                     self.getDistance { success in
+                        print("adding annotations")
+
+                        self.mapView.addAnnotations(servicesList)
+                        filteredData = servicesList
+
                         self.serviceTable.reloadData()
                         
                     }
@@ -215,6 +258,8 @@ class MapViewController: UIViewController {
     }
     func addAnnotationsFromCD(completion: @escaping (Bool) -> Void){
         print("Services Count: \(services?.count)")
+        self.mapView.removeAnnotations(servicesList)
+        servicesList = [] 
         for service in services! {
             var type : serviceTypes = .shower
             switch service.serviceType{
@@ -231,6 +276,7 @@ class MapViewController: UIViewController {
             let newAnnoation = HygieneAnnotation(service.latitude, service.longitude, title: service.name!, type: type, rating: service.rating, distance: 0, reviews: service.reviews)
             servicesList.append(newAnnoation)
         }
+        print("annotations completion ran")
         completion(true)
         
     }
@@ -458,11 +504,18 @@ extension MapViewController: MKMapViewDelegate{
                    }
         if pointInArray?.reviews == 0{
             pinClickedReviews.text = "No Reviews"
+            starView.rating = 0
+
+        }
+        else{
+            starView.rating = pointInArray?.rating ?? 0
+            pinClickedReviews.text = "\(pointInArray!.reviews) Reviews"
+
         }
                //Sets image for view based on type
             switch pointInArray?.serviceType{
                case "Bathroom":
-                   pinClickedImage.image =  UIImage(named: "bathroom", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                   pinClickedImage.image =  UIImage(named: "toilet", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
                case "Shower":
                    pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))

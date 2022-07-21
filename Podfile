@@ -12,6 +12,7 @@ target 'Safe Hygeine 4U' do
 	pod 'FirebaseFirestoreSwift'
 	pod 'GoogleSignIn'
  	pod 'GooglePlaces', '7.0.0'
+	pod 'Cosmos', ' 23.0'
 
 
 end

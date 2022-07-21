@@ -6,12 +6,13 @@
 //
 
 import UIKit
-
+import Cosmos
 class ServiceTableViewCell: UITableViewCell {
 
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var distanceLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

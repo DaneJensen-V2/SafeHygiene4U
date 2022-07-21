@@ -8,6 +8,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Cosmos
 let apiKey = "yqcMF9Xf3uXc-SpamX8Pa-YurcBuhVvNkxrC8Avwk4l3gMOPWYDBwRzKQBGwmijQC6S2NxlDk_SXs1G3tjoLJ4TyUnbtyEYY8zQdJFOh66L8n9hAoNwpzFDNvA1mYnYx"
 
 
@@ -16,6 +17,7 @@ let apiKey = "yqcMF9Xf3uXc-SpamX8Pa-YurcBuhVvNkxrC8Avwk4l3gMOPWYDBwRzKQBGwmijQC6
 class serviceDetailsViewController: UIViewController {
 
     @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var serviceTypeImage: UIImageView!
     @IBOutlet weak var reviewButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var venueImage: UIImageView!
@@ -24,6 +26,7 @@ class serviceDetailsViewController: UIViewController {
     @IBOutlet weak var verifiedLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mapSnapshot: UIButton!
+    @IBOutlet weak var starView: CosmosView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var verifiedView: UIView!
     @IBOutlet weak var ratingNumber: UILabel!
@@ -47,13 +50,23 @@ class serviceDetailsViewController: UIViewController {
         directionsView.layer.cornerRadius = 10
         
         setSpacing(){ [self] success in
-            print(phoneButton.bounds.size.height)
 
-            print(buttonStack.frame.size.height)
             makeViewCircular(view: phoneButton)
           makeViewCircular(view: reviewButton)
                 makeViewCircular(view: emailButton)
             
+        }
+        switch selectedService?.serviceType{
+        case "Shower":
+            serviceTypeImage.image =  UIImage(named: "shower")
+            break
+        case "Clothing":
+            serviceTypeImage.image =  UIImage(named: "shirt")
+            break
+ 
+        default:
+            serviceTypeImage.image =  UIImage(named: "shower")
+            break
         }
         makeViewCircular(view: verifiedView)
         if selectedService?.isVerified == false{
@@ -61,6 +74,8 @@ class serviceDetailsViewController: UIViewController {
             verifiedView.backgroundColor = UIColor(named: "RedPin")
             verifiedImage.image = UIImage(systemName: "multiply")
         }
+        starView.rating = selectedService?.rating ?? 0
+
         getMapPreview()
         startSpinner()
         super.viewDidLoad()
@@ -202,7 +217,7 @@ class serviceDetailsViewController: UIViewController {
                 ratingNumber.text = "No Reviews"
             }
             else{
-                ratingNumber.text = String(selectedService.rating)
+                ratingNumber.text = String(format: "%.1f", selectedService.rating)
 
             }
             venueImage.image = convertBase64StringToImage(imageBase64String: selectedService.image!)
@@ -218,7 +233,7 @@ class serviceDetailsViewController: UIViewController {
         let imageData = Data(base64Encoded: imageBase64String)
         let image = UIImage(data: imageData!)
         return image!
-    }
+    } 
 
     
     override func viewWillAppear(_ animated: Bool) {

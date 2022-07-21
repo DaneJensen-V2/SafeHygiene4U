@@ -5,9 +5,18 @@
 //  Created by Dane Jensen on 7/11/22.
 //
 import Foundation
-public class review : NSObject, Codable {
+struct review : Codable {
     let location : String
-    let date : Date
+    let date : String
     let rating : Int
     let content : String
+    let user : String
+    
+    enum CodingKeys: CodingKey {
+         case location
+         case date
+         case rating
+         case content
+        case user
+     }
 }

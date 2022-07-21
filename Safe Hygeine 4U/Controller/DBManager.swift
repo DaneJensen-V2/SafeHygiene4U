@@ -10,7 +10,7 @@ var servicesList:[HygieneAnnotation] = []
 class DBManager{
     //Connects to the database
     let placesClient = GMSPlacesClient()
-
+    var serviceLIst = [ServiceInfo]()
     let db = Firestore.firestore()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //Loads data from database and stores it into a list of services
@@ -66,7 +66,79 @@ class DBManager{
         }
     }
         
-    
+    func updateReviews(completion: @escaping (Bool) -> Void){
+        let serviceFetch: NSFetchRequest<ServiceInfo> = ServiceInfo.fetchRequest()
+        do {
+                let results = try context.fetch(serviceFetch)
+                serviceLIst = results
+            }
+        catch let error as NSError {
+                print("Fetch error: \(error) description: \(error.userInfo)")
+            }
+        var count = 0
+        print("Loading Reviews")
+        db.collection("Reviews").getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                for document in querySnapshot!.documents {
+                    
+
+                            guard let dict = document.data() else { return }
+                            
+                            print(dict)
+
+                            guard let orderItems = dict as? NSDictionary else {return}
+
+                            let numReviews = orderItems.value(forKey: "Review Count") as? Int ?? 0
+                            let overallRating = orderItems.value(forKey: "Overall Rating") as? Double ?? 0.0
+
+
+                    self.updateData(Reviews: numReviews, Rating: overallRating, location: document.documentID){success in
+                            
+                        }
+                }
+                completion(true)
+            }
+        }
+         
+    }
+    func updateData(Reviews : Int, Rating : Double, location : String, completion: @escaping (Bool) -> Void){
+      
+            //Matches the clicked point to the point in the services list based on title
+                
+        getCount(location: location){count in
+            self.serviceLIst[count].setValue(Reviews, forKey: #keyPath(ServiceInfo.reviews))
+            self.serviceLIst[count].setValue(Rating, forKey: #keyPath(ServiceInfo.rating))
+            do {
+                print("saved")
+                try self.context.save()
+                completion(true)
+            }
+            catch{
+                print("Could not save data")
+            }
+        }
+
+}
+func getCount(location: String, completion: @escaping (Int) -> Void){
+    var count = 0
+    var found = false
+        for point in services! {
+               if point.name == location {
+                   
+                   found = true
+                    break
+                }
+            else{
+                count = count + 1
+            }
+            }
+    if found{
+            completion(count)
+    }
+}
+
     func getGoogleID(dataX : fullServiceInfo, completion: @escaping (Bool) -> Void){
 
         var nameString = ""

@@ -16,3 +16,5 @@ struct UserData : Codable{
     var ratings : [Int] //Change to an array of Ratings once ratings is done
     
 }
+
+

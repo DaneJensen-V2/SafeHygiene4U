@@ -21,6 +21,8 @@
 		A59FFFDC2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */; };
 		A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92CF286E412500D1C64C /* SignInViewController.swift */; };
 		A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */; };
+		A5D024DA2884FA4400886F43 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D024D92884FA4400886F43 /* ReviewsViewController.swift */; };
+		A5D024DC2885028A00886F43 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D024DB2885028A00886F43 /* AddReviewViewController.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
 		A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */; };
 		A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5D3C703285A9222001A1EE7 /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 		A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		A5D024D92884FA4400886F43 /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
+		A5D024DB2885028A00886F43 /* AddReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -215,14 +219,16 @@
 				A5D3C718285AA123001A1EE7 /* FeedViewController.swift */,
 				A5F0997528614A8300AADEE1 /* DBManager.swift */,
 				A5F0997928650C2000AADEE1 /* AuthManager.swift */,
-				A5F0998D2869271200AADEE1 /* LoginViewController.swift */,
 				A5F099C2286D01EC00AADEE1 /* EmailViewController.swift */,
 				A5F099C4286D08CB00AADEE1 /* PasswordViewController.swift */,
 				A5F099C6286D0B9500AADEE1 /* NameViewController.swift */,
 				A5AB92CF286E412500D1C64C /* SignInViewController.swift */,
 				A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */,
+				A5F0998D2869271200AADEE1 /* LoginViewController.swift */,
 				A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */,
 				A5F9CA1C2874CDAB007163B3 /* ListViewExt.swift */,
+				A5D024D92884FA4400886F43 /* ReviewsViewController.swift */,
+				A5D024DB2885028A00886F43 /* AddReviewViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -428,8 +434,10 @@
 				A56EDD8C285BCA43006E9056 /* HygieneAnnotation.swift in Sources */,
 				A523FAC7287CE547007D4B1C /* SafeHygiene.xcdatamodeld in Sources */,
 				A523FAC4287CC0CE007D4B1C /* Review.swift in Sources */,
+				A5D024DC2885028A00886F43 /* AddReviewViewController.swift in Sources */,
 				A523FAC2287CBCF0007D4B1C /* FullServiceInfo.swift in Sources */,
 				A5F099782865044500AADEE1 /* UserModel.swift in Sources */,
+				A5D024DA2884FA4400886F43 /* ReviewsViewController.swift in Sources */,
 				A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */,
 				A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */,
 				A57EF049287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift in Sources */,

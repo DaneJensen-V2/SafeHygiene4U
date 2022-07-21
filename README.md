@@ -2,6 +2,20 @@
 ## _Updates and Photos_
 
 ![N|Solid](https://cldup.com/dTxpPi9lDf.thumb.png)
+## 7/21/22 Update
+
+- Added CoreDB Database to save data offline
+- Connected firestore database to excel sheet to allow for easy data entry
+- Finished the Review Details view
+- Added Reviews
+- Added service details and searchable list
+
+<img src="Screenshots/SC9.png" width="540" height ="1150">
+<img src="Screenshots/SC10.png" width="540" height ="1150">
+<img src="Screenshots/SC11.png" width="540" height ="1150">
+<img src="Screenshots/SC12.png" width="540" height ="1150">
+<img src="Screenshots/SC13.png" width="540" height ="1150">
+
 ## 7/1/22 Update
 
 - Added side menu to give more options to the map
