@@ -479,7 +479,8 @@ extension MapViewController: MKMapViewDelegate{
         annotationView.markerTintColor = UIColor(named: color)
         annotationView.glyphImage = image
         annotationView.glyphTintColor = .white
-        annotationView.clusteringIdentifier = "Service"
+        annotationView.clusteringIdentifier =  annotation.type.rawValue
+       // annotationView.
         
         
         return annotationView
@@ -527,8 +528,8 @@ extension MapViewController: MKMapViewDelegate{
                    print("Default")
                    break
                }
-        print(selectedService!.rating )
-         //mapView.setCenter(selectedService.coordinate, animated: true)
+        print(selectedService!.rating)
+
         let coordinate = CLLocationCoordinate2DMake(pointInArray!.latitude, pointInArray!.longitude)
         let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
         mapView.setRegion((region), animated: true)            //Animates view on screen

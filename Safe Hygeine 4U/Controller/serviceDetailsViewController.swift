@@ -39,8 +39,8 @@ class serviceDetailsViewController: UIViewController {
     var height : CGFloat = 0
     override func viewDidLoad() {
       //  phoneButton.widthAnchor.constraint(equalToConstant: phoneButton.frame.size.height).isActive = true
-    
-        print()
+
+        print(selectedService?.reviews)
         
        
         collectionView.dataSource = self
@@ -217,7 +217,7 @@ class serviceDetailsViewController: UIViewController {
                 ratingNumber.text = "No Reviews"
             }
             else{
-                ratingNumber.text = String(format: "%.1f", selectedService.rating)
+                ratingNumber.text = String(format: "%.1f (%d reviews)", selectedService.rating, selectedService.reviews)
 
             }
             venueImage.image = convertBase64StringToImage(imageBase64String: selectedService.image!)

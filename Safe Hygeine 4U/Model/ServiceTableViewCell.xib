@@ -125,7 +125,7 @@
         <image name="star.fill" width="21.68549919128418" height="22.119100570678711"/>
         <image name="toilet" width="10" height="16"/>
         <namedColor name="LogoBlue">
-            <color red="0.2196078431372549" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -49,7 +49,13 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
         }
         cell.titleLabel.text = service.title
         cell.starView.rating = service.rating
-        cell.starsLabel.text = String(format: "%.1f", service.rating)
+        if(service.reviews > 0){
+            cell.starsLabel.text = String(format: "%.1f", service.rating)
+
+        }
+        else{
+            cell.starsLabel.text = "None"
+        }
         cell.distanceLabel.text = String(format: "%.1f", service.distance) + " mi away"
         
         return cell
@@ -58,7 +64,6 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
         dismissKeyboard()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var pointInArray : ServiceInfo?
                
             //gets title of point clicked
         let cell = self.tableView(serviceTable, cellForRowAt: indexPath) as! ServiceTableViewCell
@@ -68,14 +73,13 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
                    //Matches the clicked point to the point in the services list based on title
                    for point in services! {
                           if point.name == cellTitle {
-                               pointInArray = point
                               selectedService = point
                                break
                            }
                        }
                    }
                //Sets image for view based on type
-            switch pointInArray?.serviceType{
+            switch selectedService?.serviceType{
                case "Bathroom":
                    pinClickedImage.image =  UIImage(named: "toilet", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                    break
@@ -89,7 +93,6 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
                    print("Default")
                    break
                }
-        print(selectedService!.rating )
       
             
         

@@ -150,7 +150,7 @@ func getCount(location: String, completion: @escaping (Int) -> Void){
         }
         
         let baseURL = """
-https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_id%2Cname&input=\(nameString)&inputtype=textquery&locationbias=circle%3A2000%\(dataX.latitude)%2C\(dataX.longitude)&key=AIzaSyD_6-EQYz6EfnqTrrCWafUeZBqmNB_0ocw
+https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_id%2Cname&input=\(nameString)&inputtype=textquery&locationbias=point%3A\(dataX.latitude)%2C\(dataX.longitude)&key=AIzaSyD_6-EQYz6EfnqTrrCWafUeZBqmNB_0ocw
 """
         let url = URL(string : baseURL)
      //   print(baseURL)
@@ -172,6 +172,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                 guard let businesses = resp.value(forKey: "candidates") as? [NSDictionary] else {return}
                     
                 if businesses.count >= 1{
+                    print(dataX.latitude)
+                    print(dataX.longitude)
                     let business = businesses[0]
                     print(businesses)
                     let ID = business.value(forKey: "place_id") as? String

@@ -29,7 +29,7 @@ struct hygieneService : Codable{
     }
 }
 
-enum serviceTypes {
+enum serviceTypes : String{
     case shower, clothing, nonProfit
 }
 

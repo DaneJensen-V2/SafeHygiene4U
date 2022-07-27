@@ -26,7 +26,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="LogoBlue"/>
+                        <color key="backgroundColor" name="LogoBlue1 1"/>
                         <constraints>
                             <constraint firstItem="QSx-lj-kja" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="PZz-Zh-pT1"/>
                             <constraint firstItem="QSx-lj-kja" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="aOx-pm-NJY"/>
@@ -40,7 +40,7 @@
     </scenes>
     <resources>
         <image name="Logo Blue" width="500" height="500"/>
-        <namedColor name="LogoBlue">
+        <namedColor name="LogoBlue1 1">
             <color red="0.2196078431372549" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
