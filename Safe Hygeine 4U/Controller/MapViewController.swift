@@ -22,6 +22,8 @@ var filteredData : [HygieneAnnotation]?
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var downloadView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var pinClickedReviews: UILabel!
     @IBOutlet weak var starView: CosmosView!
@@ -196,6 +198,9 @@ class MapViewController: UIViewController {
             
             if firestoreSize != coreDataSize{
                 print("DOWNLOADING NEW DATA")
+                downloadView.layer.cornerRadius = 15
+                spinner.startAnimating()
+                downloadView.isHidden = false
                 dbManager.DeleteAllData()
                 dbManager.loadData(){ success in
                     print("Load data ran count")
@@ -214,7 +219,9 @@ class MapViewController: UIViewController {
                         dataLoaded = true
                         self.getDistance { success in
                             filteredData = servicesList
-
+                     
+                            spinner.stopAnimating()
+                            downloadView.isHidden = true
                             self.serviceTable.reloadData()
                         }
                         

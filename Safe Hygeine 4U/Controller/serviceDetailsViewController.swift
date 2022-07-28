@@ -16,6 +16,7 @@ let apiKey = "yqcMF9Xf3uXc-SpamX8Pa-YurcBuhVvNkxrC8Avwk4l3gMOPWYDBwRzKQBGwmijQC6
 
 class serviceDetailsViewController: UIViewController {
 
+    @IBOutlet weak var arrowImage: UIImageView!
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var serviceTypeImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -82,6 +83,7 @@ class serviceDetailsViewController: UIViewController {
         starView.rating = selectedService?.rating ?? 0
         getMapPreview()
         startSpinner()
+        collectionView.isHidden = true
         super.viewDidLoad()
         //let snapshot = MKLookAroundScene()
         // Do any additional setup after loading the view.
@@ -122,8 +124,7 @@ class serviceDetailsViewController: UIViewController {
     
     func stopSpinner(){
         DispatchQueue.main.async { [self] in
-            spinner.isHidden = true
-            spinner.stopAnimating()
+          
             updateUI()
         }
     }
@@ -251,6 +252,15 @@ class serviceDetailsViewController: UIViewController {
             notesLabel.text = selectedService?.notes
 
         }
+        if selectedService?.serviceDetails?.count ?? 0 > 3 {
+            arrowImage.isHidden = false
+        }
+        else{
+            arrowImage.isHidden = true
+        }
+        spinner.isHidden = true
+        spinner.stopAnimating()
+        collectionView.isHidden = false
 
     }
     func convertBase64StringToImage (imageBase64String:String) -> UIImage {
@@ -286,6 +296,11 @@ extension serviceDetailsViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print(selectedService?.serviceDetails)
        return selectedService?.serviceDetails?.count ?? 0
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if arrowImage.isHidden == false{
+            arrowImage.isHidden = true
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
