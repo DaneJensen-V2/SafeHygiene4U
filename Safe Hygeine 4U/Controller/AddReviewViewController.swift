@@ -72,23 +72,39 @@ class AddReviewViewController: UIViewController {
                     print(error)
                     return
                 }
+        var encoded2: [String: Any] = [:]
+
+        if reviewWritten{
+            do {
+                // encode the swift struct instance into a dictionary
+                // using the Firestore encoder
+                encoded2 = try Firestore.Encoder().encode(writtenReview)
+            } catch {
+                // encoding error
+                print(error)
+                return
+            }
+        }
     
         if reviewCount > 0 {
     
-            
+            if reviewWritten{
+                db.collection("Reviews").document(selectedService!.name!).updateData([ "allReviews" : FieldValue.arrayRemove ([encoded2])])
+            }
             getReviewTotals(){ reviews, rating in
             
                 print("Reviews: \(reviews) Rating: \(rating)")
 
-                print("Option 1")
-                db.collection("Reviews").document(selectedService!.name!).updateData(["Review Count" : reviews, "Overall Rating" : rating, "allReviews" : FieldValue.arrayUnion([encoded])])
-                { err in
-                    if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
-                        self.dismiss(animated: true)
-                    }
+                                
+                    db.collection("Reviews").document(selectedService!.name!).updateData(["Review Count" : reviews, "Overall Rating" : rating, "allReviews" : FieldValue.arrayUnion([encoded])])
+                    { err in
+                        if let err = err {
+                            print("Error updating document: \(err)")
+                        } else {
+                            print("Document successfully updated")
+                            self.dismiss(animated: true)
+                        }
+                    
                 }
             }
         }
@@ -122,13 +138,16 @@ class AddReviewViewController: UIViewController {
                 guard let dict = snap.data() else {print("2"); return }
                 
                 print(dict)
-
+                
                 guard let orderItems = dict as? NSDictionary else {return}
 
                 numReviews = orderItems.value(forKey: "Review Count") as? Int ?? 0
                 overallRating = orderItems.value(forKey: "Overall Rating") as? Double ?? 0.0
-
-
+                
+                if reviewWritten{
+                    numReviews = numReviews - 1
+                }
+                
                 print("Reviews: \(numReviews) Rating: \(overallRating)")
                 
                 let rating = ((overallRating * Double(numReviews)) +  self.starRating.rating) / Double((numReviews + 1))

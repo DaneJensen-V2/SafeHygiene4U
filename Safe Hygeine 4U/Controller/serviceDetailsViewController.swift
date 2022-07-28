@@ -18,6 +18,7 @@ class serviceDetailsViewController: UIViewController {
 
     @IBOutlet weak var phoneButton: UIButton!
     @IBOutlet weak var serviceTypeImage: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var reviewButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var venueImage: UIImageView!
@@ -32,17 +33,21 @@ class serviceDetailsViewController: UIViewController {
     @IBOutlet weak var ratingNumber: UILabel!
     @IBOutlet weak var directionsView: UIView!
     @IBOutlet weak var directionsButton: UIButton!
+    @IBOutlet weak var notesLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     var venueInfo = VenueInfo()
     var newVenue = VenueID()
     var height : CGFloat = 0
+    var width : CGFloat = 0
+
     override func viewDidLoad() {
       //  phoneButton.widthAnchor.constraint(equalToConstant: phoneButton.frame.size.height).isActive = true
 
         print(selectedService?.reviews)
         
-       
+        width = self.view.frame.width
+
         collectionView.dataSource = self
         collectionView.delegate = self
         mapSnapshot.imageView?.layer.cornerRadius = 25
@@ -75,7 +80,6 @@ class serviceDetailsViewController: UIViewController {
             verifiedImage.image = UIImage(systemName: "multiply")
         }
         starView.rating = selectedService?.rating ?? 0
-
         getMapPreview()
         startSpinner()
         super.viewDidLoad()
@@ -83,8 +87,18 @@ class serviceDetailsViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(_ animated: Bool) {
-         height = self.collectionView.collectionViewLayout.collectionViewContentSize.height;
-        
+
+        height = self.view.frame.height
+
+        print(width)
+        if height > 900{
+            scrollView.contentSize = CGSizeMake(self.view.frame.width, 100)
+            
+        }
+        else{
+            scrollView.contentSize = CGSizeMake(self.view.frame.width, 875 + notesLabel.frame.height)
+
+        }
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -105,14 +119,15 @@ class serviceDetailsViewController: UIViewController {
             spinner.startAnimating()
         }
     }
+    
     func stopSpinner(){
         DispatchQueue.main.async { [self] in
             spinner.isHidden = true
             spinner.stopAnimating()
             updateUI()
         }
-     
     }
+    
     @IBAction func mapClicked(_ sender: UIButton) {
         if let selectedService = selectedService{
             let coordinate = CLLocationCoordinate2DMake(selectedService.latitude, selectedService.longitude)
@@ -228,6 +243,15 @@ class serviceDetailsViewController: UIViewController {
         else{
             print("no service")
         }
+        if selectedService?.notes == ""{
+            notesLabel.text = "None"
+
+        }
+        else{
+            notesLabel.text = selectedService?.notes
+
+        }
+
     }
     func convertBase64StringToImage (imageBase64String:String) -> UIImage {
         let imageData = Data(base64Encoded: imageBase64String)
@@ -337,15 +361,8 @@ extension serviceDetailsViewController : UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        if height > 110{
-            let cellSize = CGSize(width: 110, height: 110)
-            return cellSize
-        }
-        else{
-            let cellSize = CGSize(width: height, height: height)
-            return cellSize
-
-        }
+        let dimensions = (width - 91) / 3
+        return CGSize(width: dimensions, height: dimensions)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat

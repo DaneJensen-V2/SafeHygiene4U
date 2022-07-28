@@ -20,3 +20,10 @@ struct review : Codable {
         case user
      }
 }
+struct reviewDate {
+    let location : String
+    let date : Date
+    let rating : Int
+    let content : String
+    let user : String
+}
