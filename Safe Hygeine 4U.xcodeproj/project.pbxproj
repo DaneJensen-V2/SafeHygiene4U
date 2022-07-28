@@ -41,7 +41,6 @@
 		A5F099822866791200AADEE1 /* SideMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099812866791200AADEE1 /* SideMenuCell.swift */; };
 		A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */; };
 		A5F0998E2869271200AADEE1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0998D2869271200AADEE1 /* LoginViewController.swift */; };
-		A5F09990286CFA1300AADEE1 /* OpenSans in Resources */ = {isa = PBXBuildFile; fileRef = A5F0998F286CFA1300AADEE1 /* OpenSans */; };
 		A5F099B5286CFECB00AADEE1 /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AD286CFEC500AADEE1 /* OpenSans-Italic.ttf */; };
 		A5F099B6286CFECB00AADEE1 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099B3286CFEC500AADEE1 /* OpenSans-Medium.ttf */; };
 		A5F099B7286CFECB00AADEE1 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5F099AE286CFEC500AADEE1 /* OpenSans-BoldItalic.ttf */; };
@@ -101,7 +100,6 @@
 		A5F099812866791200AADEE1 /* SideMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideMenuCell.swift; sourceTree = "<group>"; };
 		A5F09983286918B500AADEE1 /* SideMenuFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuFunctions.swift; sourceTree = "<group>"; };
 		A5F0998D2869271200AADEE1 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		A5F0998F286CFA1300AADEE1 /* OpenSans */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OpenSans; sourceTree = "<group>"; };
 		A5F099A9286CFEC400AADEE1 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		A5F099AA286CFEC500AADEE1 /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
 		A5F099AB286CFEC500AADEE1 /* OpenSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				A5F099C1286D01BF00AADEE1 /* Fonts */,
-				A5F0998F286CFA1300AADEE1 /* OpenSans */,
 				A5F099732861393300AADEE1 /* GoogleService-Info.plist */,
 				A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */,
 				A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */,
@@ -323,7 +320,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5D3C70A285A9225001A1EE7 /* LaunchScreen.storyboard in Resources */,
-				A5F09990286CFA1300AADEE1 /* OpenSans in Resources */,
 				A5F099BC286CFECB00AADEE1 /* OpenSans-SemiBold.ttf in Resources */,
 				A5D3C707285A9225001A1EE7 /* Assets.xcassets in Resources */,
 				A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */,

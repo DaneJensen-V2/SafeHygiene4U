@@ -107,7 +107,7 @@
                                     <constraint firstAttribute="height" constant="47" id="gMe-Q9-6Xf"/>
                                 </constraints>
                                 <color key="tintColor" name="LogoBlue"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="location" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="medium"/>
@@ -124,7 +124,7 @@
                                     <constraint firstAttribute="height" constant="47" id="cFw-Zd-ECI"/>
                                 </constraints>
                                 <color key="tintColor" name="LogoBlue"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="line.3.horizontal" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="large" weight="bold"/>
@@ -141,7 +141,7 @@
                                     <constraint firstAttribute="width" constant="47" id="dhH-te-ZcF"/>
                                 </constraints>
                                 <color key="tintColor" name="LogoBlue"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" image="slider.horizontal.3" catalog="system"/>
                                 <connections>
                                     <action selector="filterClicked:" destination="LFR-h8-xkC" eventType="touchUpInside" id="AD2-NK-Mk7"/>
@@ -158,7 +158,7 @@
                                             <constraint firstAttribute="width" constant="80" id="RuU-cL-bQu"/>
                                         </constraints>
                                         <color key="tintColor" name="DarkBlue"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain" title="Select">
                                             <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="15"/>
                                         </buttonConfiguration>
@@ -284,7 +284,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="107.5" height="34.5"/>
                                         <color key="backgroundColor" name="LogoBlue"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain" image="map" catalog="system" title="Map"/>
                                         <connections>
                                             <action selector="mapClicked:" destination="LFR-h8-xkC" eventType="touchUpInside" id="D59-x2-YZB"/>
@@ -294,7 +294,7 @@
                                         <rect key="frame" x="107.5" y="0.0" width="107.5" height="34.5"/>
                                         <color key="backgroundColor" red="0.14117647058823529" green="0.45882352941176469" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain" image="list.dash" catalog="system" title="List"/>
                                         <connections>
                                             <action selector="listClicked:" destination="LFR-h8-xkC" eventType="touchUpInside" id="tQl-Hj-F9R"/>
@@ -369,7 +369,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1j-KA-IfK">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="pinLabelClicked:" destination="LFR-h8-xkC" eventType="touchUpInside" id="ELX-ug-TwF"/>
@@ -502,7 +502,7 @@
                                     <constraint firstAttribute="width" constant="350" id="our-P1-FkH"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up Now">
                                     <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                 </buttonConfiguration>
@@ -519,7 +519,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiJ-u1-EiC">
                                 <rect key="frame" x="88.5" y="756.5" width="237" height="34"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Already have an account? Login">
@@ -544,7 +544,7 @@
                                             <constraint firstAttribute="height" constant="50" id="srS-gk-ORu"/>
                                         </constraints>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain" title="Continue with Google">
                                             <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                         </buttonConfiguration>
@@ -629,7 +629,7 @@
                                     <constraint firstAttribute="width" constant="90" id="xLg-h7-W77"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99607849120000003" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" title="Next">
                                     <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                 </buttonConfiguration>
@@ -700,7 +700,7 @@
                                     <constraint firstAttribute="width" constant="90" id="hWP-AX-Hag"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99607849120000003" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" title="Log in">
                                     <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                 </buttonConfiguration>
@@ -731,7 +731,7 @@
                                     <constraint firstAttribute="width" constant="40" id="fkf-a4-A1Z"/>
                                 </constraints>
                                 <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" image="eye" catalog="system" title="">
                                     <color key="baseForegroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
@@ -876,7 +876,7 @@
                                                     <constraint firstAttribute="width" secondItem="XMl-uR-IbY" secondAttribute="height" multiplier="1:1" id="65F-1q-zIL"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title=""/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <imageReference key="image" image="phone" catalog="system" symbolScale="large"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" scale="large" weight="heavy"/>
@@ -892,7 +892,7 @@
                                                     <constraint firstAttribute="width" secondItem="dN5-GT-yq9" secondAttribute="height" multiplier="1:1" id="8lN-MJ-CVV"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title=""/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <imageReference key="image" image="star.fill" catalog="system" symbolScale="large"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" scale="large" weight="heavy"/>
@@ -908,7 +908,7 @@
                                                     <constraint firstAttribute="width" secondItem="k5B-kl-hwD" secondAttribute="height" multiplier="1:1" id="8Zy-f1-XJc"/>
                                                 </constraints>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title=""/>
                                                 <buttonConfiguration key="configuration" style="plain">
                                                     <imageReference key="image" image="globe" catalog="system" symbolScale="large"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" scale="large" weight="heavy"/>
@@ -957,7 +957,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="Ib1-K7-MkK"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title=""/>
                                         <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
                                             <action selector="mapClicked:" destination="HDw-Gw-hFR" eventType="touchUpInside" id="EJB-ez-8qz"/>
@@ -1323,7 +1323,7 @@
                                     <constraint firstAttribute="width" secondItem="YLq-pP-BzF" secondAttribute="height" multiplier="1:1" id="CyO-5a-etm"/>
                                 </constraints>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="plus" catalog="system" symbolScale="large"/>
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="24" scale="large" weight="heavy"/>
@@ -1455,7 +1455,7 @@
                                     <constraint firstAttribute="height" constant="30" id="twX-4z-Zi4"/>
                                 </constraints>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="heavy"/>
                                 </buttonConfiguration>
@@ -1471,7 +1471,7 @@
                                     <constraint firstAttribute="height" constant="40" id="ucz-MG-2FI"/>
                                 </constraints>
                                 <color key="tintColor" red="0.90301454010000004" green="0.90301454010000004" blue="0.90301454010000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.forward" catalog="system" imagePlacement="trailing">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Submit Review">
@@ -1684,7 +1684,7 @@
                                     <constraint firstAttribute="height" constant="45" id="zuP-4g-WvM"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99607849120000003" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" title="Next">
                                     <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                 </buttonConfiguration>
@@ -1706,7 +1706,7 @@
                                     <constraint firstAttribute="width" constant="40" id="lEm-Bm-3hI"/>
                                 </constraints>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" image="eye" catalog="system" title="">
                                     <color key="baseForegroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
@@ -1763,7 +1763,7 @@
                                     <constraint firstAttribute="height" constant="45" id="G0g-Vx-2oo"/>
                                 </constraints>
                                 <color key="tintColor" red="0.99607849120000003" green="0.99607849120000003" blue="0.99607849120000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain" title="Create Account">
                                     <fontDescription key="titleFontDescription" name="OpenSans-Bold" family="Open Sans" pointSize="18"/>
                                 </buttonConfiguration>
@@ -1956,8 +1956,8 @@
         <image name="shower" width="11" height="15"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="star" width="21.68549919128418" height="22.119100570678711"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="star.fill" width="21.68549919128418" height="22.119100570678711"/>
+        <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="DarkBlue">
             <color red="0.14117647058823529" green="0.45882352941176469" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
