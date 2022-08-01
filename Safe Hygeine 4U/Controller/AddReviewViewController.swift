@@ -10,6 +10,8 @@ import Cosmos
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+var serviceDetailsRating = 0.0
+var serviceDetailsReviews = 0
 
 class AddReviewViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
@@ -22,7 +24,7 @@ class AddReviewViewController: UIViewController {
     var buttonChanged = false
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         print("View did load ran")
         // Do any additional setup after loading the view.
         nameLabel.text = selectedService?.name
@@ -41,11 +43,18 @@ class AddReviewViewController: UIViewController {
                      generator.impactOccurred()
             if rating > 0 && textView.text.isEmpty == false{
                 submitButtom.isEnabled = true
-
+                
             }
         }
         
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        print("VIEW DISSAPER")
+        
+ 
+
+    }
+   
     @IBAction func submitReviewClicked(_ sender: UIButton) {
         addReview()
     }
@@ -56,8 +65,8 @@ class AddReviewViewController: UIViewController {
 
         // initialize the date formatter and set the style
         let formatter = DateFormatter()
-        formatter.timeStyle = .none
-        formatter.dateStyle = .medium
+       formatter.dateFormat = "MMM dd, yyyy"// yyyy-MM-dd"
+
 
         // get the date time String from the date object
         let dateString = formatter.string(from: currentDateTime) // October 8, 2016 at 10:48:53 PM
@@ -88,11 +97,14 @@ class AddReviewViewController: UIViewController {
     
         if reviewCount > 0 {
     
-            if reviewWritten{
-                db.collection("Reviews").document(selectedService!.name!).updateData([ "allReviews" : FieldValue.arrayRemove ([encoded2])])
-            }
+            
             getReviewTotals(){ reviews, rating in
             
+                if reviewWritten{
+                    print("removing previous Review")
+                    print(encoded2)
+                    db.collection("Reviews").document(selectedService!.name!).updateData([ "allReviews" : FieldValue.arrayRemove ([encoded2])])
+                }
                 print("Reviews: \(reviews) Rating: \(rating)")
 
                                 
@@ -102,6 +114,8 @@ class AddReviewViewController: UIViewController {
                             print("Error updating document: \(err)")
                         } else {
                             print("Document successfully updated")
+                            serviceDetailsReviews = reviews
+                            serviceDetailsRating = rating
                             self.dismiss(animated: true)
                         }
                     
@@ -116,6 +130,8 @@ class AddReviewViewController: UIViewController {
                     print("Error updating document: \(err)")
                 } else {
                     print("Document successfully updated")
+                    serviceDetailsReviews = 1
+                    serviceDetailsRating = self.starRating.rating
                     self.dismiss(animated: true)
 
                 }
@@ -145,19 +161,28 @@ class AddReviewViewController: UIViewController {
                 overallRating = orderItems.value(forKey: "Overall Rating") as? Double ?? 0.0
                 
                 if reviewWritten{
+                    overallRating = ((overallRating * Double(numReviews)) -  Double(writtenReview.rating)) / Double((numReviews - 1))
                     numReviews = numReviews - 1
                 }
                 
                 print("Reviews: \(numReviews) Rating: \(overallRating)")
+                var rating = 0.0
                 
-                let rating = ((overallRating * Double(numReviews)) +  self.starRating.rating) / Double((numReviews + 1))
+                if numReviews == 0 {
+                    overallRating = 0
+                }
+                
+                    print(overallRating)
+                    print(numReviews)
+                     rating = ((overallRating * Double(numReviews)) +  self.starRating.rating) / Double((numReviews + 1))
+
+                
                 completion(numReviews + 1, rating)
             })
-       // var numReviewsInt : Int = Int(numReviews) ?? 0
-       // var ratingInt : Double = Double(numReviews) ?? 0.0
-        
+   
      
         }
+   
     
     @objc private func keyboardWillShow(notification: NSNotification) {
         if buttonChanged == false{

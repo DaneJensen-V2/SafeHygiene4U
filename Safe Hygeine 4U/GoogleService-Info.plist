@@ -13,21 +13,21 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>DaneJApps.Safe-Hygeine-4U</string>
+	<string>SafeHygiene.Safe-Hygeine-4U</string>
 	<key>PROJECT_ID</key>
 	<string>safehygiene4u-4f485</string>
 	<key>STORAGE_BUCKET</key>
 	<string>safehygiene4u-4f485.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:324045373059:ios:d1d289160cf70db6b2a5b6</string>
 </dict>

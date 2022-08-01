@@ -19,6 +19,7 @@ class EmailViewController: UIViewController {
         // Do any additional setup after loading the view.
         nextButton.isEnabled = false
         nextButton.backgroundColor = .lightGray
+        googleAccount = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

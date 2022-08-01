@@ -52,7 +52,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.9 miles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KmO-ky-qku">
-                        <rect key="frame" x="95" y="60.666666666666664" width="68" height="23.333333333333336"/>
+                        <rect key="frame" x="95" y="60.666666666666664" width="85" height="23.333333333333336"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="85" id="lsz-sa-5xd"/>
+                        </constraints>
                         <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -66,13 +69,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArP-TT-6g8">
-                        <rect key="frame" x="316.33333333333331" y="60.666666666666664" width="23.666666666666686" height="23.333333333333336"/>
+                        <rect key="frame" x="317" y="59.666666666666664" width="23.666666666666686" height="23.333333333333336"/>
                         <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ijD-EE-vcx" customClass="CosmosView" customModule="Cosmos">
-                        <rect key="frame" x="179.66666666666663" y="61.666666666666664" width="131.33333333333337" height="21.333333333333336"/>
+                        <rect key="frame" x="190" y="61.666666666666664" width="135" height="21.333333333333336"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
@@ -93,15 +96,15 @@
                     <constraint firstItem="GUd-XN-REl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="38B-CL-FpY"/>
                     <constraint firstItem="Q8t-Sh-7QJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="43A-lf-R7F"/>
                     <constraint firstItem="ijD-EE-vcx" firstAttribute="top" secondItem="ePY-Ji-fAu" secondAttribute="bottom" constant="11.67" id="4O1-6a-gdj"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="ijD-EE-vcx" secondAttribute="trailing" constant="59" id="6Mf-P1-fef"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="ijD-EE-vcx" secondAttribute="trailing" constant="45" id="6Mf-P1-fef"/>
                     <constraint firstAttribute="trailing" secondItem="GUd-XN-REl" secondAttribute="trailing" constant="5" id="6d9-eg-agP"/>
                     <constraint firstItem="ePY-Ji-fAu" firstAttribute="leading" secondItem="Q8t-Sh-7QJ" secondAttribute="trailing" constant="10" id="FIf-XQ-8W9"/>
                     <constraint firstAttribute="bottom" secondItem="vH0-Nm-cmd" secondAttribute="bottom" constant="10" id="Hap-Zj-pQF"/>
+                    <constraint firstItem="ArP-TT-6g8" firstAttribute="leading" secondItem="KmO-ky-qku" secondAttribute="trailing" constant="137" id="Jz5-Yn-JRN"/>
                     <constraint firstItem="Q8t-Sh-7QJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Prx-Um-xty"/>
-                    <constraint firstItem="ArP-TT-6g8" firstAttribute="leading" secondItem="ijD-EE-vcx" secondAttribute="trailing" constant="5.3300000000000001" id="T9u-Fo-cqS"/>
-                    <constraint firstItem="ijD-EE-vcx" firstAttribute="leading" secondItem="KmO-ky-qku" secondAttribute="trailing" constant="16.670000000000002" id="bet-vZ-XBk"/>
+                    <constraint firstItem="ijD-EE-vcx" firstAttribute="leading" secondItem="KmO-ky-qku" secondAttribute="trailing" constant="10" id="bet-vZ-XBk"/>
                     <constraint firstItem="GUd-XN-REl" firstAttribute="leading" secondItem="ePY-Ji-fAu" secondAttribute="trailing" constant="10" id="ghI-P8-zWu"/>
-                    <constraint firstAttribute="bottom" secondItem="ArP-TT-6g8" secondAttribute="bottom" constant="11" id="md0-Wn-aAn"/>
+                    <constraint firstAttribute="bottom" secondItem="ArP-TT-6g8" secondAttribute="bottom" constant="12" id="md0-Wn-aAn"/>
                     <constraint firstItem="ePY-Ji-fAu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="p0I-wt-fC2"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ijD-EE-vcx" secondAttribute="bottom" constant="1" id="rMj-Mh-tOC"/>
                     <constraint firstItem="vH0-Nm-cmd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="s8b-xd-8mq"/>

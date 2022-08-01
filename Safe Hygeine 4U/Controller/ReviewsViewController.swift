@@ -36,27 +36,38 @@ class ReviewsViewController: UIViewController {
             
         }
         else{
-            spinner.isHidden = false
-            spinner.startAnimating()
-            fetchReviews(){ [self] success in
-                sortReviews(){ success in
-                    spinner.stopAnimating()
-                    spinner.isHidden = true
-                    self.reviewsTable.reloadData()
+            updateReviews()
+         
+        }
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateReviews), name: Notification.Name("ReviewAdded"), object: nil)
 
-                }
-            
+    }
+   
+    @objc func updateReviews(){
+        loadedReviews = []
+        reviewsDated = []
+        spinner.isHidden = false
+        spinner.startAnimating()
+        fetchReviews(){ [self] success in
+            sortReviews(){ success in
+                reviewsTable.isHidden = false
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+                self.reviewsTable.reloadData()
+
             }
+        
         }
     }
     func sortReviews(completion: @escaping (Bool) -> Void){
         convertReviewsDate(){ success in
-            var dateFormatter = DateFormatter()
+            let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM dd, yyyy"// yyyy-MM-dd"
-            var result = reviewsDated.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
+            let result = reviewsDated.sorted(by: { $0.date.compare($1.date) == .orderedDescending })
             reviewsDated = result
             var count = 0
             for reviews in reviewsDated{
+                print(currentUser.Username)
                 if reviews.user == currentUser.Username{
                     reviewsDated.move(fromOffsets: [count], toOffset: 0)
                     reviewWritten = true
@@ -72,7 +83,7 @@ class ReviewsViewController: UIViewController {
     }
     
     func convertReviewsDate(completion: @escaping (Bool) -> Void){
-        var dateFormatter = DateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd, yyyy"// yyyy-MM-dd"
         for review in loadedReviews {
             let newReview = reviewDate(location: review.location, date: dateFormatter.date(from: review.date)!, rating: review.rating, content: review.content, user: review.user)

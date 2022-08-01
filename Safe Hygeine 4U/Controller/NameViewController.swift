@@ -16,6 +16,7 @@ class NameViewController: UIViewController {
     @IBOutlet weak var passwordTextBox: UITextField!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var takenLabel: UILabel!
     var currentUsername = ""
     let db = Firestore.firestore()
     //let authManager = AuthManager()
@@ -28,6 +29,7 @@ class NameViewController: UIViewController {
         nextButton.isEnabled = false
         nextButton.backgroundColor = .lightGray
         spinner.isHidden = true
+        AuthManager().logout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +46,7 @@ class NameViewController: UIViewController {
         spinner.isHidden = false
         spinner.startAnimating()
         currentUsername = passwordTextBox.text!
-        createAccount(email: currentEmail, password: currentPassword, Username: currentUsername)
-        
+        checkUsername()
     }
     
     func createAccount(email : String, password : String, Username : String){
@@ -58,8 +59,8 @@ class NameViewController: UIViewController {
                 self.present(alert, animated: true)
                 print(e.localizedDescription)
             }
+            
             else{
-                
                 
                 let user = Auth.auth().currentUser
                 
@@ -79,6 +80,57 @@ class NameViewController: UIViewController {
             }
         }
         
+    }
+    
+    func createGoogleAccount(){
+        Auth.auth().signIn(with: credential!) { authResult, error in
+            if let error = error {
+                
+                print(error.localizedDescription)
+                return
+            }
+            else{
+                googleUser.Username = self.currentUsername
+                
+                self.addNewUser(newUser: googleUser)
+                
+                let user = Auth.auth().currentUser
+                
+                AuthManager().loadCurrentUser(user: user!, completion: { success in
+                    self.navigationController?.popToRootViewController(animated: true)
+                    self.tabBarController?.tabBar.isHidden = false
+                    self.navigationController?.navigationBar.isHidden = true
+                    currentUser = googleUser
+                    
+                })
+            }
+        }
+    }
+    
+    
+    func checkUsername(){
+        db.collection("Users").whereField("Username", isEqualTo: currentUsername)
+            .getDocuments() { [self] (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                } else {
+                    if querySnapshot!.count > 0 {
+                        takenLabel.isHidden = false
+                        spinner.isHidden = true
+                    }
+                    else{
+                    takenLabel.isHidden = true
+                        spinner.isHidden = false
+                        if googleAccount == true{
+                            createGoogleAccount()
+                        }
+                        else{
+                        createAccount(email: currentEmail, password: currentPassword, Username: currentUsername)
+
+                        }
+                    }
+                }
+        }
     }
     
     func addNewUser(newUser : UserData ){

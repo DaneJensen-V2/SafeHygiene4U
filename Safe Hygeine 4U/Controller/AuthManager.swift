@@ -36,10 +36,12 @@ class AuthManager{
                 } else {
                     // A nil value was successfully initialized from the DocumentSnapshot,
                     // or the DocumentSnapshot was nil.
+                    completion(false)
                     print("Document does not exist")
                 }
             case .failure(let error):
                 // A `City` value could not be initialized from the DocumentSnapshot.
+                completion(false)
                 print("Error decoding city: \(error)")
             }
         }

@@ -33,6 +33,7 @@ class DBManager{
                             count += 1
                             if count == querySnapshot!.documents.count{
                                 completion(true)
+
                             }
                         }
                         break
@@ -98,6 +99,7 @@ class DBManager{
                             
                         }
                 }
+                NotificationCenter.default.post(name: Notification.Name("ReviewAdded"), object: nil)
                 completion(true)
             }
         }
@@ -113,6 +115,7 @@ class DBManager{
             do {
                 print("saved")
                 try self.context.save()
+             
                 completion(true)
             }
             catch{
@@ -255,7 +258,6 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                   serviceInfo.isVerified = data.isVerified
                   serviceInfo.notes = data.notes
 
-
               }
               if let sDetails = data.serviceDetails{
                   serviceInfo.serviceDetails =  sDetails.components(separatedBy: ",")
@@ -271,12 +273,17 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                       completion(true)
                   }
                   catch{
-                      
+                      print("Image was unable to be saved.")
                   }
               }
               
           }
         })
+    }
+    func parseHours(hoursString: String, completion: @escaping (String) -> Void){
+        let storeHours = [hours]()
+        
+       
     }
     func saveImage(place : GMSPlace, image : String?, completion: @escaping (String) -> Void){
         

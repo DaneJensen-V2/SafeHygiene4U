@@ -82,7 +82,8 @@ class MapViewController: UIViewController {
         mapButton.roundCorners([.topLeft, .bottomLeft], radius: 10)
         listButon.roundCorners([.topRight, .bottomRight], radius: 10)
         searchBar.delegate = self
-        
+        mapView.showsCompass = false
+
         
         makeViewCircular(view: locationButton)
         makeViewCircular(view: menuButton)
@@ -299,6 +300,7 @@ class MapViewController: UIViewController {
         view.layer.cornerRadius = view.bounds.size.width / 2.0
         view.clipsToBounds = true
     }
+    
     //Adds a document to the database, edit values and uncomment function in viewDidLoad and run to add to the database.
     func addDocument(){
     /*
@@ -363,7 +365,7 @@ class MapViewController: UIViewController {
             //Show alert letting user know how to turn this on
         }
     }
-    
+
  
     
     @IBAction func menuClicked(_ sender: UIButton) {
@@ -495,51 +497,59 @@ extension MapViewController: MKMapViewDelegate{
     
     //Displays a view when a user clicks a point
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //Temporary point
-        var pointInArray : ServiceInfo?
-               
-            //gets title of point clicked
-               if let annotationTitle = view.annotation?.title{
-                   pinClickedLabel.text = annotationTitle
-                   //Matches the clicked point to the point in the services list based on title
-                   for point in services! {
-                          if point.name == annotationTitle {
-                               pointInArray = point
-                              selectedService = point
-                               break
-                           }
-                       }
-                   }
-        if pointInArray?.reviews == 0{
-            pinClickedReviews.text = "No Reviews"
-            starView.rating = 0
-
+        if view.annotation is MKUserLocation {
+            // You tapped on the user location
         }
+        
         else{
-            starView.rating = pointInArray?.rating ?? 0
-            pinClickedReviews.text = "\(pointInArray!.reviews) Reviews"
-
-        }
-               //Sets image for view based on type
+            var pointInArray : ServiceInfo?
+            
+            //gets title of point clicked
+            if let annotationTitle = view.annotation?.title {
+                pinClickedLabel.text = annotationTitle
+                //Matches the clicked point to the point in the services list based on title
+                for point in services! {
+                    if point.name == annotationTitle {
+                        pointInArray = point
+                        selectedService = point
+                        break
+                    }
+                }
+            }
+            
+            if pointInArray?.reviews == 0{
+                pinClickedReviews.text = "No Reviews"
+                starView.rating = 0
+                
+                
+            }
+            
+            else{
+                starView.rating = pointInArray?.rating ?? 0
+                pinClickedReviews.text = "\(pointInArray!.reviews) Reviews"
+                
+            }
+            
+            //Sets image for view based on type
             switch pointInArray?.serviceType{
-               case "Bathroom":
-                   pinClickedImage.image =  UIImage(named: "toilet", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                   break
-               case "Shower":
-                   pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                   break
-               case "Laundromat":
-                   pinClickedImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                   break
-               default:
-                   print("Default")
-                   break
-               }
-        print(selectedService!.rating)
-
-        let coordinate = CLLocationCoordinate2DMake(pointInArray!.latitude, pointInArray!.longitude)
-        let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
-        mapView.setRegion((region), animated: true)            //Animates view on screen
+            case "Bathroom":
+                pinClickedImage.image =  UIImage(named: "toilet", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                break
+            case "Shower":
+                pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                break
+            case "Laundromat":
+                pinClickedImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                break
+            default:
+                print("Default")
+                break
+            }
+            print(selectedService!.rating)
+            
+            let coordinate = CLLocationCoordinate2DMake(pointInArray!.latitude, pointInArray!.longitude)
+            let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: regionInMeters, longitudinalMeters: regionInMeters)
+            mapView.setRegion((region), animated: true)            //Animates view on screen
             pinClickedView.isHidden = false
             let generator = UIImpactFeedbackGenerator(style: .medium)
             generator.impactOccurred()
@@ -549,6 +559,8 @@ extension MapViewController: MKMapViewDelegate{
             }
             
         }
+    }
+    
     }
 
 
@@ -634,6 +646,7 @@ extension MapViewController: UIGestureRecognizerDelegate {
             }
         }
     }
+    
     
     // Close side menu when you tap on the shadow background view
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {

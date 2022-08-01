@@ -51,10 +51,10 @@ class serviceDetailsViewController: UIViewController {
 
         collectionView.dataSource = self
         collectionView.delegate = self
-        mapSnapshot.imageView?.layer.cornerRadius = 25
-        mapSnapshot.imageView?.clipsToBounds = true
+        mapSnapshot.layer.cornerRadius = 25
         directionsView.layer.cornerRadius = 10
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateReviews), name: Notification.Name("ReviewAdded"), object: nil)
+
         setSpacing(){ [self] success in
 
             makeViewCircular(view: phoneButton)
@@ -88,6 +88,8 @@ class serviceDetailsViewController: UIViewController {
         //let snapshot = MKLookAroundScene()
         // Do any additional setup after loading the view.
     }
+    
+    
     override func viewDidAppear(_ animated: Bool) {
 
         height = self.view.frame.height
@@ -98,7 +100,7 @@ class serviceDetailsViewController: UIViewController {
             
         }
         else{
-            scrollView.contentSize = CGSizeMake(self.view.frame.width, 875 + notesLabel.frame.height)
+            scrollView.contentSize = CGSizeMake(self.view.frame.width, 850 + notesLabel.frame.height)
 
         }
             DispatchQueue.main.async {
@@ -115,13 +117,21 @@ class serviceDetailsViewController: UIViewController {
             completion(true)
     }
     
+    
+    
     func startSpinner(){
         DispatchQueue.main.async { [self] in
             spinner.isHidden = false
             spinner.startAnimating()
         }
     }
-    
+    @objc func updateReviews(){
+        if serviceDetailsReviews != 0{
+            starView.rating = serviceDetailsRating
+            ratingNumber.text = String(format: "%.1f (%d reviews)", serviceDetailsRating, serviceDetailsReviews)
+            
+        }
+    }
     func stopSpinner(){
         DispatchQueue.main.async { [self] in
           
@@ -172,7 +182,7 @@ class serviceDetailsViewController: UIViewController {
         
         let options = MKMapSnapshotter.Options()
         options.region = MKCoordinateRegion(center: coords, latitudinalMeters: distanceInMeters, longitudinalMeters: distanceInMeters)
-        options.size = mapSnapshot.frame.size
+        options.size = mapSnapshot.bounds.size
 
         let snapShotter = MKMapSnapshotter(options: options)
         snapShotter.start(completionHandler: { [weak self] (snapshot, error) in
@@ -203,7 +213,10 @@ class serviceDetailsViewController: UIViewController {
              
                 DispatchQueue.main.async {
 
-                    self?.mapSnapshot.setImage(compositeImage, for: .normal)
+                  //  self?.mapSnapshot.setImage(compositeImage, for: .normal)
+                    self?.mapSnapshot.setBackgroundImage(compositeImage, for: .normal)
+                self?.mapSnapshot.clipsToBounds = true
+                    self?.mapSnapshot.contentMode = .scaleAspectFill
                     //self!.mapSnapshot.contentMode = .scaleToFill
                     self?.stopSpinner()
                        }
@@ -333,8 +346,6 @@ extension serviceDetailsViewController : UICollectionViewDataSource{
         case "Truck Stop":
             cell.cellImage.image = UIImage(named: "box.truck")
             cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
-
-
             break
         case "Rec Center":
             cell.cellImage.image = UIImage(named: "figure.run")
@@ -343,7 +354,11 @@ extension serviceDetailsViewController : UICollectionViewDataSource{
             cell.cellImage.image = UIImage(systemName: "scissors")
             cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
 
-            
+            break
+        case "Public Park":
+            cell.cellImage.image = UIImage(systemName: "leaf.fill")
+            cell.circleView.backgroundColor = UIColor(named: "GreenPin")
+
             break
         case "Nonprofit":
             cell.cellImage.image = UIImage(systemName: "face.smiling")
