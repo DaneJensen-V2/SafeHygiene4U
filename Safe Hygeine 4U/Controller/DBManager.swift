@@ -5,7 +5,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import GooglePlaces
 import CoreData
-var servicesList:[HygieneAnnotation] = []
+var servicesList: [[HygieneAnnotation]] = [[], [], []]
 
 class DBManager{
     //Connects to the database

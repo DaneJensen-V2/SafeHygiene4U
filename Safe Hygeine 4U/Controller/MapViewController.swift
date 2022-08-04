@@ -17,8 +17,10 @@ var dataLoaded = false
 var viewdidLoad = false
 var selectedService : ServiceInfo?
 var services : [ServiceInfo]?
-var filteredData : [HygieneAnnotation]?
+var filteredData : [[HygieneAnnotation]]?
 var dayOfWeek = 0
+var typeCount = 3
+
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
@@ -36,6 +38,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var pinClickedLabel: UILabel!
     @IBOutlet weak var listButon: UIButton!
     @IBOutlet weak var serviceTable: UITableView!
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var listView: UIView!
     @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterButton: UIButton!
@@ -71,9 +74,12 @@ class MapViewController: UIViewController {
     let authManager = AuthManager()
     var tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let headerTitles = ["Showers", "Clothing", "Hygiene"]
 
     //ViewDidLoad
     override func viewDidLoad() {
+        logoImage.layer.cornerRadius = 30
+        logoImage.clipsToBounds = true
         print("VIEW DID LOAD RAN")
         super.viewDidLoad()
         dayOfWeek = (Date().dayNumberOfWeek() ?? 0) - 1
@@ -112,8 +118,9 @@ class MapViewController: UIViewController {
                 self.updateReviewsMap(){success in
                     print("sucessfully updated")
                     DispatchQueue.main.async {
-                        self.mapView.addAnnotations(servicesList)
-                    }
+                        for list in servicesList{
+                            self.mapView.addAnnotations(list)
+                        }                    }
                 }
             }
             listenerRan = true
@@ -209,23 +216,24 @@ class MapViewController: UIViewController {
                 dbManager.loadData(){ success in
                     print("Load data ran count")
                     do {
-                        services = try context.fetch(ServiceInfo.fetchRequest())
-                        coreDataSize = services!.count
+                        services = try self.context.fetch(ServiceInfo.fetchRequest())
+                      coreDataSize = services!.count
                     }
                     catch{
                         print("Could not fetch CoreData")
                     }
-                    updateReviewsMap(){ success in
-                        print("Service List : \(servicesList[0].coordinate)")
+                    self.updateReviewsMap(){ success in
                         DispatchQueue.main.async {
-                            self.mapView.addAnnotations(servicesList)
+                            for list in servicesList{
+                                self.mapView.addAnnotations(list)
+                            }
                         }
                         dataLoaded = true
                         self.getDistance { success in
                             filteredData = servicesList
                             print(services!)
-                            spinner.stopAnimating()
-                            downloadView.isHidden = true
+                            self.spinner.stopAnimating()
+                            self.downloadView.isHidden = true
                             self.serviceTable.reloadData()
                         }
                         
@@ -240,7 +248,9 @@ class MapViewController: UIViewController {
                     self.getDistance { success in
                         print("adding annotations")
 
-                        self.mapView.addAnnotations(servicesList)
+                        for list in servicesList{
+                            self.mapView.addAnnotations(list)
+                        }
                         filteredData = servicesList
 
                         self.serviceTable.reloadData()
@@ -257,7 +267,7 @@ class MapViewController: UIViewController {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                for document in querySnapshot!.documents{
+                for _ in querySnapshot!.documents{
                     firestoreSize = firestoreSize + 1
                 }
                  completion(firestoreSize)
@@ -267,9 +277,12 @@ class MapViewController: UIViewController {
 
     }
     func addAnnotationsFromCD(completion: @escaping (Bool) -> Void){
-        print("Services Count: \(services?.count)")
-        self.mapView.removeAnnotations(servicesList)
-        servicesList = [] 
+     
+        print("Services Count: \(services?.count ?? -1)")
+        for list in servicesList{
+            self.mapView.removeAnnotations(list)
+        }
+        servicesList = [[], [], []]
         for service in services! {
             var type : serviceTypes = .shower
             switch service.serviceType{
@@ -277,14 +290,23 @@ class MapViewController: UIViewController {
                 type = .shower
             case "Clothing" :
                 type = .clothing
-            case "nonProfit" :
+            case "Hygiene" :
                 type = .nonProfit
              default :
                 type = .shower
             }
             
             let newAnnoation = HygieneAnnotation(service.latitude, service.longitude, title: service.name!, type: type, rating: service.rating, distance: 0, reviews: service.reviews)
-            servicesList.append(newAnnoation)
+            print(servicesList.count )
+            switch type {
+            case .shower:
+                servicesList[0].append(newAnnoation)
+            case .clothing:
+                servicesList[1].append(newAnnoation)
+            case .nonProfit:
+                servicesList[2].append(newAnnoation)
+    
+            }
         }
         print("annotations completion ran")
         completion(true)
@@ -316,6 +338,7 @@ class MapViewController: UIViewController {
      */
     }
     func UIChange(state: Bool){
+        logoImage.isHidden = state
         menuButton.isHidden = state
         mapView.isHidden = state
         locationButton.isHidden = state

@@ -24,7 +24,6 @@ class PasswordViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true
         nextButton.layer.cornerRadius = 20
         passwordTextBox.becomeFirstResponder()
 

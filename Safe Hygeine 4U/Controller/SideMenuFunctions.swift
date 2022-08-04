@@ -98,8 +98,7 @@ extension MapViewController: SideMenuViewControllerDelegate {
             }
             // Animate Shadow (Fade In)
             UIView.animate(withDuration: 0.5) { self.sideMenuShadowView.alpha = 0.6 }
-            self.tabBarController?.tabBar.layer.zPosition = -1;
-            self.tabBarController?.tabBar.isUserInteractionEnabled = false
+         
 
         }
         else {
@@ -108,8 +107,7 @@ extension MapViewController: SideMenuViewControllerDelegate {
             }
             // Animate Shadow (Fade Out)
             UIView.animate(withDuration: 0.5) { self.sideMenuShadowView.alpha = 0.0 }
-            self.tabBarController?.tabBar.layer.zPosition = 0;
-            self.tabBarController?.tabBar.isUserInteractionEnabled = true
+           
 
 
         }

@@ -143,10 +143,8 @@ extension SideMenuViewController: UITableViewDataSource {
         self.delegate?.selectedCell(indexPath.row)
         // ...
         if indexPath.row == 1{
-            self.tabBarController?.selectedIndex = 1
         }
         else if indexPath.row == 2 {
-            self.tabBarController?.selectedIndex = 2
         }
         else if indexPath.row == 3{
             if authManager.checkIfLoggedIn(){

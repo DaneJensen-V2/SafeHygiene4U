@@ -34,13 +34,11 @@ class LoginViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true
     }
     
     //   }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
         
         
     }
@@ -95,8 +93,6 @@ class LoginViewController: UIViewController {
                     authManager.loadCurrentUser(user: user!){result in
                         if result == true{
                             self.navigationController?.popToRootViewController(animated: true)
-                            self.tabBarController?.tabBar.isHidden = false
-                            self.navigationController?.navigationBar.isHidden = true
                             currentUser = googleUser
                         }
                         else{

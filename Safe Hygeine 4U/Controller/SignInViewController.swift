@@ -27,7 +27,6 @@ class SignInViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true
         loginButton.layer.cornerRadius = 20
         emailBox.becomeFirstResponder()
 
@@ -62,7 +61,6 @@ class SignInViewController: UIViewController {
                 AuthManager().loadCurrentUser(user: currentID!) { success in
                     print("User Loaded")
                     completion(true)
-                    self.tabBarController?.tabBar.isHidden = false
                     self.navigationController?.navigationBar.isHidden = true
                 }
             }

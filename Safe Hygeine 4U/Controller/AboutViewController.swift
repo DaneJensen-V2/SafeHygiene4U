@@ -18,13 +18,11 @@ class AboutViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
             self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true
     }
 
  //   }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
-        self.tabBarController?.tabBar.isHidden = false
 
 
 

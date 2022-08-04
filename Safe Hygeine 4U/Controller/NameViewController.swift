@@ -35,7 +35,6 @@ class NameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = true
         nextButton.layer.cornerRadius = 20
         passwordTextBox.becomeFirstResponder()
 
@@ -71,7 +70,6 @@ class NameViewController: UIViewController {
                 
                 AuthManager().loadCurrentUser(user: user!, completion: { success in
                     self.navigationController?.popToRootViewController(animated: true)
-                    self.tabBarController?.tabBar.isHidden = false
                     self.navigationController?.navigationBar.isHidden = true
                 })
                
@@ -98,8 +96,6 @@ class NameViewController: UIViewController {
                 
                 AuthManager().loadCurrentUser(user: user!, completion: { success in
                     self.navigationController?.popToRootViewController(animated: true)
-                    self.tabBarController?.tabBar.isHidden = false
-                    self.navigationController?.navigationBar.isHidden = true
                     currentUser = googleUser
                     
                 })
