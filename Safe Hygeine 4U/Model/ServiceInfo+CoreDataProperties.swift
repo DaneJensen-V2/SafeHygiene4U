@@ -18,7 +18,7 @@ extension ServiceInfo {
 
     @NSManaged public var address: String?
     @NSManaged public var hostName: String?
-    @NSManaged public var hours: [hours]?
+    @NSManaged public var hours: [String]?
     @NSManaged public var image: String?
     @NSManaged public var isOnGoogle: Bool
     @NSManaged public var latitude: Double

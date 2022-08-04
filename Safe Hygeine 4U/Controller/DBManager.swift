@@ -87,7 +87,7 @@ class DBManager{
 
                             guard let dict = document.data() else { return }
                             
-                            print(dict)
+                            //print(dict)
 
                             guard let orderItems = dict as? NSDictionary else {return}
 
@@ -175,10 +175,7 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                 guard let businesses = resp.value(forKey: "candidates") as? [NSDictionary] else {return}
                     
                 if businesses.count >= 1{
-                    print(dataX.latitude)
-                    print(dataX.longitude)
                     let business = businesses[0]
-                    print(businesses)
                     let ID = business.value(forKey: "place_id") as? String
                     
                     //   print("ID = \(ID)")
@@ -221,6 +218,7 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
             return
           }
           if let place = place {
+              print(place)
               print(data.name)
               let serviceInfo = ServiceInfo(context: self.context)
               if data.isOnGoogle == true{
@@ -232,7 +230,9 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                   serviceInfo.name = place.name!
                   serviceInfo.hostName = data.hostName
                   serviceInfo.rating = data.rating ?? 0.0
-                  serviceInfo.hours = []
+                  self.parseHoursGoogle(hours:place.openingHours!){hours in
+                      serviceInfo.hours = hours
+                  }
                   serviceInfo.reviews = data.reviews ?? 0
                   serviceInfo.serviceDetails = []
                   serviceInfo.website = place.website?.absoluteString
@@ -250,7 +250,10 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                   serviceInfo.name = data.name
                   serviceInfo.hostName = data.hostName
                   serviceInfo.rating = data.rating ?? 0.0
-                  serviceInfo.hours = []
+                  self.parseHours(hoursString: data.hours ?? ""){days in
+                      print(days)
+                      serviceInfo.hours = days
+                  }
                   serviceInfo.reviews = data.reviews ?? 0
                   serviceInfo.website = data.website
                   serviceInfo.serviceType = data.serviceType
@@ -280,23 +283,68 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
           }
         })
     }
-    func parseHours(hoursString: String, completion: @escaping (String) -> Void){
-        let storeHours = [hours]()
+    func parseHoursGoogle(hours: GMSOpeningHours, completion: @escaping ([String]) -> Void){
+        var result = [String](repeating: "Closed", count: 7) // 1 dimension array
+
+        if let days = hours.weekdayText {
+            for i in 0...days.count - 1{
+                let time = days[i].split(separator: ":", maxSplits: 1).map(String.init)
+                
+                result[i] = time[1]
+            }
+        }
         
-       
+        completion(result)
+        
     }
+    func parseHours(hoursString: String, completion: @escaping ([String]) -> Void){
+        print(hoursString)
+        if hoursString != ""{
+            var charSet = CharacterSet(charactersIn: ",")
+            
+            var seperatedHours = hoursString.components(separatedBy: charSet)
+            var days = [String](repeating: "Closed", count: 7) // 1 dimension array
+            
+            for s in seperatedHours{
+                let noSpace = s.trimmingCharacters(in: .whitespacesAndNewlines)
+                if noSpace[1] == "-"{
+                    let start = Int(noSpace[0])
+                    let end = Int(noSpace[2])
+                    for i in start!...end! {
+                        let time = s.split(separator: ":", maxSplits: 1).map(String.init)
+                        
+                        days[i] = time[1]
+                    }
+                }
+                else {
+                    let day = Int(noSpace[0])
+                    let time = s.split(separator: ":", maxSplits: 1).map(String.init)
+                    
+                    days[day!] = time[1]
+                }
+                print("Done")
+            }
+            print("Completion Ran")
+            completion(days)
+        }
+        else{
+            completion([])
+        }
+    }
+
+  
     func saveImage(place : GMSPlace, image : String?, completion: @escaping (String) -> Void){
         
         if image != ""{
-            print("Loading image from URL for place \(place.name)" )
+          //  print("Loading image from URL for place \(place.name)" )
             let url = URL(string: image!)
             let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
             completion(convertImageToBase64String(img: UIImage(data: data!)!))
-            
+
         }
         
         else if let photoMetadata: GMSPlacePhotoMetadata = place.photos?[0] {
-            print("Loading image from Google for place \(place.name)" )
+        //    print("Loading image from Google for place \(place.name)" )
 
             // Call loadPlacePhoto to display the bitmap and attribution.
             placesClient.loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
@@ -321,3 +369,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
     }
 
 
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
+}

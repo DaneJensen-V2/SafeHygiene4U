@@ -16,8 +16,17 @@ let apiKey = "yqcMF9Xf3uXc-SpamX8Pa-YurcBuhVvNkxrC8Avwk4l3gMOPWYDBwRzKQBGwmijQC6
 
 class serviceDetailsViewController: UIViewController {
 
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var monLabel: UILabel!
+    @IBOutlet weak var tuesLabel: UILabel!
+    @IBOutlet weak var wedLabel: UILabel!
+    @IBOutlet weak var thursLabel: UILabel!
+    @IBOutlet weak var fridLabel: UILabel!
+    @IBOutlet weak var sundLabel: UILabel!
     @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var hoursView: UIView!
     @IBOutlet weak var phoneButton: UIButton!
+    @IBOutlet weak var saturdayLabel: UILabel!
     @IBOutlet weak var serviceTypeImage: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var reviewButton: UIButton!
@@ -26,6 +35,7 @@ class serviceDetailsViewController: UIViewController {
     @IBOutlet weak var verifiedImage: UIImageView!
     @IBOutlet weak var buttonStack: UIStackView!
     @IBOutlet weak var verifiedLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mapSnapshot: UIButton!
     @IBOutlet weak var starView: CosmosView!
@@ -46,9 +56,10 @@ class serviceDetailsViewController: UIViewController {
       //  phoneButton.widthAnchor.constraint(equalToConstant: phoneButton.frame.size.height).isActive = true
 
         print(selectedService?.reviews)
-        
+        closeButton.layer.cornerRadius = 5
         width = self.view.frame.width
-
+        
+        hoursView.layer.cornerRadius = 10
         collectionView.dataSource = self
         collectionView.delegate = self
         mapSnapshot.layer.cornerRadius = 25
@@ -108,6 +119,9 @@ class serviceDetailsViewController: UIViewController {
             }
         
 
+    }
+    @IBAction func closeClicked(_ sender: UIButton) {
+        hoursView.fadeOut()
     }
     func setSpacing(completion: @escaping (Bool) -> Void){
        // let total = buttonStack.frame.size.width
@@ -239,7 +253,18 @@ class serviceDetailsViewController: UIViewController {
             height: annotationView.bounds.height),
                                      afterScreenUpdates: true)
     }
-    
+    func setHours(){
+        if let hours = selectedService?.hours{
+            monLabel.text = hours[0]
+            tuesLabel.text = hours[1]
+            wedLabel.text = hours[2]
+            thursLabel.text = hours[3]
+            fridLabel.text = hours[4]
+            saturdayLabel.text = hours[5]
+            sundLabel.text = hours[6]
+
+        }
+    }
     func updateUI(){
         if let selectedService = selectedService{
             if selectedService.reviews == 0{
@@ -271,10 +296,16 @@ class serviceDetailsViewController: UIViewController {
         else{
             arrowImage.isHidden = true
         }
+        hoursLabel.text = selectedService?.hours![dayOfWeek]
+        setHours()
         spinner.isHidden = true
         spinner.stopAnimating()
         collectionView.isHidden = false
 
+    }
+    
+    @IBAction func timeDetailsPushed(_ sender: Any) {
+        hoursView.fadeIn()
     }
     func convertBase64StringToImage (imageBase64String:String) -> UIImage {
         let imageData = Data(base64Encoded: imageBase64String)

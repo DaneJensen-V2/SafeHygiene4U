@@ -18,7 +18,7 @@ var viewdidLoad = false
 var selectedService : ServiceInfo?
 var services : [ServiceInfo]?
 var filteredData : [HygieneAnnotation]?
-
+var dayOfWeek = 0
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
@@ -55,6 +55,7 @@ class MapViewController: UIViewController {
      var draggingIsEnabled: Bool = false
      var panBaseLocation: CGFloat = 0.0
     
+    
     @IBAction open func revealSideMenu() {
         self.sideMenuState(expanded: self.isExpanded ? false : true)
 
@@ -75,7 +76,9 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         print("VIEW DID LOAD RAN")
         super.viewDidLoad()
-        
+        dayOfWeek = (Date().dayNumberOfWeek() ?? 0) - 1
+        print("Day of Week: \(dayOfWeek)")
+
         //Hides the view that shows up when a pin is clicked
         pinClickedView.isHidden = true
         mapView.delegate = self
@@ -220,7 +223,7 @@ class MapViewController: UIViewController {
                         dataLoaded = true
                         self.getDistance { success in
                             filteredData = servicesList
-                     
+                            print(services!)
                             spinner.stopAnimating()
                             downloadView.isHidden = true
                             self.serviceTable.reloadData()
@@ -255,7 +258,6 @@ class MapViewController: UIViewController {
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents{
-                    print("Incrementing size")
                     firestoreSize = firestoreSize + 1
                 }
                  completion(firestoreSize)
@@ -654,5 +656,10 @@ extension MapViewController: UIGestureRecognizerDelegate {
             return false
         }
         return true
+    }
+}
+extension Date {
+    func dayNumberOfWeek() -> Int? {
+        return Calendar.current.dateComponents([.weekday], from: self).weekday
     }
 }

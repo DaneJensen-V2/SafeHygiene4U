@@ -3,7 +3,7 @@
     <entity name="ServiceInfo" representedClassName="ServiceInfo" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="hostName" optional="YES" attributeType="String"/>
-        <attribute name="hours" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[hours]"/>
+        <attribute name="hours" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer" allowsCloudEncryption="YES" customClassName="[String]"/>
         <attribute name="image" optional="YES" attributeType="String"/>
         <attribute name="isEvent" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isOnGoogle" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
