@@ -13,8 +13,8 @@ target 'Safe Hygeine 4U' do
 	pod 'GoogleSignIn'
  	pod 'GooglePlaces', '7.0.0'
 	pod 'Cosmos', ' 23.0'
-
-
+	pod 'lottie-ios'
+	pod 'RSSelectionMenu'
 end
 
 post_install do |pi|

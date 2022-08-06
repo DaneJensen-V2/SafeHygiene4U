@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Lottie
 
 //Struct for a hygiene service with all the info needed
 struct hygieneService : Codable{
@@ -33,3 +34,17 @@ enum serviceTypes : String{
     case shower, clothing, nonProfit
 }
 
+//
+//  OnboaringSlide.swift
+//  Yummie
+//
+//  Created by Emmanuel Okwara on 30/01/2021.
+//
+
+import UIKit
+
+struct OnboardingSlide {
+    let title: String
+    let description: String
+    let animation: Animation
+}

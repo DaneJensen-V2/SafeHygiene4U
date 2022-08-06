@@ -13,6 +13,9 @@ import FirebaseFirestore
 import CoreData
 import FirebaseFirestoreSwift
 import Cosmos
+import RSSelectionMenu
+
+
 var dataLoaded = false
 var viewdidLoad = false
 var selectedService : ServiceInfo?
@@ -24,6 +27,7 @@ var typeCount = 3
 class MapViewController: UIViewController {
 
     //Outlets to UIVIew
+    @IBOutlet weak var ImageBG: UIView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var downloadView: UIView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -40,10 +44,19 @@ class MapViewController: UIViewController {
     @IBOutlet weak var serviceTable: UITableView!
     @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var listView: UIView!
-    @IBOutlet weak var filterView: UIView!
     @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var selectButton: UIButton!
-    var bathroomView: UIView!
+    
+    let simpleDataArray = ["Showers", "Clothing", "Hygiene"]
+    var currentMapState = ["Showers", "Clothing", "Hygiene"]
+    let imageArrray = ["shower", "shirt", "hands.sparkles"]
+      var simpleSelectedArray = [String]()
+    
+    var selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: [""]) { (cell, name, indexPath) in
+
+     
+    }
+    
+     var bathroomView: UIView!
     
     //Declarations for Side Menu
      var sideMenuViewController: SideMenuViewController!
@@ -93,20 +106,17 @@ class MapViewController: UIViewController {
         searchBar.delegate = self
         mapView.showsCompass = false
 
-        
+        ImageBG.layer.cornerRadius = ImageBG.frame.height / 2
         makeViewCircular(view: locationButton)
         makeViewCircular(view: menuButton)
         makeViewCircular(view: filterButton)
-        filterView.layer.cornerRadius = 20
-        selectButton.layer.cornerRadius = 15
         self.hideKeyboardWhenTappedAround()
-
         var listenerRan = false
-        pinClickedView.layer.cornerRadius = 10
+        pinClickedView.layer.cornerRadius = 20
         
         //Checks if user has location services enabled
         checkLocationServices()
-        
+        setupMenu()
         //Sets up the side menu with functions from SideMenuFunctions File
         if viewdidLoad == false{
             setupSideMenu()
@@ -172,6 +182,66 @@ class MapViewController: UIViewController {
             let user = Auth.auth().currentUser
             AuthManager().loadCurrentUser(user: user!, completion: { success in
             })
+        }
+    }
+    func setupMenu() {
+        print("Setting Menu")
+        
+        selectionMenu = RSSelectionMenu(selectionStyle: .multiple, dataSource: simpleDataArray) { (cell, name, indexPath) in
+            
+            
+            cell.textLabel?.text = name
+            self.selectionMenu.cellSelectionStyle = .checkbox
+            cell.isSelected = true
+            // customization
+            // set image
+            cell.imageView?.image = UIImage(named: self.imageArrray[indexPath.row])
+            
+            cell.tintColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
+        }
+        
+        selectionMenu.setSelectedItems(items: simpleDataArray) { item, index, selected, selectedItems in
+        }
+        selectionMenu.tableView?.contentInset = UIEdgeInsets(top: -23, left: 0, bottom: 0, right: 0)
+        selectionMenu.onDismiss = { [weak self] selectedItems in
+            self?.simpleSelectedArray = selectedItems
+            
+            print(self!.simpleSelectedArray)
+            self!.updateMap()
+        }
+    }
+    func updateMap(){
+       
+        if simpleSelectedArray.contains("Showers") && !currentMapState.contains("Showers"){
+            mapView.addAnnotations(servicesList[0])
+            currentMapState.append("Showers")
+        }
+        else if !simpleSelectedArray.contains("Showers") && currentMapState.contains("Showers"){
+            print("Removing annotations")
+            mapView.removeAnnotations(servicesList[0])
+            currentMapState.removeAll(where: { $0 == "Showers" })
+
+        }
+        if simpleSelectedArray.contains("Clothing") && !currentMapState.contains("Clothing"){
+            print("Adding Clothing")
+            mapView.addAnnotations(servicesList[1])
+            currentMapState.append("Clothing")
+        }
+        else if !simpleSelectedArray.contains("Clothing") && currentMapState.contains("Clothing"){
+            print("Removing annotations")
+            mapView.removeAnnotations(servicesList[1])
+            currentMapState.removeAll(where: { $0 == "Clothing" })
+
+        }
+        if simpleSelectedArray.contains("Hygiene") && !currentMapState.contains("Hygiene"){
+            mapView.addAnnotations(servicesList[2])
+            currentMapState.append("Hygiene")
+        }
+        else if !simpleSelectedArray.contains("Hygiene") && currentMapState.contains("Hygiene"){
+            print("Removing annotations")
+            mapView.removeAnnotations(servicesList[2])
+            currentMapState.removeAll(where: { $0 == "Hygiene" })
+
         }
     }
     func updateReviewsMap(completion: @escaping (Bool) -> Void){
@@ -312,12 +382,10 @@ class MapViewController: UIViewController {
         completion(true)
         
     }
-    @IBAction func selectClicked(_ sender: UIButton) {
-        filterView.fadeOut()
-
-    }
+  
     @IBAction func filterClicked(_ sender: UIButton) {
-        filterView.fadeIn()
+        print("Showing Menu")
+        selectionMenu.show(style: .alert(title: "Map Filters", action: nil, height: 135), from: self)
     }
     //Turns button into a circle
     func makeViewCircular(view: UIButton) {

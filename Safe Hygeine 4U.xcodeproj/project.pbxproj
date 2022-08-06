@@ -31,6 +31,12 @@
 		A5D3C715285AA0EB001A1EE7 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */; };
 		A5D3C717285AA0FF001A1EE7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */; };
 		A5D3C719285AA123001A1EE7 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C718285AA123001A1EE7 /* FeedViewController.swift */; };
+		A5E5EA46289C883400F20D7B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5EA45289C883400F20D7B /* OnboardingViewController.swift */; };
+		A5E5EA48289C887200F20D7B /* OnboardingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5EA47289C887200F20D7B /* OnboardingCollectionViewCell.swift */; };
+		A5E5EA4A289C8D3D00F20D7B /* UserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5EA49289C8D3D00F20D7B /* UserDefaultsExtension.swift */; };
+		A5E5EA4D289C939600F20D7B /* ReviewAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = A5E5EA4C289C939600F20D7B /* ReviewAnimation.json */; };
+		A5E5EA4F289C96BE00F20D7B /* MapAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = A5E5EA4E289C96BE00F20D7B /* MapAnimation.json */; };
+		A5E5EA51289C987F00F20D7B /* WashingAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = A5E5EA50289C987F00F20D7B /* WashingAnimation.json */; };
 		A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5F099732861393300AADEE1 /* GoogleService-Info.plist */; };
 		A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F0997528614A8300AADEE1 /* DBManager.swift */; };
 		A5F099782865044500AADEE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F099772865044500AADEE1 /* UserModel.swift */; };
@@ -90,6 +96,12 @@
 		A5D3C714285AA0EB001A1EE7 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A5D3C716285AA0FF001A1EE7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		A5D3C718285AA123001A1EE7 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		A5E5EA45289C883400F20D7B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		A5E5EA47289C887200F20D7B /* OnboardingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCollectionViewCell.swift; sourceTree = "<group>"; };
+		A5E5EA49289C8D3D00F20D7B /* UserDefaultsExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsExtension.swift; sourceTree = "<group>"; };
+		A5E5EA4C289C939600F20D7B /* ReviewAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ReviewAnimation.json; sourceTree = "<group>"; };
+		A5E5EA4E289C96BE00F20D7B /* MapAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MapAnimation.json; sourceTree = "<group>"; };
+		A5E5EA50289C987F00F20D7B /* WashingAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WashingAnimation.json; sourceTree = "<group>"; };
 		A5F099732861393300AADEE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A5F0997528614A8300AADEE1 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		A5F099772865044500AADEE1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -161,6 +173,7 @@
 		A5D3C6FC285A9222001A1EE7 /* Safe Hygeine 4U */ = {
 			isa = PBXGroup;
 			children = (
+				A5E5EA4B289C938C00F20D7B /* Animations */,
 				A5F099C1286D01BF00AADEE1 /* Fonts */,
 				A5F099732861393300AADEE1 /* GoogleService-Info.plist */,
 				A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */,
@@ -193,6 +206,7 @@
 				A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */,
 				A523FAC5287CE547007D4B1C /* SafeHygiene.xcdatamodeld */,
 				A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */,
+				A5E5EA49289C8D3D00F20D7B /* UserDefaultsExtension.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,8 +240,20 @@
 				A5F9CA1C2874CDAB007163B3 /* ListViewExt.swift */,
 				A5D024D92884FA4400886F43 /* ReviewsViewController.swift */,
 				A5D024DB2885028A00886F43 /* AddReviewViewController.swift */,
+				A5E5EA45289C883400F20D7B /* OnboardingViewController.swift */,
+				A5E5EA47289C887200F20D7B /* OnboardingCollectionViewCell.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		A5E5EA4B289C938C00F20D7B /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A5E5EA4C289C939600F20D7B /* ReviewAnimation.json */,
+				A5E5EA50289C987F00F20D7B /* WashingAnimation.json */,
+				A5E5EA4E289C96BE00F20D7B /* MapAnimation.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		A5F099C1286D01BF00AADEE1 /* Fonts */ = {
@@ -321,6 +347,7 @@
 			files = (
 				A5D3C70A285A9225001A1EE7 /* LaunchScreen.storyboard in Resources */,
 				A5F099BC286CFECB00AADEE1 /* OpenSans-SemiBold.ttf in Resources */,
+				A5E5EA4D289C939600F20D7B /* ReviewAnimation.json in Resources */,
 				A5D3C707285A9225001A1EE7 /* Assets.xcassets in Resources */,
 				A5D3C705285A9222001A1EE7 /* Main.storyboard in Resources */,
 				A5F099B6286CFECB00AADEE1 /* OpenSans-Medium.ttf in Resources */,
@@ -336,7 +363,9 @@
 				A5F099B8286CFECB00AADEE1 /* OpenSans-Bold.ttf in Resources */,
 				A5F099BA286CFECB00AADEE1 /* OpenSans-Regular.ttf in Resources */,
 				A5F099BF286CFECB00AADEE1 /* OpenSans-ExtraBold.ttf in Resources */,
+				A5E5EA51289C987F00F20D7B /* WashingAnimation.json in Resources */,
 				A5F099B5286CFECB00AADEE1 /* OpenSans-Italic.ttf in Resources */,
+				A5E5EA4F289C96BE00F20D7B /* MapAnimation.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -409,6 +438,7 @@
 				A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */,
 				A523FABE2878D14D007D4B1C /* VenueID.swift in Sources */,
 				A5F0997E286678DF00AADEE1 /* SideMenuModel.swift in Sources */,
+				A5E5EA46289C883400F20D7B /* OnboardingViewController.swift in Sources */,
 				A56EDD96285EA060006E9056 /* Hygiene Service.swift in Sources */,
 				A5F0998E2869271200AADEE1 /* LoginViewController.swift in Sources */,
 				A5D3C700285A9222001A1EE7 /* SceneDelegate.swift in Sources */,
@@ -417,6 +447,7 @@
 				A5F099C5286D08CB00AADEE1 /* PasswordViewController.swift in Sources */,
 				A5F0997628614A8300AADEE1 /* DBManager.swift in Sources */,
 				A573D89228716DAE00FF21BD /* serviceDetailsViewController.swift in Sources */,
+				A5E5EA48289C887200F20D7B /* OnboardingCollectionViewCell.swift in Sources */,
 				A5F09984286918B500AADEE1 /* SideMenuFunctions.swift in Sources */,
 				A59FFFDC2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift in Sources */,
 				A5AB92D0286E412500D1C64C /* SignInViewController.swift in Sources */,
@@ -438,6 +469,7 @@
 				A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */,
 				A57EF049287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift in Sources */,
 				A5F0997A28650C2000AADEE1 /* AuthManager.swift in Sources */,
+				A5E5EA4A289C8D3D00F20D7B /* UserDefaultsExtension.swift in Sources */,
 				A5F9CA202874D0B0007163B3 /* ServiceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,7 +620,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 35DK7FGTJU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Safe Hygeine 4U/Info.plist";
@@ -604,7 +636,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "SafeHygiene.Safe-Hygeine-4U";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -624,7 +656,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 35DK7FGTJU;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Safe Hygeine 4U/Info.plist";
@@ -640,7 +672,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "SafeHygiene.Safe-Hygeine-4U";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

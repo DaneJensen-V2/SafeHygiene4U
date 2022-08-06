@@ -727,12 +727,14 @@ PODS:
   - Libuv-gRPC/Implementation (0.0.10):
     - Libuv-gRPC/Interface (= 0.0.10)
   - Libuv-gRPC/Interface (0.0.10)
+  - lottie-ios (3.4.0)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.1.1)
+  - RSSelectionMenu (7.1.3)
 
 DEPENDENCIES:
   - Cosmos (= 23.0)
@@ -741,6 +743,8 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - GooglePlaces (= 7.0.0)
   - GoogleSignIn
+  - lottie-ios
+  - RSSelectionMenu
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -764,8 +768,10 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - Libuv-gRPC
+    - lottie-ios
     - nanopb
     - PromisesObjC
+    - RSSelectionMenu
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -788,9 +794,11 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
+  lottie-ios: 69495122151a378fdc7d1bb4c5930347e37baf1f
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  RSSelectionMenu: 873d62ebbaef138519f6cf3f073412c2b5d94c2c
 
-PODFILE CHECKSUM: d81458bf40b5b9bd829c0f5bae3c76cc881a448a
+PODFILE CHECKSUM: 43fcdc30e199977af2a25cc10f978e69d6e49247
 
 COCOAPODS: 1.11.2

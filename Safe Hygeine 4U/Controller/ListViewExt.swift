@@ -48,7 +48,7 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
             cell.iconImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
             break
         case .nonProfit :
-            cell.iconImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+            cell.iconImage.image =  UIImage(named: "hands.sparkles", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
             break
 
         }
