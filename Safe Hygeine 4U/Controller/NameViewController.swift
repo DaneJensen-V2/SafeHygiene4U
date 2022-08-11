@@ -39,6 +39,12 @@ class NameViewController: UIViewController {
         passwordTextBox.becomeFirstResponder()
 
     }
+    override func viewWillDisappear(_ animated: Bool) {
+     //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
+        self.navigationController?.navigationBar.isHidden = true
+    
+
+    }
     
     @IBAction func createAccountPushed(_ sender: UIButton) {
         view.endEditing(true)
@@ -118,9 +124,12 @@ class NameViewController: UIViewController {
                     takenLabel.isHidden = true
                         spinner.isHidden = false
                         if googleAccount == true{
+                            print("Creating Google Account")
                             createGoogleAccount()
                         }
                         else{
+                            print("Creating Normal Account")
+
                         createAccount(email: currentEmail, password: currentPassword, Username: currentUsername)
 
                         }

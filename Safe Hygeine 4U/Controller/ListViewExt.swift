@@ -52,6 +52,8 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
             break
 
         }
+        cell.iconView.layer.cornerRadius = cell.iconView.frame.height / 2
+
         cell.titleLabel.text = service.title
         cell.starView.rating = service.rating
         if(service.reviews > 0){
@@ -88,7 +90,6 @@ extension MapViewController : UITableViewDelegate, UITableViewDataSource{
         let cell = self.tableView(serviceTable, cellForRowAt: indexPath) as! ServiceTableViewCell
 
         if let cellTitle = cell.titleLabel.text{
-                   
                    //Matches the clicked point to the point in the services list based on title
                    for point in services! {
                           if point.name == cellTitle {

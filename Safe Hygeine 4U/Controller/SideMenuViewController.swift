@@ -18,6 +18,7 @@ class SideMenuViewController: UIViewController {
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var sideMenuTableView: UITableView!
     @IBOutlet var footerLabel: UILabel!
+    var darkMode = false
     var delegate: SideMenuViewControllerDelegate?
     var defaultHighlightedCell: Int = 0
     var menu : [SideMenuModel] = []
@@ -27,22 +28,21 @@ class SideMenuViewController: UIViewController {
     
     var LoggedInmenu: [SideMenuModel] = [
         SideMenuModel(icon: UIImage(systemName: "map.circle")!, title: "Map"),
-        SideMenuModel(icon: UIImage(systemName: "person.3")!, title: "Events"),
-        SideMenuModel(icon: UIImage(systemName: "note.text")!, title: "Community Posts"),
         SideMenuModel(icon: UIImage(systemName: "person.fill")!, title: "Profile"),
-        SideMenuModel(icon: UIImage(systemName: "slider.horizontal.3")!, title: "Settings"),
         SideMenuModel(icon: UIImage(systemName: "person.fill.questionmark")!, title: "Suggest a Location"),
         SideMenuModel(icon: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, title: "Logout"),
-        SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About")
+        SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About"),
+        SideMenuModel(icon: UIImage(systemName: "moon.fill")!, title: "Dark Mode")
+
 
     ]
     
     var LoggedOutmenu: [SideMenuModel] = [
         SideMenuModel(icon: UIImage(systemName: "map.circle")!, title: "Map"),
-        SideMenuModel(icon: UIImage(systemName: "person.3")!, title: "Events"),
-        SideMenuModel(icon: UIImage(systemName: "note.text")!, title: "Community Posts"),
         SideMenuModel(icon: UIImage(systemName: "person.fill")!, title: "Login"),
-        SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About")
+        SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About"),
+        SideMenuModel(icon: UIImage(systemName: "moon.fill")!, title: "Dark Mode")
+
     ]
                 
 
@@ -137,35 +137,66 @@ extension SideMenuViewController: UITableViewDataSource {
         myCustomSelectionColorView.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
         cell.selectedBackgroundView = myCustomSelectionColorView
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.delegate?.selectedCell(indexPath.row)
         // ...
         if indexPath.row == 1{
-        }
-        else if indexPath.row == 2 {
-        }
-        else if indexPath.row == 3{
             if authManager.checkIfLoggedIn(){
-                
+                guard let url = URL(string: formLink) else { return }
+                UIApplication.shared.open(url)
+                setDefaultCell()
             }else{
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
 
             }
+        }
+        else if indexPath.row == 2 {
+            if authManager.checkIfLoggedIn(){
+                guard let url = URL(string: formLink) else { return }
+                UIApplication.shared.open(url)
+                setDefaultCell()
+            }else{
+                self.performSegue(withIdentifier: "aboutSegue", sender: nil)
+                setDefaultCell()
+            }
+        }
+        else if indexPath.row == 3{
+            if authManager.checkIfLoggedIn(){
+                authManager.logout()
+                setDefaultCell()
+            }
+            else{
+                if darkMode == false{
+                    UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+                    darkMode = true
+                }
+                else{
+                    UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+                    darkMode = false
+                }
+            }
             setDefaultCell()
         }
         else if indexPath.row == 5{
-            
-            guard let url = URL(string: formLink) else { return }
-            UIApplication.shared.open(url)
-            setDefaultCell()
+           
+                if darkMode == false{
+                    UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+                    darkMode = true
+                }
+                else{
+                    UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+                    darkMode = false
+                
+            }
+           
         }
         else if indexPath.row == 6{
-            authManager.logout()
-            setDefaultCell()
+         
         }
-        else if indexPath.row == 7{
+        else if indexPath.row == 4{
             self.performSegue(withIdentifier: "aboutSegue", sender: nil)
             setDefaultCell()
         }

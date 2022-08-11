@@ -9,6 +9,7 @@ import UIKit
 import Cosmos
 class ServiceTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var iconView: UIView!
     @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var starsLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,7 +22,7 @@ class ServiceTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
     

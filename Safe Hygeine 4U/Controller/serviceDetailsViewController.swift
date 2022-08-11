@@ -69,7 +69,7 @@ class serviceDetailsViewController: UIViewController {
         setSpacing(){ [self] success in
 
             makeViewCircular(view: phoneButton)
-          makeViewCircular(view: reviewButton)
+            makeViewCircular(view: reviewButton)
                 makeViewCircular(view: emailButton)
             
         }
@@ -106,7 +106,7 @@ class serviceDetailsViewController: UIViewController {
         height = self.view.frame.height
 
         print(width)
-        if height > 900{
+        if height > 850 + notesLabel.frame.height{
             scrollView.contentSize = CGSizeMake(self.view.frame.width, 100)
             
         }
@@ -382,9 +382,15 @@ extension serviceDetailsViewController : UICollectionViewDataSource{
         case "Haircuts":
             cell.cellImage.image = UIImage(systemName: "scissors")
             cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
+        case "Pool":
+            cell.cellImage.image = UIImage(named: "figure.pool.swim")
+            cell.circleView.backgroundColor = UIColor(named: "DarkBlue")
 
             break
         case "Public Park":
+            cell.cellImage.image = UIImage(systemName: "leaf.fill")
+            cell.circleView.backgroundColor = UIColor(named: "GreenPin")
+        case "Park":
             cell.cellImage.image = UIImage(systemName: "leaf.fill")
             cell.circleView.backgroundColor = UIColor(named: "GreenPin")
 
@@ -420,13 +426,13 @@ extension serviceDetailsViewController : UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
     {
-        let dimensions = (width - 91) / 3
+        let dimensions = (width - 106) / 3
         return CGSize(width: dimensions, height: dimensions)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
     {
-        return 25
+        return 30
     }
     
 }

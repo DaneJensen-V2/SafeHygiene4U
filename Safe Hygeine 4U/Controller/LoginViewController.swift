@@ -16,6 +16,7 @@ var credential: AuthCredential?
 class LoginViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
+    @IBOutlet weak var logoImage: UIImageView!
     @IBOutlet weak var googleSignIn: GIDSignInButton!
     @IBOutlet weak var googleButton: UIButton!
     let db = Firestore.firestore()
@@ -27,7 +28,7 @@ class LoginViewController: UIViewController {
         googleButton.layer.borderWidth = 1
         googleSignIn.alpha = 0.05
         // Do any additional setup after loading the view.
-        
+        logoImage.layer.cornerRadius = logoImage.frame.height / 2
         
         
     }
@@ -93,7 +94,6 @@ class LoginViewController: UIViewController {
                     authManager.loadCurrentUser(user: user!){result in
                         if result == true{
                             self.navigationController?.popToRootViewController(animated: true)
-                            currentUser = googleUser
                         }
                         else{
                             //Google User is Logged in but has no username

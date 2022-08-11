@@ -15,10 +15,12 @@ class DBManager{
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //Loads data from database and stores it into a list of services
     func loadData(completion: @escaping (Bool) -> Void){
+        print("Load Data Entered")
         var count = 0
         print("Loading Data")
         db.collection("Services").getDocuments() { (querySnapshot, err) in
             if let err = err {
+                completion(false)
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
@@ -48,6 +50,8 @@ class DBManager{
         }
     }
     func parseData(data : fullServiceInfo, completion: @escaping (Bool) -> Void){
+        print("Parse Data Entered")
+
             getGoogleID(dataX: data){ success in
                 completion(true)
 
@@ -125,6 +129,8 @@ class DBManager{
 
 }
 func getCount(location: String, completion: @escaping (Int) -> Void){
+    print("Get Count Entered")
+
     var count = 0
     var found = false
         for point in services! {
@@ -143,6 +149,7 @@ func getCount(location: String, completion: @escaping (Int) -> Void){
 }
 
     func getGoogleID(dataX : fullServiceInfo, completion: @escaping (Bool) -> Void){
+        print("Get google ID Entered")
 
         var nameString = ""
         if  dataX.hostName != ""{
@@ -197,6 +204,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
     }
     
     func getGoogleInfo(ID : String, data : fullServiceInfo, completion: @escaping (Bool) -> Void){
+        print("Get google Info Entered")
+
         // Specify the place data types to return.
         // A hotel in Saigon with an attribution.
         let placeID = ID
@@ -218,7 +227,7 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
             return
           }
           if let place = place {
-              print(place)
+              //print(place)
               print(data.name)
               let serviceInfo = ServiceInfo(context: self.context)
               if data.isOnGoogle == true{
@@ -277,6 +286,7 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                   }
                   catch{
                       print("Image was unable to be saved.")
+                      completion(false)
                   }
               }
               
@@ -284,6 +294,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
         })
     }
     func parseHoursGoogle(hours: GMSOpeningHours, completion: @escaping ([String]) -> Void){
+        print("Parse Google Hours Entered")
+
         var result = [String](repeating: "Closed", count: 7) // 1 dimension array
 
         if let days = hours.weekdayText {
@@ -298,6 +310,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
         
     }
     func parseHours(hoursString: String, completion: @escaping ([String]) -> Void){
+        print("Parse Hours Entered")
+
         print(hoursString)
         if hoursString != ""{
             var charSet = CharacterSet(charactersIn: ",")
@@ -334,7 +348,8 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
 
   
     func saveImage(place : GMSPlace, image : String?, completion: @escaping (String) -> Void){
-        
+        print("Save Image Entered")
+
         if image != ""{
           //  print("Loading image from URL for place \(place.name)" )
             let url = URL(string: image!)
@@ -351,15 +366,19 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                 if let error = error {
                     // TODO: Handle the error.
                     print("Error loading photo metadata: \(error.localizedDescription)")
+                    completion(self.convertImageToBase64String(img: UIImage(named: "Logo")!))
                     return
                 } else {
                     // Display the first image and its attributions.
-                    let image : UIImage = photo ?? UIImage(named: "logo")!
+                    let image : UIImage = photo ?? UIImage(named: "Logo")!
                     //  print("Set Image")
                     completion(self.convertImageToBase64String(img: image))
                     
                 }
             })
+        }
+        else{
+            completion(self.convertImageToBase64String(img: UIImage(named: "Logo")!))
         }
     }
 

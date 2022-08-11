@@ -310,7 +310,7 @@ class MapViewController: UIViewController {
                     }
                 }
             }
-            else{
+            else    {
                 print("LOADING SAVED DATA")
                 updateReviewsMap(){ success in
                     print("")
@@ -559,7 +559,7 @@ extension MapViewController: MKMapViewDelegate{
             image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
         case .nonProfit:
             identifier = "Non-Profit"
-            image = UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+            image = UIImage(named: "hands.sparkles", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
    
         }
 
@@ -625,13 +625,13 @@ extension MapViewController: MKMapViewDelegate{
             
             //Sets image for view based on type
             switch pointInArray?.serviceType{
-            case "Bathroom":
-                pinClickedImage.image =  UIImage(named: "toilet", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
-                break
             case "Shower":
                 pinClickedImage.image =  UIImage(named: "shower", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                 break
-            case "Laundromat":
+            case "Hygiene":
+                pinClickedImage.image =  UIImage(named: "hands.sparkles", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
+                break
+            case "Clothing":
                 pinClickedImage.image =  UIImage(named: "shirt", in: .main, with: UIImage.SymbolConfiguration(pointSize: 16, weight: .regular))
                 break
             default:
