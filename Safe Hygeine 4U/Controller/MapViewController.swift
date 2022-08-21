@@ -91,6 +91,11 @@ class MapViewController: UIViewController {
 
     //ViewDidLoad
     override func viewDidLoad() {
+        let rawValue = UserDefaults.standard.string(forKey: "theme")!
+
+        print("Theme = " + rawValue)
+        
+
         logoImage.layer.cornerRadius = 30
         logoImage.clipsToBounds = true
         print("VIEW DID LOAD RAN")

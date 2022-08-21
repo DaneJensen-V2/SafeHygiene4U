@@ -13,9 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
  
 
-    deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: "theme", context: nil)
-    }
+   // deinit {
+   //     UserDefaults.standard.removeObserver(self, forKeyPath: "theme", context: nil)
+   // }
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -24,16 +24,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         
         var controller: UIViewController!
+        
+        if UserDefaults.standard.string(forKey: "theme") == "light"{
+            self.window?.overrideUserInterfaceStyle = .light
+
+        }
+        else{
+            self.window?.overrideUserInterfaceStyle = .dark
+
+        }
             
+
         if UserDefaults.standard.hasOnboarded {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             controller = storyboard.instantiateViewController(identifier: "Map") as! UINavigationController
         } else {
             controller = OnboardingViewController.instantiate()
         }
+        
         window?.rootViewController = controller
         window?.makeKeyAndVisible()
-        UserDefaults.standard.set("light", forKey: "theme")
         UserDefaults.standard.addObserver(self, forKeyPath: "theme", options: [.new], context: nil)
 
     }
@@ -46,8 +56,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let theme = Theme(rawValue: themeValue)?.uiInterfaceStyle
         else {
             print("returned")
-            return }
-        print(themeValue)
+            return
+            
+        }
+
+        let rawValue = UserDefaults.standard.integer(forKey: "theme")
+
+        print("Theme = " + String(rawValue))
         UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveLinear, animations: { [weak self] in
             self?.window?.overrideUserInterfaceStyle = theme
         }, completion: .none)

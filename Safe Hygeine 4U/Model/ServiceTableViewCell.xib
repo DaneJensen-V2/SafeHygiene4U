@@ -65,7 +65,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="ijD-EE-vcx" customClass="CosmosView" customModule="Cosmos">
-                        <rect key="frame" x="198" y="58.666666666666664" width="127" height="24.333333333333336"/>
+                        <rect key="frame" x="198" y="62" width="127" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
@@ -108,7 +108,7 @@
                     <constraint firstItem="KmO-ky-qku" firstAttribute="leading" secondItem="vH0-Nm-cmd" secondAttribute="trailing" id="1ZI-dC-gI1"/>
                     <constraint firstItem="KmO-ky-qku" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="1oh-SG-qi9"/>
                     <constraint firstItem="GUd-XN-REl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="38B-CL-FpY"/>
-                    <constraint firstItem="ijD-EE-vcx" firstAttribute="top" secondItem="ePY-Ji-fAu" secondAttribute="bottom" constant="11.67" id="4O1-6a-gdj"/>
+                    <constraint firstItem="ijD-EE-vcx" firstAttribute="top" secondItem="ePY-Ji-fAu" secondAttribute="bottom" constant="15" id="4O1-6a-gdj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ijD-EE-vcx" secondAttribute="trailing" constant="45" id="6Mf-P1-fef"/>
                     <constraint firstAttribute="trailing" secondItem="GUd-XN-REl" secondAttribute="trailing" constant="5" id="6d9-eg-agP"/>
                     <constraint firstAttribute="bottom" secondItem="vH0-Nm-cmd" secondAttribute="bottom" constant="10" id="Hap-Zj-pQF"/>

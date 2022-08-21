@@ -11,3 +11,8 @@ struct SideMenuModel {
     var icon: UIImage
     var title: String
 }
+struct settingsMenuModel {
+    var icon: UIImage
+    var title: String
+    var tint : UIColor
+}

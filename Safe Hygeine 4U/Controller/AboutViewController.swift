@@ -12,12 +12,13 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "About"
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
      //   Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { (_) in
             self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.tintColor = .white
     }
 
  //   }

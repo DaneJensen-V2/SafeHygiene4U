@@ -29,7 +29,8 @@ class OnboardingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+
         slides = [
             OnboardingSlide(title: "Safe Hygiene Services", description: "Safe Hygiene 4U helps people in Phoenix find safe services to help those struggling with homelessness", animation: Animation.named("WashingAnimation")!),
             OnboardingSlide(title: "Service Types", description: "We currently feature Showers, Clothing donation centers, Hygiene centers, and more on our map.",animation: Animation.named("MapAnimation")!),

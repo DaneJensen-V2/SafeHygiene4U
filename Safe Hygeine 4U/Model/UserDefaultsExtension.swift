@@ -22,6 +22,8 @@ extension UserDefaults {
             setValue(newValue, forKey: UserDefaultsKeys.hasOnboarded.rawValue)
         }
     }
+  
+    
 }
 enum Theme: String {
     case light, dark, system

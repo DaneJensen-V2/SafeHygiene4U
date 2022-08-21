@@ -18,12 +18,14 @@ class SideMenuViewController: UIViewController {
     @IBOutlet var headerImageView: UIImageView!
     @IBOutlet var sideMenuTableView: UITableView!
     @IBOutlet var footerLabel: UILabel!
-    var darkMode = false
     var delegate: SideMenuViewControllerDelegate?
     var defaultHighlightedCell: Int = 0
     var menu : [SideMenuModel] = []
     let authManager = AuthManager()
     var loggedIn = false
+    let darkMode =    SideMenuModel(icon: UIImage(systemName: "moon.fill")!, title: "Dark Mode")
+    let lightMode =  SideMenuModel(icon: UIImage(systemName: "sun.min.fill")!, title: "Light Mode")
+
     let formLink = "https://docs.google.com/forms/d/e/1FAIpQLSeZIshvJG6vf-BsC7sJGqb2AT2s3-NMCmjRo6IkH7tDM-qYvQ/viewform?usp=sf_link"
     
     var LoggedInmenu: [SideMenuModel] = [
@@ -33,8 +35,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(icon: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, title: "Logout"),
         SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About"),
         SideMenuModel(icon: UIImage(systemName: "moon.fill")!, title: "Dark Mode")
-
-
     ]
     
     var LoggedOutmenu: [SideMenuModel] = [
@@ -42,7 +42,6 @@ class SideMenuViewController: UIViewController {
         SideMenuModel(icon: UIImage(systemName: "person.fill")!, title: "Login"),
         SideMenuModel(icon: UIImage(systemName: "questionmark.circle")!, title: "About"),
         SideMenuModel(icon: UIImage(systemName: "moon.fill")!, title: "Dark Mode")
-
     ]
                 
 
@@ -52,6 +51,13 @@ class SideMenuViewController: UIViewController {
             menu = LoggedInmenu
         }else{
             menu = LoggedOutmenu
+        }
+    
+        if UserDefaults.standard.string(forKey: "theme") == "light"{
+            setMenuToDark()
+        }
+        else{
+            setMenuToLight()
         }
         
         // TableView
@@ -89,6 +95,21 @@ class SideMenuViewController: UIViewController {
             self.sideMenuTableView.selectRow(at: defaultRow, animated: false, scrollPosition: .none)
         }
     }
+    func setMenuToLight(){
+        
+        menu[menu.count - 1] = lightMode
+        DispatchQueue.main.async {
+            self.sideMenuTableView.reloadData()
+        }
+    }
+    func setMenuToDark(){
+        menu[menu.count - 1] = darkMode
+
+        DispatchQueue.main.async {
+            self.sideMenuTableView.reloadData()
+        }
+    }
+    
    @objc func changeLabels() {
             print("Setting text")
         
@@ -103,7 +124,12 @@ class SideMenuViewController: UIViewController {
            usernameLabel.text = ""
        
        }
-       self.sideMenuTableView.reloadData()
+       if UserDefaults.standard.string(forKey: "theme") == "light"{
+           setMenuToDark()
+       }
+       else{
+           setMenuToLight()
+       }
        setDefaultCell()
 
     }
@@ -145,11 +171,12 @@ extension SideMenuViewController: UITableViewDataSource {
         // ...
         if indexPath.row == 1{
             if authManager.checkIfLoggedIn(){
-                guard let url = URL(string: formLink) else { return }
-                UIApplication.shared.open(url)
+                self.performSegue(withIdentifier: "profileSegue", sender: nil)
+
                 setDefaultCell()
             }else{
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                setDefaultCell()
 
             }
         }
@@ -169,30 +196,36 @@ extension SideMenuViewController: UITableViewDataSource {
                 setDefaultCell()
             }
             else{
-                if darkMode == false{
+                if   UserDefaults.standard.string(forKey: "theme") == "light"{
                     UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
-                    darkMode = true
+                    setMenuToLight()
                 }
+                                            
                 else{
                     UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
-                    darkMode = false
+                    setMenuToDark()
                 }
             }
             setDefaultCell()
         }
+        
         else if indexPath.row == 5{
+            print(UserDefaults.standard.integer(forKey: "theme"))
            
-                if darkMode == false{
-                    UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
-                    darkMode = true
-                }
-                else{
-                    UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
-                    darkMode = false
-                
+            if   UserDefaults.standard.string(forKey: "theme") == "light"{
+                UserDefaults.standard.setValue(Theme.dark.rawValue, forKey: "theme")
+              setMenuToLight()
             }
-           
+                                        
+            else{
+                UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
+                setMenuToDark()
+            }
+            setDefaultCell()
+
         }
+
+        
         else if indexPath.row == 6{
          
         }
