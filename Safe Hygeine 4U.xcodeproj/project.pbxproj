@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		82433D96C92697B0DB458B90 /* Pods_Safe_Hygeine_4U.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78998F8879560B229C553B7A /* Pods_Safe_Hygeine_4U.framework */; };
+		A0AC93CF298C1D9200FBFB4B /* Pods-Safe Hygeine 4U.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2079C577727E38B805D71231 /* Pods-Safe Hygeine 4U.debug.xcconfig */; };
+		A0AC93D0298C1D9400FBFB4B /* Pods-Safe Hygeine 4U.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 1A76CE5EFFA73CE839203025 /* Pods-Safe Hygeine 4U.release.xcconfig */; };
 		A523FABE2878D14D007D4B1C /* VenueID.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FABD2878D14D007D4B1C /* VenueID.swift */; };
 		A523FAC02878DD6E007D4B1C /* VenueInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FABF2878DD6E007D4B1C /* VenueInfo.swift */; };
 		A523FAC2287CBCF0007D4B1C /* FullServiceInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A523FAC1287CBCF0007D4B1C /* FullServiceInfo.swift */; };
@@ -85,8 +87,8 @@
 		A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HygieneAnnotation.swift; sourceTree = "<group>"; };
 		A56EDD95285EA060006E9056 /* Hygiene Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hygiene Service.swift"; sourceTree = "<group>"; };
 		A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsViewController.swift; sourceTree = "<group>"; };
-		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
-		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "/Users/dejense4/Documents/SafeHygiene4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "/Users/dejense4/Documents/SafeHygiene4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -365,9 +367,11 @@
 				A5F099B7286CFECB00AADEE1 /* OpenSans-BoldItalic.ttf in Resources */,
 				A55DB8F428B0831D0027F63C /* ProfileTableViewCell.xib in Resources */,
 				A5F099BD286CFECB00AADEE1 /* OpenSans-SemiBoldItalic.ttf in Resources */,
+				A0AC93CF298C1D9200FBFB4B /* Pods-Safe Hygeine 4U.debug.xcconfig in Resources */,
 				A5F9CA212874D0B0007163B3 /* ServiceTableViewCell.xib in Resources */,
 				A5F099C0286CFECB00AADEE1 /* OpenSans-MediumItalic.ttf in Resources */,
 				A5F099BE286CFECB00AADEE1 /* OpenSans-Light.ttf in Resources */,
+				A0AC93D0298C1D9400FBFB4B /* Pods-Safe Hygeine 4U.release.xcconfig in Resources */,
 				A5F099742861393300AADEE1 /* GoogleService-Info.plist in Resources */,
 				A5F099BB286CFECB00AADEE1 /* OpenSans-ExtraBoldItalic.ttf in Resources */,
 				A5F099B8286CFECB00AADEE1 /* OpenSans-Bold.ttf in Resources */,

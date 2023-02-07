@@ -42,9 +42,10 @@ enum serviceTypes : String{
 //
 
 import UIKit
+import Lottie
 
 struct OnboardingSlide {
     let title: String
     let description: String
-    let animation: Animation
+    let animation: LottieAnimation
 }

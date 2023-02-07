@@ -32,9 +32,9 @@ class OnboardingViewController: UIViewController {
         UserDefaults.standard.setValue(Theme.light.rawValue, forKey: "theme")
 
         slides = [
-            OnboardingSlide(title: "Safe Hygiene Services", description: "Safe Hygiene 4U helps people in Phoenix find safe services to help those struggling with homelessness", animation: Animation.named("WashingAnimation")!),
-            OnboardingSlide(title: "Service Types", description: "We currently feature Showers, Clothing donation centers, Hygiene centers, and more on our map.",animation: Animation.named("MapAnimation")!),
-            OnboardingSlide(title: "Review Services", description: "Review the services on our map to let other people know if they are safe and worth going to!.", animation: Animation.named("ReviewAnimation")!)
+            OnboardingSlide(title: "Safe Hygiene Services", description: "Safe Hygiene 4U helps people in Phoenix find safe services to help those struggling with homelessness", animation:  LottieAnimation.named("WashingAnimation")!),
+            OnboardingSlide(title: "Service Types", description: "We currently feature Showers, Clothing donation centers, Hygiene centers, and more on our map.",animation: LottieAnimation.named("MapAnimation")!),
+            OnboardingSlide(title: "Review Services", description: "Review the services on our map to let other people know if they are safe and worth going to!.", animation: LottieAnimation.named("ReviewAnimation")!)
         ]
         
         pageControl.numberOfPages = slides.count

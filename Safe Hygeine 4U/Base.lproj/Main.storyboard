@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21219" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f13-JE-gQt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f13-JE-gQt">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21200"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -353,7 +353,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDh-oD-EBJ">
-                                <rect key="frame" x="32" y="625" width="350" height="50"/>
+                                <rect key="frame" x="32" y="627.5" width="350" height="50"/>
                                 <color key="backgroundColor" name="LogoBlue"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="f9z-su-gHq"/>
@@ -375,14 +375,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CiJ-u1-EiC">
-                                <rect key="frame" x="88.5" y="782" width="237" height="33.5"/>
+                                <rect key="frame" x="92.5" y="784.5" width="229" height="31"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <state key="normal" title=""/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <attributedString key="attributedTitle">
                                         <fragment content="Already have an account? Login">
                                             <attributes>
-                                                <font key="NSFont" size="14" name="OpenSans-SemiBold"/>
+                                                <font key="NSFont" metaFont="system" size="14"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -392,7 +392,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Oy-Uw-oXU" userLabel="Google Button View">
-                                <rect key="frame" x="32" y="702" width="350" height="50"/>
+                                <rect key="frame" x="32" y="704.5" width="350" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uS-N2-v70">
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
@@ -1437,8 +1437,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12h-u6-X1a" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="20" y="141" width="237" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12h-u6-X1a" customClass="CosmosView" customModule="Cosmos">
+                                <rect key="frame" x="20" y="141" width="208" height="50"/>
                                 <color key="tintColor" name="YellowPin"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="MPM-hI-lqs"/>
@@ -1533,7 +1533,7 @@
                                         <fragment content="Submit Review">
                                             <attributes>
                                                 <color key="NSColor" red="0.90301454010000004" green="0.90301454010000004" blue="0.90301454010000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <font key="NSFont" size="12" name="OpenSans-Bold"/>
+                                                <font key="NSFont" metaFont="cellTitle"/>
                                             </attributes>
                                         </fragment>
                                     </attributedString>
@@ -2036,7 +2036,7 @@
                                                         <constraint firstItem="nda-RV-WHN" firstAttribute="leading" secondItem="yRx-WZ-xgZ" secondAttribute="leading" id="pDg-zg-WaO"/>
                                                     </constraints>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXc-Wb-u5c" customClass="AnimationView" customModule="Lottie">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXc-Wb-u5c" customClass="LottieAnimationView" customModule="Lottie">
                                                     <rect key="frame" x="0.0" y="0.0" width="413" height="506.5"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 </view>
@@ -2190,7 +2190,19 @@
         </scene>
     </scenes>
     <designables>
+        <designable name="12h-u6-X1a">
+            <size key="intrinsicContentSize" width="208" height="40"/>
+        </designable>
+        <designable name="2Hx-qM-vc3">
+            <size key="intrinsicContentSize" width="108" height="20"/>
+        </designable>
+        <designable name="7EL-KC-wp6">
+            <size key="intrinsicContentSize" width="112" height="20"/>
+        </designable>
         <designable name="hXc-Wb-u5c"/>
+        <designable name="n6T-mo-M0H">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="KyH-U7-CL8"/>
@@ -2205,7 +2217,7 @@
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
-        <image name="dumbbell" width="18" height="10"/>
+        <image name="dumbbell" width="13" height="8"/>
         <image name="eye" catalog="system" width="128" height="79"/>
         <image name="globe" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
@@ -2218,7 +2230,7 @@
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="phone" catalog="system" width="128" height="115"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="shower" width="11" height="15"/>
+        <image name="shower" width="9" height="11"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="99"/>
         <image name="star" width="21.68549919128418" height="22.119100570678711"/>
         <image name="star.fill" width="21.68549919128418" height="22.119100570678711"/>

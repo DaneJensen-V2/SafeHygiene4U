@@ -89,7 +89,7 @@ class DBManager{
                 for document in querySnapshot!.documents {
                     
 
-                            guard let dict = document.data() else { return }
+                             let dict = document.data()
                             
                             //print(dict)
 
@@ -271,12 +271,12 @@ https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_i
                   serviceInfo.notes = data.notes
 
               }
-              if let sDetails = data.serviceDetails{
+               let sDetails = data.serviceDetails
                   serviceInfo.serviceDetails =  sDetails.components(separatedBy: ",")
-              }
-              else{
-                  serviceInfo.serviceDetails = []
-              }
+              
+             // else{
+             //     serviceInfo.serviceDetails = []
+             // }
               self.saveImage(place: place, image: data.image){image in
                   serviceInfo.image = image
                   do {

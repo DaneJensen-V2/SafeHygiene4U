@@ -380,6 +380,7 @@ static void callInMainThreadWithAuthDataResultAndError(
                                                                 heartbeatLogger:nil];
 #if TARGET_OS_IOS
     _multiFactor = multiFactor ?: [[FIRMultiFactor alloc] init];
+    _multiFactor.user = self;
 #endif
   }
   return self;
@@ -852,6 +853,10 @@ static void callInMainThreadWithAuthDataResultAndError(
     [provider getCredentialWithUIDelegate:UIDelegate
                                completion:^(FIRAuthCredential *_Nullable credential,
                                             NSError *_Nullable error) {
+                                 if (error) {
+                                   completion(nil, error);
+                                   return;
+                                 }
                                  [self reauthenticateWithCredential:credential
                                                          completion:completion];
                                }];
@@ -1335,6 +1340,10 @@ static void callInMainThreadWithAuthDataResultAndError(
     [provider getCredentialWithUIDelegate:UIDelegate
                                completion:^(FIRAuthCredential *_Nullable credential,
                                             NSError *_Nullable error) {
+                                 if (error) {
+                                   completion(nil, error);
+                                   return;
+                                 }
                                  [self linkWithCredential:credential completion:completion];
                                }];
   });

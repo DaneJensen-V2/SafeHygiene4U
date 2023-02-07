@@ -1,3 +1,17 @@
+# 10.4.0
+- [fixed] Fix secure coding bugs in MFA. (#10632)
+- [fixed] Added handling of error returned from a blocking cloud function. (#10628)
+
+# 10.2.0
+- [fixed] Fix a bug where the linking/reauth flows errors are not caught. (#10267)
+- [fixed] Force to recaptcha verification flow for phone auth in simulators. (#10426)
+
+# 10.1.0
+- [fixed] Fix a bug where multi factor phone number returns `NULL`. (#10296)
+
+# 9.5.0
+- [fixed] Fix a bug where phone multi factor id is not correctly retrieved. (#10061)
+
 # 9.2.0
 - [fixed] Catch keychain errors instead of using the `isProtectedDataAvailable` API for handling prewarming issue. (#9869)
 
