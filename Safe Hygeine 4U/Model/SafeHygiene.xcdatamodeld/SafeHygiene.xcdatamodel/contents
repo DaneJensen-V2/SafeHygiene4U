@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21223.11" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ServiceInfo" representedClassName="ServiceInfo" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="hostName" optional="YES" attributeType="String"/>
+        <attribute name="hours" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromDataTransformer" allowsCloudEncryption="YES" customClassName="[String]"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isEvent" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isOnGoogle" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isVerified" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <attribute name="pricing" optional="YES" attributeType="String"/>
+        <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="reviews" optional="YES" attributeType="Integer 64" valueTransformerName="NSSecureUnarchiveFromData" defaultValueString="0" usesScalarValueType="YES" customClassName="[review]"/>
+        <attribute name="serviceDetails" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="[String]"/>
+        <attribute name="serviceType" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="ServiceInfo" positionX="-63" positionY="-18" width="128" height="299"/>
+    </elements>
+</model>
