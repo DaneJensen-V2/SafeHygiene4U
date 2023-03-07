@@ -15,6 +15,8 @@ target 'Safe Hygeine 4U' do
 	pod 'Cosmos', ' 23.0'
 	pod 'lottie-ios'
 	pod 'RSSelectionMenu'
+	pod 'SwiftLint'
+
 end
 
 post_install do |pi|

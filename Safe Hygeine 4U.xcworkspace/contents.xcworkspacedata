@@ -2,12 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift">
-   </FileRef>
-   <FileRef
-      location = "group:/Users/danej/Documents/Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift">
-   </FileRef>
-   <FileRef
       location = "group:Safe Hygeine 4U.xcodeproj">
    </FileRef>
    <FileRef

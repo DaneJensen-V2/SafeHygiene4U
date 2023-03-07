@@ -731,6 +731,7 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.2.0)
   - RSSelectionMenu (7.1.3)
+  - SwiftLint (0.50.3)
 
 DEPENDENCIES:
   - Cosmos (= 23.0)
@@ -741,6 +742,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - lottie-ios
   - RSSelectionMenu
+  - SwiftLint
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -768,6 +770,7 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - RSSelectionMenu
+    - SwiftLint
 
 SPEC CHECKSUMS:
   abseil: ebe5b5529fb05d93a8bdb7951607be08b7fa71bc
@@ -794,7 +797,8 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   RSSelectionMenu: 873d62ebbaef138519f6cf3f073412c2b5d94c2c
+  SwiftLint: 77f7cb2b9bb81ab4a12fcc86448ba3f11afa50c6
 
-PODFILE CHECKSUM: 43fcdc30e199977af2a25cc10f978e69d6e49247
+PODFILE CHECKSUM: b9c0f8fe96e1c0d1bc8541182cd4cf31fa279af0
 
 COCOAPODS: 1.11.2

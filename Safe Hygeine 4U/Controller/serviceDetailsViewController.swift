@@ -387,9 +387,14 @@ class serviceDetailsViewController: UIViewController {
         hoursView.fadeIn()
     }
     func convertBase64StringToImage (imageBase64String:String) -> UIImage {
-        let imageData = Data(base64Encoded: imageBase64String)
-        let image = UIImage(data: imageData!)
-        return image!
+        
+        if let imageData = Data(base64Encoded: imageBase64String) {
+            let image = UIImage(data: imageData)
+            return image ?? UIImage(named: "Logo")!
+        }
+        else {
+            return UIImage(named: "Logo")!
+        }
     } 
 
     

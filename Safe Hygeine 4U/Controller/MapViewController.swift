@@ -97,8 +97,6 @@ class MapViewController: UIViewController {
     //ViewDidLoad
     override func viewDidLoad() {
         let rawValue = UserDefaults.standard.string(forKey: "theme")!
-
-        print("Theme = " + rawValue)
         
         serviceTable.tableHeaderView = .init(frame: .init(x: 0, y: 0, width: 0, height: CGFloat.leastNonzeroMagnitude))
 
@@ -155,9 +153,6 @@ class MapViewController: UIViewController {
 
         }
         
-    
-        //Uncomment to add a document to the database
-       // addDocument()
         tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(TapGestureRecognizer))
         tapGestureRecognizer.numberOfTapsRequired = 1
         tapGestureRecognizer.delegate = self
@@ -203,25 +198,24 @@ class MapViewController: UIViewController {
             })
         }
     }
+
+    //Adds shadow to buttons in the services tableview
     func setButtons(){
-        showersButton.layer.shadowColor = UIColor.black.cgColor
-        showersButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        showersButton.layer.shadowRadius = 1
-        showersButton.layer.shadowOpacity = 0.5
-        showersButton.clipsToBounds = false
+        addButtonShadow(button: showersButton)
+        addButtonShadow(button: ClothingButton)
+        addButtonShadow(button: nonprofitButton)
         
-        ClothingButton.layer.shadowColor = UIColor.black.cgColor
-        ClothingButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        ClothingButton.layer.shadowRadius = 1
-        ClothingButton.layer.shadowOpacity = 0.5
-        ClothingButton.clipsToBounds = false
-        
-        nonprofitButton.layer.shadowColor = UIColor.black.cgColor
-        nonprofitButton.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-        nonprofitButton.layer.shadowRadius = 1
-        nonprofitButton.layer.shadowOpacity = 0.5
-        nonprofitButton.clipsToBounds = false
     }
+    
+    func addButtonShadow(button: UIButton){
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        button.layer.shadowRadius = 1
+        button.layer.shadowOpacity = 0.5
+        button.clipsToBounds = false
+    }
+    
+    //Sets up the side menu
     func setupMenu() {
         print("Setting Menu")
         
@@ -248,6 +242,8 @@ class MapViewController: UIViewController {
             self!.updateMap()
         }
     }
+    
+    //Updates the pins displayed on the map based on what filters the user selects
     func updateMap(){
        
         if simpleSelectedArray.contains("Showers") && !currentMapState.contains("Showers"){
@@ -282,6 +278,7 @@ class MapViewController: UIViewController {
 
         }
     }
+    
     func updateReviewsMap(completion: @escaping (Bool) -> Void){
         print("Reviews changed")
         self.dbManager.updateReviews(){success in
@@ -298,6 +295,8 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
+    //CAN REMOVE
     func compareDB(){
         print("CompareDB Ran")
        getFirestoreSize(){ [self] firestoreSize in
@@ -312,19 +311,16 @@ class MapViewController: UIViewController {
             catch{
                 print("Could not fetch CoreData")
             }
-            print("Firestore size: \(firestoreSize)")
-            print("coreData size: \(coreDataSize)")
-            
-            if firestoreSize != coreDataSize{
-                print("DOWNLOADING NEW DATA")
+
+           if Reachability.isConnectedToNetwork(){
+               print("Internet Connection Available!")
                 downloadView.layer.cornerRadius = 15
                 spinner.startAnimating()
                 downloadView.isHidden = false
                 dbManager.DeleteAllData()
                 dbManager.loadData(){ success in
-                    print("Load data ran count")
                     do {
-                        services = try self.context.fetch(ServiceInfo.fetchRequest())
+                      services = try self.context.fetch(ServiceInfo.fetchRequest())
                       coreDataSize = services!.count
                     }
                     catch{
@@ -368,6 +364,7 @@ class MapViewController: UIViewController {
             }
         }
     }
+    
     func getFirestoreSize(completion: @escaping (Int) -> ()) {
         print("Getting size")
         var firestoreSize = 0
@@ -384,6 +381,7 @@ class MapViewController: UIViewController {
         print("returning")
 
     }
+    
     @IBAction func buttonCollectionPress(_ sender: UIButton) {
         print("Ran")
         if sender.backgroundColor == UIColor(named: "LogoBlue1"){
@@ -529,13 +527,16 @@ class MapViewController: UIViewController {
     
     //Checks if location services are on, else prompt user to turn them on
     func checkLocationServices(){
-        if CLLocationManager.locationServicesEnabled() {
-            setupLocationManager()
-            checkLocationAuthorization()
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.setupLocationManager()
+                self.checkLocationAuthorization()
+            }
+            else{
+                //Show alert letting user know how to turn this on
+            }
         }
-        else{
-            //Show alert letting user know how to turn this on
-        }
+        
     }
 
  

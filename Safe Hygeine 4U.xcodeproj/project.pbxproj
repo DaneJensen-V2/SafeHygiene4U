@@ -27,6 +27,7 @@
 		A5AB92D2286E6D1500D1C64C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */; };
 		A5AFE01628B5D7E40041B292 /* EmailChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFE01528B5D7E40041B292 /* EmailChangeViewController.swift */; };
 		A5AFE01828B5DCC10041B292 /* ChangeUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5AFE01728B5DCC10041B292 /* ChangeUsernameViewController.swift */; };
+		A5BA506D29AED35800857B58 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BA506C29AED35800857B58 /* Reachability.swift */; };
 		A5D024DA2884FA4400886F43 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D024D92884FA4400886F43 /* ReviewsViewController.swift */; };
 		A5D024DC2885028A00886F43 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D024DB2885028A00886F43 /* AddReviewViewController.swift */; };
 		A5D3C6FE285A9222001A1EE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */; };
@@ -88,13 +89,14 @@
 		A56EDD8B285BCA43006E9056 /* HygieneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HygieneAnnotation.swift; sourceTree = "<group>"; };
 		A56EDD95285EA060006E9056 /* Hygiene Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hygiene Service.swift"; sourceTree = "<group>"; };
 		A573D89128716DAE00FF21BD /* serviceDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsViewController.swift; sourceTree = "<group>"; };
-		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "../../../Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "../../../Safe Hygeine 4U/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A57EF046287FCE0C00B8C862 /* ServiceInfo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataProperties.swift"; path = "../../../Safe Hygeine 4U 2/Safe Hygeine 4U/Model/ServiceInfo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A57EF047287FCE0C00B8C862 /* ServiceInfo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "ServiceInfo+CoreDataClass.swift"; path = "../../../Safe Hygeine 4U 2/Safe Hygeine 4U/Model/ServiceInfo+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A59FFFDB2882200100A6CD4F /* serviceDetailsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = serviceDetailsCollectionViewCell.swift; sourceTree = "<group>"; };
 		A5AB92CF286E412500D1C64C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		A5AB92D1286E6D1500D1C64C /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		A5AFE01528B5D7E40041B292 /* EmailChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailChangeViewController.swift; sourceTree = "<group>"; };
 		A5AFE01728B5DCC10041B292 /* ChangeUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeUsernameViewController.swift; sourceTree = "<group>"; };
+		A5BA506C29AED35800857B58 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		A5D024D92884FA4400886F43 /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		A5D024DB2885028A00886F43 /* AddReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewController.swift; sourceTree = "<group>"; };
 		A5D3C6FA285A9222001A1EE7 /* Safe Hygeine 4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Safe Hygeine 4U.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +190,14 @@
 			path = "SideMenu + Onboarding";
 			sourceTree = "<group>";
 		};
+		A5BA506B29AED34B00857B58 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A5BA506C29AED35800857B58 /* Reachability.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		A5D3C6F1285A9222001A1EE7 = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +225,7 @@
 				A521AB8E28B977600031DE9D /* GoogleService-Info.plist */,
 				A5D3C6FD285A9222001A1EE7 /* AppDelegate.swift */,
 				A5D3C6FF285A9222001A1EE7 /* SceneDelegate.swift */,
+				A5BA506B29AED34B00857B58 /* Utils */,
 				A5D3C703285A9222001A1EE7 /* Main.storyboard */,
 				A5D3C706285A9225001A1EE7 /* Assets.xcassets */,
 				A5D3C708285A9225001A1EE7 /* LaunchScreen.storyboard */,
@@ -504,6 +515,7 @@
 				A5F0997A28650C2000AADEE1 /* AuthManager.swift in Sources */,
 				A55DB8F028B06B450027F63C /* ProfileViewController.swift in Sources */,
 				A5E5EA4A289C8D3D00F20D7B /* UserDefaultsExtension.swift in Sources */,
+				A5BA506D29AED35800857B58 /* Reachability.swift in Sources */,
 				A5F9CA202874D0B0007163B3 /* ServiceTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

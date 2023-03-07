@@ -5,7 +5,9 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import GooglePlaces
 import CoreData
+
 var servicesList: [[HygieneAnnotation]] = [[], [], []]
+
 
 class DBManager{
     //Connects to the database
@@ -14,6 +16,7 @@ class DBManager{
     let db = Firestore.firestore()
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //Loads data from database and stores it into a list of services
+    
     func loadData(completion: @escaping (Bool) -> Void){
         print("Load Data Entered")
         var count = 0
@@ -24,14 +27,13 @@ class DBManager{
                 print("Error getting documents: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                //    print("\(document.documentID) => \(document.data())")
                     let result = Result {
                         try document.data(as: fullServiceInfo.self)
                     }
                     switch result {
                     case .success(let newService):
-                        self.parseData(data: newService){success in
-                            print("Completion Ran")
+                        self.addServiceToDB(serviceToAdd: newService) {success in
+                            
                             count += 1
                             if count == querySnapshot!.documents.count{
                                 completion(true)
@@ -49,14 +51,47 @@ class DBManager{
             }
         }
     }
-    func parseData(data : fullServiceInfo, completion: @escaping (Bool) -> Void){
-        print("Parse Data Entered")
-
-            getGoogleID(dataX: data){ success in
-                completion(true)
-
+    
+    func addServiceToDB(serviceToAdd service : fullServiceInfo, completion: @escaping (Bool) -> Void){
+        
+        let serviceInfo = ServiceInfo(context: self.context)
+     
+            serviceInfo.phoneNumber = service.phoneNumber
+            serviceInfo.longitude = service.longitude
+            serviceInfo.latitude = service.latitude
+            serviceInfo.isOnGoogle = service.isOnGoogle
+            serviceInfo.address = service.address
+            serviceInfo.name = service.name
+            serviceInfo.hostName = service.hostName
+            serviceInfo.rating = service.rating ?? 0.0
+            serviceInfo.reviews = service.reviews ?? 0
+            serviceInfo.website = service.website
+            serviceInfo.serviceType = service.serviceType
+            serviceInfo.isEvent = service.isEvent
+            serviceInfo.isVerified = service.isVerified
+            serviceInfo.notes = service.notes
+        
+            let sDetails = service.serviceDetails
+            serviceInfo.serviceDetails =  sDetails.components(separatedBy: ",")
+        
+            serviceInfo.image = service.image
+            
+        self.parseHours(hoursString: service.hours ?? "", isOnGoogle: service.isOnGoogle ){days in
+                serviceInfo.hours = days
             }
+        
+        do {
+            try self.context.save()
+            completion(true)
         }
+        catch {
+            print("Unable to save " + service.name)
+        }
+          
+        
+    }
+    
+
     func DeleteAllData(){
 
 
@@ -109,6 +144,7 @@ class DBManager{
         }
          
     }
+    
     func updateData(Reviews : Int, Rating : Double, location : String, completion: @escaping (Bool) -> Void){
       
             //Matches the clicked point to the point in the services list based on title
@@ -128,6 +164,7 @@ class DBManager{
         }
 
 }
+    
 func getCount(location: String, completion: @escaping (Int) -> Void){
     print("Get Count Entered")
 
@@ -148,201 +185,69 @@ func getCount(location: String, completion: @escaping (Int) -> Void){
     }
 }
 
-    func getGoogleID(dataX : fullServiceInfo, completion: @escaping (Bool) -> Void){
-        print("Get google ID Entered")
-
-        var nameString = ""
-        if  dataX.hostName != ""{
-            nameString = dataX.hostName!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        }
-        else{
-            nameString = dataX.name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        }
-        
-        let baseURL = """
-https://maps.googleapis.com/maps/api/place/findplacefromtext/json?fields=place_id%2Cname&input=\(nameString)&inputtype=textquery&locationbias=point%3A\(dataX.latitude)%2C\(dataX.longitude)&key=AIzaSyD_6-EQYz6EfnqTrrCWafUeZBqmNB_0ocw
-"""
-        let url = URL(string : baseURL)
-     //   print(baseURL)
-        
-        let request = URLRequest(url: url!)
-       // request.setValue("Bearer \(apiKey)", forHTTPHeaderField: "Authorization")
-     //   request.httpMethod = "GET"
-        
-        URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                print(error)
-              //  completionHandler(nil, error)
-            }
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: [])
-                
-                guard let resp = json as? NSDictionary else {return}
-                
-                guard let businesses = resp.value(forKey: "candidates") as? [NSDictionary] else {return}
-                    
-                if businesses.count >= 1{
-                    let business = businesses[0]
-                    let ID = business.value(forKey: "place_id") as? String
-                    
-                    //   print("ID = \(ID)")
-                    self.getGoogleInfo(ID: ID!, data: dataX){success in
-                        completion(true)
-                    }
-                    // completionHandler(venue, nil)
-                    
-                }
-                else{
-                    print("Business Not Found")
-                    completion(true)
-                }
-            }
-            catch{
-                print("Caught Error")
-            }
-        }.resume()
-    }
+   
     
-    func getGoogleInfo(ID : String, data : fullServiceInfo, completion: @escaping (Bool) -> Void){
-        print("Get google Info Entered")
-
-        // Specify the place data types to return.
-        // A hotel in Saigon with an attribution.
-        let placeID = ID
-
-        // Specify the place data types to return.
-        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-                                                  UInt(GMSPlaceField.placeID.rawValue) |
-                                                  UInt(GMSPlaceField.website.rawValue) |
-                                                  UInt(GMSPlaceField.phoneNumber.rawValue) |
-                                                  UInt(GMSPlaceField.formattedAddress.rawValue) |
-        UInt(GMSPlaceField.openingHours.rawValue) |
-        UInt(GMSPlaceField.iconImageURL.rawValue) |
-        UInt(GMSPlaceField.photos.rawValue))
-        placesClient.fetchPlace(fromPlaceID: placeID, placeFields: fields, sessionToken: nil, callback: {
-          (place: GMSPlace?, error: Error?) in
-          if let error = error {
-            print("An error occurred: \(error.localizedDescription)")
-            
-            return
-          }
-          if let place = place {
-              //print(place)
-              print(data.name)
-              let serviceInfo = ServiceInfo(context: self.context)
-              if data.isOnGoogle == true{
-                  serviceInfo.phoneNumber = place.phoneNumber
-                  serviceInfo.longitude = data.longitude
-                  serviceInfo.latitude = data.latitude
-                  serviceInfo.isOnGoogle = data.isOnGoogle
-                  serviceInfo.address = place.formattedAddress
-                  serviceInfo.name = place.name!
-                  serviceInfo.hostName = data.hostName
-                  serviceInfo.rating = data.rating ?? 0.0
-                  self.parseHoursGoogle(hours:place.openingHours!){hours in
-                      serviceInfo.hours = hours
-                  }
-                  serviceInfo.reviews = data.reviews ?? 0
-                  serviceInfo.serviceDetails = []
-                  serviceInfo.website = place.website?.absoluteString
-                  serviceInfo.serviceType = data.serviceType
-                  serviceInfo.isEvent = data.isEvent
-                  serviceInfo.isVerified = data.isVerified
-                  serviceInfo.notes = data.notes
-              }
-              else{
-                  serviceInfo.phoneNumber = data.phoneNumber
-                  serviceInfo.longitude = data.longitude
-                  serviceInfo.latitude = data.latitude
-                  serviceInfo.isOnGoogle = data.isOnGoogle
-                  serviceInfo.address = place.formattedAddress
-                  serviceInfo.name = data.name
-                  serviceInfo.hostName = data.hostName
-                  serviceInfo.rating = data.rating ?? 0.0
-                  self.parseHours(hoursString: data.hours ?? ""){days in
-                      print(days)
-                      serviceInfo.hours = days
-                  }
-                  serviceInfo.reviews = data.reviews ?? 0
-                  serviceInfo.website = data.website
-                  serviceInfo.serviceType = data.serviceType
-                  serviceInfo.isEvent = data.isEvent
-                  serviceInfo.isVerified = data.isVerified
-                  serviceInfo.notes = data.notes
-
-              }
-              let sDetails = data.serviceDetails
-                  serviceInfo.serviceDetails =  sDetails.components(separatedBy: ",")
-              
-              
-              self.saveImage(place: place, image: data.image){image in
-                  serviceInfo.image = image
-                  do {
-                      print("saved")
-                      try self.context.save()
-                      completion(true)
-                  }
-                  catch{
-                      print("Image was unable to be saved.")
-                      completion(false)
-                  }
-              }
-              
-          }
-        })
-    }
+   
     
     func parseHoursGoogle(hours: GMSOpeningHours, completion: @escaping ([String]) -> Void){
         print("Parse Google Hours Entered")
 
-        var result = [String](repeating: "Closed", count: 7) // 1 dimension array
-
-        if let days = hours.weekdayText {
-            for i in 0...days.count - 1{
-                let time = days[i].split(separator: ":", maxSplits: 1).map(String.init)
-                
-                result[i] = time[1]
-            }
-        }
-        
-        completion(result)
+     
         
     }
     
-    func parseHours(hoursString: String, completion: @escaping ([String]) -> Void){
+    func parseHours(hoursString: String, isOnGoogle : Bool, completion: @escaping ([String]) -> Void){
         print("Parse Hours Entered")
-
         print(hoursString)
-        if hoursString != ""{
-            var charSet = CharacterSet(charactersIn: ",")
-            
-            var seperatedHours = hoursString.components(separatedBy: charSet)
-            var days = [String](repeating: "Closed", count: 7) // 1 dimension array
-            
-            for s in seperatedHours{
-                let noSpace = s.trimmingCharacters(in: .whitespacesAndNewlines)
-                if noSpace[1] == "-"{
-                    let start = Int(noSpace[0])
-                    let end = Int(noSpace[2])
-                    for i in start!...end! {
-                        let time = s.split(separator: ":", maxSplits: 1).map(String.init)
-                        
-                        days[i] = time[1]
-                    }
-                }
-                else {
-                    let day = Int(noSpace[0])
-                    let time = s.split(separator: ":", maxSplits: 1).map(String.init)
-                    
-                    days[day!] = time[1]
-                }
-                print("Done")
-            }
-            print("Completion Ran")
-            completion(days)
+        
+        if  (hoursString == "" || hoursString == "Hours not available.") {
+            completion([])
+
         }
         else{
-            completion([])
+            let charSet = CharacterSet(charactersIn: ",")
+            let seperatedHours = hoursString.components(separatedBy: charSet)
+            
+            if isOnGoogle {
+   
+                
+                var result = [String](repeating: "Closed", count: 7) // 1 dimension array
+
+                for i in 0...seperatedHours.count - 1{
+                        let time = seperatedHours[i].split(separator: ":", maxSplits: 1).map(String.init)
+                        
+                        result[i] = time[1]
+                    }
+                
+                
+                completion(result)
+            }
+            else {
+                var days = [String](repeating: "Closed", count: 7) // 1 dimension array
+                
+                for s in seperatedHours{
+                    let noSpace = s.trimmingCharacters(in: .whitespacesAndNewlines)
+                    if noSpace[1] == "-"{
+                        let start = Int(noSpace[0])
+                        let end = Int(noSpace[2])
+                        for i in start!...end! {
+                            let time = s.split(separator: ":", maxSplits: 1).map(String.init)
+                            
+                            days[i] = time[1]
+                        }
+                    }
+                    else {
+                        let day = Int(noSpace[0])
+                        let time = s.split(separator: ":", maxSplits: 1).map(String.init)
+                        
+                        days[day!] = time[1]
+                    }
+                    print("Done")
+                }
+                print("Completion Ran")
+                completion(days)
+            }
+         
         }
     }
 
