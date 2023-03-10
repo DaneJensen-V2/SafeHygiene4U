@@ -57,10 +57,23 @@ class serviceDetailsViewController: UIViewController {
     var favoriteChanged = false
     var height : CGFloat = 0
     var width : CGFloat = 0
+    let hoursUnavailable = ["Hours Unavailable", "Hours Unavailable","Hours Unavailable","Hours Unavailable","Hours Unavailable","Hours Unavailable","Hours Unavailable" ]
+    var displayHours = [""]
     
     override func viewDidLoad() {
         //  phoneButton.widthAnchor.constraint(equalToConstant: phoneButton.frame.size.height).isActive = true
-        
+        if let hours = selectedService?.hours{
+            if hours != [] {
+                print(hours)
+                displayHours = hours
+            }
+            else {
+                displayHours = hoursUnavailable
+            }
+        }
+        else {
+            displayHours = hoursUnavailable
+        }
         closeButton.layer.cornerRadius = 5
         width = self.view.frame.width
         hoursView.layer.cornerRadius = 10
@@ -333,17 +346,15 @@ class serviceDetailsViewController: UIViewController {
                                      afterScreenUpdates: true)
     }
     func setHours(){
-        if let hours = selectedService?.hours{
-            monLabel.text = hours[0]
-            tuesLabel.text = hours[1]
-            wedLabel.text = hours[2]
-            thursLabel.text = hours[3]
-            fridLabel.text = hours[4]
-            saturdayLabel.text = hours[5]
-            sundLabel.text = hours[6]
-
-        }
+            monLabel.text = displayHours[0]
+            tuesLabel.text = displayHours[1]
+            wedLabel.text = displayHours[2]
+            thursLabel.text = displayHours[3]
+            fridLabel.text = displayHours[4]
+            saturdayLabel.text = displayHours[5]
+            sundLabel.text = displayHours[6]
     }
+    
     func updateUI(){
         if let selectedService = selectedService{
             if selectedService.reviews == 0{
@@ -375,7 +386,7 @@ class serviceDetailsViewController: UIViewController {
         else{
             arrowImage.isHidden = true
         }
-        hoursLabel.text = selectedService?.hours![dayOfWeek]
+        hoursLabel.text = displayHours[dayOfWeek]
         setHours()
         spinner.isHidden = true
         spinner.stopAnimating()

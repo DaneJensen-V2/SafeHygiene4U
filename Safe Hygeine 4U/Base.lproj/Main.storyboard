@@ -1081,6 +1081,13 @@
                                             <constraint firstAttribute="bottom" secondItem="X1p-Iv-2hH" secondAttribute="bottom" constant="2" id="pP7-A8-dtc"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKb-kZ-PL2">
+                                        <rect key="frame" x="40" y="454.5" width="334" height="1"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="lKQ-7D-MX5"/>
+                                        </constraints>
+                                    </view>
                                     <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44z-fO-uy7">
                                         <rect key="frame" x="49.5" y="250" width="315" height="300"/>
                                         <subviews>
@@ -1245,13 +1252,6 @@
                                             <constraint firstAttribute="bottom" secondItem="NTL-6k-Kbd" secondAttribute="bottom" constant="8" id="cJA-A9-xuu"/>
                                             <constraint firstItem="vqe-vR-bVC" firstAttribute="leading" secondItem="44z-fO-uy7" secondAttribute="leading" constant="20" id="iTY-6R-bHK"/>
                                             <constraint firstItem="aqC-uv-mGk" firstAttribute="centerX" secondItem="44z-fO-uy7" secondAttribute="centerX" id="lfn-Uy-HZ7"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NKb-kZ-PL2">
-                                        <rect key="frame" x="40" y="454.5" width="334" height="1"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="lKQ-7D-MX5"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6v-9h-GOZ">
